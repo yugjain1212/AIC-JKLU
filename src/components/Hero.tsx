@@ -29,7 +29,7 @@ export default function Hero() {
             mb-6
           "
         >
-          Backing Visionary Founders Building the Future from Jaipur.
+          Innovate Beyond Limits
         </h1>
 
         {/* ── Subhead ── */}
@@ -43,8 +43,8 @@ export default function Hero() {
             mb-10
           "
         >
-          Supported by NITI Aayog &amp; JK Lakshmipat University. We provide seed
-          capital, hands-on mentorship, and world-class lab infrastructure.
+          Welcome to Atal Incubation Centre, 
+          Supported by NITI Aayog & JK Lakshmipat University.
         </p>
 
         {/* ── CTA Button Group ── */}
