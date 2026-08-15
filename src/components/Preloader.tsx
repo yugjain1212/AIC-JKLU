@@ -60,7 +60,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             scale: 1.04,
             transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
           }}
-          className="fixed inset-0 z-[9999] bg-[#0a0a0a] flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-[9999] bg-[#FBF7F0] flex items-center justify-center overflow-hidden"
           role="status"
           aria-live="polite"
           aria-label={`Loading AIC-JKLU — ${displayPct}%`}
@@ -70,7 +70,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             className="pointer-events-none absolute inset-0 opacity-[0.035]"
             style={{
               backgroundImage:
-                'linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)',
+                'linear-gradient(rgb(255, 246, 246) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)',
               backgroundSize: '40px 40px',
             }}
           />
@@ -81,7 +81,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           <motion.div
             initial={{ opacity: 0, rotate: 4, y: 20 }}
             animate={{ opacity: 1, rotate: 4, y: 0, transition: { delay: 0.3, duration: 0.6 } }}
-            className="absolute top-[14%] right-[12%] w-44 bg-[#f5f5f0] rounded-[4px] p-4 shadow-lg"
+            className="absolute top-[14%] right-[12%] w-44 bg-[#f5f5f0] rounded-[13px] p-4 shadow-lg"
           >
             <p className="font-robotoMono text-[11px] uppercase leading-snug text-[#1a1a1a]">
               With ♥ from<br />Jaipur,<br />India
@@ -92,7 +92,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           <motion.div
             initial={{ opacity: 0, rotate: -5, y: 20 }}
             animate={{ opacity: 1, rotate: -5, y: 0, transition: { delay: 0.45, duration: 0.6 } }}
-            className="absolute bottom-[18%] left-[9%] w-44 bg-[#f5f5f0] rounded-[4px] p-4 shadow-lg"
+            className="absolute bottom-[18%] left-[9%] w-44 bg-[#EB5725] rounded-[4px] p-4 shadow-lg"
           >
             <p className="font-robotoMono text-[11px] uppercase leading-snug text-[#1a1a1a]">
               Startups,<br />Founders,<br />Great Ideas
@@ -142,10 +142,10 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                   initial={{ scale: 0.6, opacity: 0 }}
                   animate={
                     i < filledCount
-                      ? { scale: 1, opacity: 1, backgroundColor: '#5a5a5a' }
-                      : { scale: 1, opacity: 1, backgroundColor: '#242424' }
+                      ? { scale: 1, opacity: 1, backgroundColor: '#C84214' }
+                      : { scale: 1, opacity: 1, backgroundColor: '#FBF7F0' }
                   }
-                  transition={{ duration: 0.18, ease: 'easeOut', delay: i * 0.02 }}
+                  transition={{ duration: 0.18, ease: 'easeOut', delay: i * 0.09 }}
                   className="h-[34px] flex-1 rounded-[6px]"
                 />
               ))}
