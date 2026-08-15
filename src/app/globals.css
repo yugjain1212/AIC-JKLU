@@ -2,15 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Scroll behaviour ─────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Root CSS custom properties ──────────────────────────────── */
 :root {
   --foreground-rgb: 18, 18, 18;
-  --background-start-rgb: 251, 251, 250;
-  --background-end-rgb: 251, 251, 250;
+  --background-rgb: 251, 251, 250;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
+  color:      rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  /* Prevent layout shift while preloader is visible */
+  overflow-x: hidden;
+}
+
+/* ── Parallax section helper ─────────────────────────────────── */
+/*
+   Sections wrapped in .parallax-section start invisible and
+   translate down. IntersectionObserver in page.tsx adds
+   [data-visible="true"] which triggers the reveal animation.
+*/
+.parallax-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.75s ease-out, transform 0.75s ease-out;
+  will-change: opacity, transform;
+}
+
+.parallax-section[data-visible='true'] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Preloader: block body scroll while active ───────────────── */
+body.is-loading {
+  overflow: hidden;
+}
+
+/* ── Focus-visible global ────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #EB5725;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 @layer utilities {

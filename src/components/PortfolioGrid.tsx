@@ -3,14 +3,13 @@ interface Startup {
   sector: string;
   description: string;
   batch: string;
-  website?: string;
 }
 
 const startups: Startup[] = [
   {
     name: 'AgriTech Dynamics',
     sector: 'AGRI / CLIMATE',
-    description: 'AI-powered precision farming solutions helping farmers optimize crop yields and reduce resource usage through IoT sensors.',
+    description: 'AI-powered precision farming helping farmers optimize crop yields and reduce resource usage through IoT sensors.',
     batch: 'FALL_2025',
   },
   {
@@ -34,56 +33,56 @@ const startups: Startup[] = [
   {
     name: 'GreenCharge',
     sector: 'CLEANTECH / EV',
-    description: 'Smart EV charging infrastructure network with AI-optimized load balancing and renewable energy integration.',
+    description: 'Smart EV charging network with AI-optimised load balancing and renewable energy integration.',
     batch: 'SPRING_2025',
   },
   {
     name: 'LogiChain',
     sector: 'DEEPTECH / AI',
-    description: 'AI-driven supply chain optimization platform predicting disruptions and optimizing logistics routes.',
+    description: 'AI-driven supply chain platform predicting disruptions and optimising logistics routes in real time.',
     batch: 'FALL_2025',
   },
 ];
 
 export default function PortfolioGrid() {
   return (
-    <section className="bg-canvas py-20 px-6">
+    <section id="portfolio" className="bg-canvas py-20 px-6 lg:px-16">
       <div className="max-w-7xl mx-auto">
-        {/* Section Title */}
+        {/* Section title */}
         <h2 className="font-marcellus text-[32px] text-obsidian mb-12">
           Featured Portfolio
         </h2>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {startups.map((startup, index) => (
+          {startups.map((startup, i) => (
             <div
-              key={index}
-              className="bg-surface border border-hairline rounded-lg p-6 hover:border-slate-400 transition-colors duration-200"
+              key={i}
+              className="bg-surface border border-hairline rounded-lg p-6 hover:border-slate-400 transition-colors duration-200 flex flex-col"
             >
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="font-marcellus text-[20px] text-obsidian">
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <h3 className="font-marcellus text-[20px] text-obsidian leading-snug">
                   {startup.name}
                 </h3>
-                <span className="bg-[#EFF6FF] text-[#1D4ED8] font-roboto-mono text-[10px] px-2 py-1 rounded">
+                <span className="shrink-0 bg-[#EFF6FF] text-[#1D4ED8] font-robotoMono text-[10px] px-2 py-1 rounded whitespace-nowrap">
                   [ {startup.sector} ]
                 </span>
               </div>
 
               {/* Description */}
-              <p className="font-inter text-[14px] text-slateMuted leading-relaxed mb-6">
+              <p className="font-inter text-[14px] text-slateMuted leading-relaxed flex-1 mb-6">
                 {startup.description}
               </p>
 
               {/* Footer */}
               <div className="flex items-center justify-between">
-                <span className="font-roboto-mono text-[11px] text-slateMuted">
+                <span className="font-robotoMono text-[11px] text-slateMuted">
                   [ {startup.batch} ]
                 </span>
                 <a
                   href="#"
-                  className="font-roboto-mono text-[12px] text-brand hover:text-brandHover transition-colors duration-200"
+                  className="font-robotoMono text-[12px] text-brand hover:text-brandHover transition-colors duration-200"
                 >
                   Visit Website →
                 </a>
