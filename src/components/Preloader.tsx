@@ -77,6 +77,46 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
           {/* ── Floating sticky notes (mirroring skiper-ui layout) ── */}
 
+
+
+          {/* ── Floating logo sticker ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7, rotate: -12, y: 15 }}
+            animate={{
+            opacity: 1,  
+            scale: 1,
+            rotate: -12,
+            y: 0,
+            transition: {
+            delay: 0.25,
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+         },
+        }}
+        className="
+          absolute
+          top-[20%]
+          left-[7%]
+          w-32
+          h-32
+          sm:w-36
+          sm:h-36
+          bg-[#F5F5F0]
+          rounded-[10px]
+          p-4
+          flex
+          items-center
+          justify-center
+          shadow-[0_8px_25px_rgba(0,0,0,0.12)]
+         "
+        >
+          <img
+            src="/logo.svg"
+            alt="AIC-JKLU"
+            className="w-full h-full object-contain"
+          />
+          </motion.div>
+
           {/* Top-right note */}
           <motion.div
             initial={{ opacity: 0, rotate: 4, y: 20 }}
