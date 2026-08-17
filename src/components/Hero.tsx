@@ -37,9 +37,9 @@ export default function Hero() {
               lg:text-xl
             "
           >
-            Welcome to Atal Incubation Centre, Supported by NITI Aayog &amp;
+            Welcome to Atal Incubation Centre,
             <br className="hidden sm:block" />
-            JK Lakshmipat University.
+            Supported by NITI Aayog & JK Lakshmipat University.
           </p>
 
         </div>
