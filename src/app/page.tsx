@@ -82,14 +82,15 @@ export default function Home() {
               {/* Navbar is outside parallax — it's sticky and should appear instantly */}
               <Navbar />
 
-              {/* Each section gets a staggered parallax reveal */}
-              <ParallaxSection delay={0}>
-                <Hero />
-              </ParallaxSection>
+              {/* Hero — Siena parallax: sticky + scale-down on scroll */}
+              <Hero />
 
-              {/* About section — Siena parallax scroll handled internally */}
-              <About />
+              {/* About section slides over the receding hero with seamless overlap */}
+              <div className="relative z-10 -mt-[15vh]">
+                <About />
+              </div>
 
+              <div className="relative z-10 bg-canvas">
               <ParallaxSection delay={0}>
                 <footer className="bg-surface border-t border-hairline py-8 px-6">
                   <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
@@ -102,6 +103,7 @@ export default function Home() {
                   </div>
                 </footer>
               </ParallaxSection>
+              </div>
             </main>
           </motion.div>
         )}

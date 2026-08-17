@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 // ── Stats data ─────────────────────────────────────────────────────────────
 const STATS = [
@@ -34,7 +35,6 @@ function AnimatedCounter({
 
   useEffect(() => {
     if (isInView) {
-      // Stagger the counter start
       const timer = setTimeout(() => {
         motionValue.set(value);
       }, delay * 800);
@@ -56,39 +56,43 @@ function AnimatedCounter({
   );
 }
 
-// ── Siena parallax section ─────────────────────────────────────────────────
-// The left statement panel stays sticky while the right content scrolls in.
-// As the user scrolls through the section the left headline translates up
-// slightly (classic Siena/skiper parallax feel).
+// ── Siena Parallax About Section ─────────────────────────────────────────────
 export default function About() {
-  const sectionRef  = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  // Scroll progress of the entire about section (0 → 1)
+  // Raw scroll progress of the about section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
   });
 
-  // Left panel: slow upward drift as section scrolls past
-  const leftY = useTransform(scrollYProgress, [0, 1], ['6%', '-6%']);
+  // Spring physics smoothing for 60fps parallax motion
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 25,
+    mass: 0.2,
+    restDelta: 0.0001,
+  });
 
-  // Right panel: starts slightly below, rises to natural position
-  const rightY = useTransform(scrollYProgress, [0, 0.5], ['4%', '0%']);
+  // Left statement panel: slow upward parallax drift
+  const leftY = useTransform(smoothProgress, [0, 1], ['40px', '-40px']);
+
+  // Right panel: rises into position smoothly
+  const rightY = useTransform(smoothProgress, [0, 0.5], ['30px', '0px']);
 
   // Eyebrow opacity: fades in as section enters
-  const eyebrowOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
+  const eyebrowOpacity = useTransform(smoothProgress, [0, 0.15], [0, 1]);
 
   // Right content: fade + rise on entry
-  const rightOpacity = useTransform(scrollYProgress, [0.05, 0.25], [0, 1]);
+  const rightOpacity = useTransform(smoothProgress, [0.05, 0.25], [0, 1]);
 
   return (
     <section
       id="about"
       ref={sectionRef}
       aria-labelledby="about-heading"
-      className="relative bg-canvas overflow-hidden"
+      className="relative bg-canvas rounded-t-[32px] md:rounded-t-[48px] shadow-[0_-20px_50px_rgba(0,0,0,0.06)] border-t border-hairline/80 overflow-hidden"
     >
-
       {/* ================================================================
           PART 1 — EDITORIAL INTRO
           off-white background, sticky-left / scrolling-right layout
@@ -144,7 +148,7 @@ export default function About() {
               <br />
               become
               <br />
-              <em className="font-normal text-brand">ventures.</em>
+              <em className="font-normal text-brand not-italic italic">ventures.</em>
             </h2>
           </motion.div>
 
@@ -174,14 +178,14 @@ export default function About() {
               step.
             </p>
 
-            {/* CTA link */}
+            {/* CTA link with Lucide Icon */}
             <Link
               href="#apply"
               className="
                 group
                 inline-flex
                 items-center
-                gap-2
+                gap-2.5
                 font-robotoMono
                 text-[12px]
                 font-medium
@@ -201,14 +205,7 @@ export default function About() {
               "
             >
               Explore AIC-JKLU
-              <span className="
-                transition-transform
-                duration-300
-                ease-out
-                group-hover:translate-x-1
-              ">
-                →
-              </span>
+              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
 
