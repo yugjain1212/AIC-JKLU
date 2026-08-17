@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import MetricsBar from '@/components/MetricsBar';
 import PortfolioGrid from '@/components/PortfolioGrid';
 import FooterCTA from '@/components/FooterCTA';
 import Preloader from '@/components/Preloader';
@@ -88,11 +87,6 @@ export default function Home() {
               <ParallaxSection delay={0}>
                 <Hero />
               </ParallaxSection>
-
-              <ParallaxSection delay={80}>
-                <MetricsBar />
-              </ParallaxSection>
-
               <ParallaxSection delay={0}>
                 <PortfolioGrid />
               </ParallaxSection>
