@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import PortfolioGrid from '@/components/PortfolioGrid';
-import FooterCTA from '@/components/FooterCTA';
 import Preloader from '@/components/Preloader';
 
 // ── Parallax section wrapper ───────────────────────────────────────────────
@@ -87,14 +85,6 @@ export default function Home() {
               <ParallaxSection delay={0}>
                 <Hero />
               </ParallaxSection>
-              <ParallaxSection delay={0}>
-                <PortfolioGrid />
-              </ParallaxSection>
-
-              <ParallaxSection delay={0}>
-                <FooterCTA />
-              </ParallaxSection>
-
               <ParallaxSection delay={0}>
                 <footer className="bg-surface border-t border-hairline py-8 px-6">
                   <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
