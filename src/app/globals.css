@@ -10,7 +10,7 @@ html {
 /* ── Root CSS custom properties ──────────────────────────────── */
 :root {
   --foreground-rgb: 18, 18, 18;
-  --background-rgb: 251, 251, 250;
+  --background-rgb: 251, 247, 240;
 }
 
 body {

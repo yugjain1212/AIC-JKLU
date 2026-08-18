@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        canvas: '#FBFBFA',
+        canvas: '#FBF7F0',
         surface: '#FFFFFF',
         obsidian: '#121212',
         slateMuted: '#52525B',
