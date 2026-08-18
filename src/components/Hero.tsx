@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Hero() {
   return (
     <section className="relative min-h-[calc(100vh-90px)] bg-canvas px-6 lg:px-16">

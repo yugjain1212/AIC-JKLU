@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  color:      rgb(var(--foreground-rgb));
+  color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   /* Prevent layout shift while preloader is visible */
   overflow-x: hidden;
