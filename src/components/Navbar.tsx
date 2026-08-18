@@ -283,10 +283,10 @@ export default function Navbar() {
                               className="
                                 block
                                 rounded-md
-                                px-3.5
+                                px-3.0
                                 py-2.5
-                                font-inter
-                                text-[14px]
+                                font-robotoMono
+                                text-[12px]
                                 font-medium
                                 text-[#121212]
                                 transition-colors
