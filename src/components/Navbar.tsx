@@ -24,7 +24,7 @@ const ALL_NAV_LINKS = [
 const ABOUT_DROPDOWN_ITEMS = [
   { label: 'About AIC-JKLU', href: '/about' },
   { label: 'Our Team', href: '#our-team' },
-  { label: 'Vision & Mission', href: '#vision-mission' },
+  { label: 'Vision & Mission', href: '/about/mission-vision' },
   { label: 'What We Do', href: '#what-we-do' },
   { label: 'Contact', href: '#contact' },
 ] as const;
@@ -285,8 +285,8 @@ export default function Navbar() {
                                 rounded-md
                                 px-3.5
                                 py-2.5
-                                font-inter
-                                text-[14px]
+                                font-robotoMono
+                                text-[12px]
                                 font-medium
                                 text-[#121212]
                                 transition-colors
@@ -617,8 +617,8 @@ export default function Navbar() {
                               rounded-md
                               px-3
                               py-2
-                              font-inter
-                              text-[13px]
+                              font-robotoMono
+                              text-[11px]
                               font-medium
                               text-[#121212]
                               transition-colors
