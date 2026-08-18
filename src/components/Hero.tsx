@@ -2,8 +2,6 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { ArrowDown, Sparkles } from 'lucide-react';
-
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
