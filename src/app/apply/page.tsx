@@ -203,7 +203,10 @@ export default function ApplyPage() {
                 <h1 className="font-marcellus text-[42px] leading-[0.95] tracking-[-0.04em] sm:text-[52px] md:text-[60px] text-[#121212]">
                     Ready to
                     <br />
-                    <em className="font-normal italic">
+
+                </h1>
+                <h1>
+                    <em className="font-normal not-italic text-[#EB5725] text-4xl">
                         Innovate?
                     </em>
                 </h1>

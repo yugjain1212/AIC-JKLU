@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
 import Preloader from '@/components/Preloader';
 
 const SESSION_KEY = 'aic_intro_shown';
@@ -87,23 +88,28 @@ export default function Home() {
         {/* Navbar is outside parallax — it's sticky and appears instantly */}
         <Navbar />
 
-        {/* Each section gets a staggered parallax reveal */}
-        <ParallaxSection delay={0}>
-          <Hero />
-        </ParallaxSection>
+        {/* Hero — Siena parallax: sticky + scale-down on scroll */}
+        <Hero />
 
-        <ParallaxSection delay={0}>
-          <footer className="bg-surface border-t border-hairline py-8 px-6">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="font-marcellus text-[18px] text-obsidian">
-                AIC-JKLU
+        {/* About section slides over the receding hero with seamless overlap */}
+        <div className="relative z-10 -mt-[15vh]">
+          <About />
+        </div>
+
+        <div className="relative z-10 bg-canvas">
+          <ParallaxSection delay={0}>
+            <footer className="bg-surface border-t border-hairline py-8 px-6">
+              <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="font-marcellus text-[18px] text-obsidian">
+                  AIC-JKLU
+                </div>
+                <div className="font-robotoMono text-[11px] text-slateMuted">
+                  © 2026 Atal Incubation Centre – JK Lakshmipat University. Supported by NITI Aayog.
+                </div>
               </div>
-              <div className="font-robotoMono text-[11px] text-slateMuted">
-                © 2026 Atal Incubation Centre – JK Lakshmipat University. Supported by NITI Aayog.
-              </div>
-            </div>
-          </footer>
-        </ParallaxSection>
+            </footer>
+          </ParallaxSection>
+        </div>
       </main>
     </>
   );

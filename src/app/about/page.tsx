@@ -108,7 +108,7 @@ export default function AboutPage() {
                   type="button"
                   onClick={() => scrollToSection(section.id)}
                   className={`
-                    whitespace-nowrap rounded-full px-4 py-1.5 font-inter text-[13px] font-medium transition-all duration-200
+                    whitespace-nowrap rounded-full px-4 py-1.5 font-robotoMono text-[10px] uppercase tracking-[0.1em] font-medium transition-all duration-200
                     ${
                       isActive
                         ? 'bg-[#EB5725] text-white shadow-sm'
@@ -145,7 +145,7 @@ export default function AboutPage() {
                         type="button"
                         onClick={() => scrollToSection(section.id)}
                         className={`
-                          group relative flex w-full text-left font-inter text-[14px] leading-snug py-2 transition-all duration-200 -ml-[21px] pl-5
+                          group relative flex w-full text-left font-robotoMono text-[11px] uppercase tracking-[0.1em] leading-snug py-2 transition-all duration-200 -ml-[21px] pl-5
                           ${
                             isActive
                               ? 'font-semibold text-[#EB5725] border-l-2 border-[#EB5725]'
@@ -301,7 +301,7 @@ export default function AboutPage() {
                 </p>
 
                 <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
-                  Depending on the startup's requirements, founders can get access
+                  Depending on the startup&apos;s requirements, founders can get access
                   to incubation infrastructure, workspaces, institutional
                   resources, and other facilities that support their day-to-day
                   operations.
