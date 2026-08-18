@@ -283,7 +283,7 @@ export default function Navbar() {
                               className="
                                 block
                                 rounded-md
-                                px-3.5
+                                px-3.0
                                 py-2.5
                                 font-robotoMono
                                 text-[12px]

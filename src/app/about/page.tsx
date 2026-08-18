@@ -89,7 +89,7 @@ export default function AboutPage() {
           <h1 className="font-marcellus text-[40px] leading-[1.02] tracking-[-0.04em] sm:text-[54px] md:text-[64px] text-[#121212]">
             What Happens at
             <br />
-            <span className="italic font-normal">AIC JKLU?</span>
+            <span className="non-italic font-normal text-[#EB5725]">AIC JKLU?</span>
           </h1>
 
           <div className="mx-auto mt-6 h-0.5 w-16 rounded-full bg-[#EB5725] opacity-80" />

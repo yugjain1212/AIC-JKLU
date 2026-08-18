@@ -206,8 +206,8 @@ export default function ApplyPage() {
 
                 </h1>
                 <h1>
-                    <em className="font-normal not-italic text-[#EB5725] text-4xl">
-                        Innovate?
+                    <em className="font-marcellus not-italic text-[#EB5725] text-6xl">
+                        Innovate ?
                     </em>
                 </h1>
 
