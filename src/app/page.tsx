@@ -50,17 +50,20 @@ function ParallaxSection({
 
 // ── Main page ──────────────────────────────────────────────────────────────
 export default function Home() {
-  const [showPreloader, setShowPreloader] = useState(false);
+  // null = not yet determined (server/first paint), true = show preloader, false = skip it
+  const [showPreloader, setShowPreloader] = useState<boolean | null>(null);
 
   useEffect(() => {
     try {
       const seen = sessionStorage.getItem(SESSION_KEY) === 'true';
       if (!seen) {
-        setShowPreloader(true);
         document.body.classList.add('is-loading');
+        setShowPreloader(true);
+      } else {
+        setShowPreloader(false);
       }
     } catch {
-      // ignore
+      setShowPreloader(true);
     }
 
     return () => {
@@ -77,6 +80,9 @@ export default function Home() {
     document.body.classList.remove('is-loading');
     setShowPreloader(false);
   };
+
+  // Still determining — render nothing so there is zero flash of the hero
+  if (showPreloader === null) return null;
 
   return (
     <>
