@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import CompaniesSection from '@/components/CompaniesSection';
 import Preloader from '@/components/Preloader';
 
 const SESSION_KEY = 'aic_intro_shown';
@@ -101,6 +102,9 @@ export default function Home() {
         <div className="relative z-10 -mt-[15vh]">
           <About />
         </div>
+
+        {/* Portfolio / Companies showcase — sits naturally after About */}
+        <CompaniesSection />
 
         <div className="relative z-10 bg-canvas">
           <ParallaxSection delay={0}>

@@ -620,7 +620,7 @@ export default function Navbar() {
                               font-robotoMono
                               text-[11px]
                               font-medium
-                              text-[#121212]
+                              text-[##52525a]
                               transition-colors
                               duration-150
                               hover:bg-[#FFF2ED]

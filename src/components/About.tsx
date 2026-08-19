@@ -158,13 +158,13 @@ export default function About() {
             className="flex flex-col justify-center gap-7 lg:pt-4"
           >
             {/* Para 1 */}
-            <p className="font-inter text-[17px] leading-[1.75] text-obsidian">
+            <p className="font-robotoMono text-[17px] leading-[1.75] text-obsidian">
               AIC-JKLU is a platform for innovators, entrepreneurs and early-stage
               startups to turn ambitious ideas into meaningful ventures.
             </p>
 
             {/* Para 2 */}
-            <p className="font-inter text-[16px] leading-[1.75] text-slateMuted">
+            <p className="font-robotoMono text-[16px] leading-[1.75] text-slateMuted">
               Backed by Atal Innovation Mission, NITI Aayog and JK Lakshmipat
               University, AIC-JKLU brings together mentorship, technology, design,
               industry connections and incubation support to help founders move from
@@ -172,7 +172,7 @@ export default function About() {
             </p>
 
             {/* Para 3 */}
-            <p className="font-inter text-[16px] leading-[1.75] text-slateMuted">
+            <p className="font-robotoMono text-[16px] leading-[1.75] text-slateMuted">
               From building the first prototype to finding the right mentors,
               resources and market opportunities — we help founders take the next
               step.
