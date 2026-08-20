@@ -22,14 +22,14 @@ interface Company {
 }
 
 const COMPANIES: Company[] = [
-  { name: 'Agrizy',      logo: '/companies/agrizy.svg' },
-  { name: 'Virohan',     logo: '/companies/virohan.svg' },
-  { name: 'GreenJoules', logo: '/companies/greenjoules.svg' },
-  { name: 'NutriSense',  logo: '/companies/nutrisense.svg' },
-  { name: 'Edviron',     logo: '/companies/edviron.svg' },
-  { name: 'Driffle',     logo: '/companies/driffle.svg' },
-  { name: 'CredFlow',    logo: '/companies/credflow.svg' },
-  { name: 'Traya',       logo: '/companies/traya.svg' },
+  { name: 'BAS',      logo: '/companies/BAS.svg' },
+  { name: 'Bowlers',     logo: '/companies/bowlers_acadmey.svg' },
+  { name: 'CaviSafe', logo: '/companies/CaviSafe.svg' },
+  { name: 'FinQuanta',  logo: '/companies/FinQuanata.svg' },
+  { name: 'Marketing_Chai',     logo: '/companies/Marketing_chai.svg' },
+  { name: 'Papair',     logo: '/companies/Papair.svg' },
+  { name: 'Plant_Protector',    logo: '/companies/plant_protector.svg' },
+  { name: 'Traya',       logo: '/companies/satyukt.svg' },
   { name: 'Recykal',     logo: '/companies/recykal.svg' },
   { name: 'KreditBee',   logo: '/companies/kreditbee.svg' },
   { name: 'StellApps',   logo: '/companies/stellapps.svg' },
@@ -117,25 +117,25 @@ export default function CompaniesSection() {
   const noMove: string[] = ['0%', '0%'];
   const noPx: string[] = ['0px', '0px'];
 
-  const leftX0 = useTransform(smooth, [0, 1], prefersReducedMotion ? noMove : ['0%', '-22%']);
-  const leftX1 = useTransform(smooth, [0, 1], prefersReducedMotion ? noMove : ['0%', '8%']);
-  const leftX2 = useTransform(smooth, [0, 1], prefersReducedMotion ? noMove : ['0%', '-28%']);
-  const leftX3 = useTransform(smooth, [0, 1], prefersReducedMotion ? noMove : ['0%', '12%']);
+  const leftX0 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '-26%']);
+  const leftX1 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '10%']);
+  const leftX2 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '-32%']);
+  const leftX3 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '14%']);
 
   // Right rows: mirrored opposing movement
-  const rightX0 = useTransform(smooth, [0, 1], prefersReducedMotion ? noMove : ['0%', '22%']);
-  const rightX1 = useTransform(smooth, [0, 1], prefersReducedMotion ? noMove : ['0%', '-8%']);
-  const rightX2 = useTransform(smooth, [0, 1], prefersReducedMotion ? noMove : ['0%', '28%']);
-  const rightX3 = useTransform(smooth, [0, 1], prefersReducedMotion ? noMove : ['0%', '-12%']);
+  const rightX0 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '26%']);
+  const rightX1 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '-10%']);
+  const rightX2 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '32%']);
+  const rightX3 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '-14%']);
 
   // Subtle vertical parallax per side
-  const leftY = useTransform(smooth, [0, 1], prefersReducedMotion ? noPx : ['0px', '-50px']);
-  const rightY = useTransform(smooth, [0, 1], prefersReducedMotion ? noPx : ['0px', '50px']);
+  const leftY = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noPx : ['0px', '-50px']);
+  const rightY = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noPx : ['0px', '50px']);
 
   // Center statistic: subtle scale breathing
   const centerScale = useTransform(
     smooth,
-    [0, 0.5, 1],
+    [0, 0.4, 0.8],
     prefersReducedMotion ? [1, 1, 1] : [0.97, 1, 0.97]
   );
 
@@ -151,7 +151,7 @@ export default function CompaniesSection() {
       aria-label="Our Portfolio"
       className="
         relative overflow-hidden
-        h-[250vh] lg:h-[280vh]
+        h-[120vh] md:h-[150vh] lg:h-[90vh]
         bg-canvas
         border-t border-hairline/60
       "

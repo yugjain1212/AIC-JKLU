@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import CompaniesSection from '@/components/CompaniesSection';
+import CompaniesShowcase from '@/components/companies/CompaniesShowcase';
 import Preloader from '@/components/Preloader';
 
 const SESSION_KEY = 'aic_intro_shown';
@@ -105,6 +106,9 @@ export default function Home() {
 
         {/* Portfolio / Companies showcase — sits naturally after About */}
         <CompaniesSection />
+
+        {/* Companies carousel showcase — Siena entry from CompaniesSection */}
+        <CompaniesShowcase />
 
         <div className="relative z-10 bg-canvas">
           <ParallaxSection delay={0}>

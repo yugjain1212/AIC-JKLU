@@ -57,7 +57,7 @@ export default function Hero() {
 
                 <motion.p
                   style={{ y: subheadY, opacity: subheadOpacity }}
-                  className="mt-8 max-w-5xl font-inter text-lg leading-relaxed text-slateMuted sm:text-xl lg:text-1.5xl"
+                  className="mt-8 max-w-5xl font-robotoMono text-lg leading-relaxed text-slateMuted sm:text-xl lg:text-1.5xl"
                 >
                   Welcome to Atal Incubation Centre,
                   <br className="hidden sm:block" />
