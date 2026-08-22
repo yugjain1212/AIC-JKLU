@@ -61,7 +61,7 @@ export default function Hero() {
                 >
                   Welcome to Atal Incubation Centre,
                   <br className="hidden sm:block" />
-                  Supported by NITI Aayog &amp; JK Lakshmipat University.
+                  Supported by NITI Aayog
                 </motion.p>
               </div>
             </div>

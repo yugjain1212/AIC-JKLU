@@ -29,11 +29,11 @@ const COMPANIES: Company[] = [
   { name: 'Marketing_Chai',     logo: '/companies/Marketing_chai.svg' },
   { name: 'Papair',     logo: '/companies/Papair.svg' },
   { name: 'Plant_Protector',    logo: '/companies/plant_protector.svg' },
-  { name: 'Traya',       logo: '/companies/satyukt.svg' },
-  { name: 'Recykal',     logo: '/companies/recykal.svg' },
-  { name: 'KreditBee',   logo: '/companies/kreditbee.svg' },
-  { name: 'StellApps',   logo: '/companies/stellapps.svg' },
-  { name: 'Intugine',    logo: '/companies/intugine.svg' },
+  { name: 'SunEmission',       logo: '/companies/SunEmission.svg' },
+  { name: 'Telemed',     logo: '/companies/Telemedonwheels.svg' },
+  { name: 'Snas',   logo: '/companies/Snas IoT.svg' },
+  { name: 'star',   logo: '/companies/Starfiree Logo.svg' },
+  { name: 'SunBirds',    logo: '/companies/Sunbirds.svg' },
 ];
 
 // ── Split companies into 4 rows × 3 logos per side ────────────────────────

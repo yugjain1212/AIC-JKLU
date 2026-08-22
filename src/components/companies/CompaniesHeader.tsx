@@ -42,7 +42,7 @@ export default function CompaniesHeader() {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
           className="
-            font-inter text-[15px] lg:text-[16px]
+            font-robotoMono text-[15px] lg:text-[16px]
             leading-relaxed text-slateMuted
             max-w-sm lg:text-right
             shrink-0
