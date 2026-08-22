@@ -19,23 +19,25 @@ module.exports = {
       },
       fontFamily: {
         marcellus: ['var(--font-marcellus)', 'serif'],
+        serif: ['var(--font-marcellus)', 'serif'],
         robotoMono: ['var(--font-roboto-mono)', 'monospace'],
-        inter: ['var(--font-inter)', 'sans-serif'],
+        'roboto-mono': ['var(--font-roboto-mono)', 'monospace'],
+        mono: ['var(--font-roboto-mono)', 'monospace'],
       },
       keyframes: {
         // Preloader box pulse (filled boxes breathe slightly)
         boxPulse: {
           '0%, 100%': { opacity: '1' },
-          '50%':       { opacity: '0.7' },
+          '50%': { opacity: '0.7' },
         },
         // Page section reveal on scroll
         fadeSlideUp: {
-          '0%':   { opacity: '0', transform: 'translateY(32px)' },
+          '0%': { opacity: '0', transform: 'translateY(32px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
       animation: {
-        'box-pulse':     'boxPulse 1.4s ease-in-out infinite',
+        'box-pulse': 'boxPulse 1.4s ease-in-out infinite',
         'fade-slide-up': 'fadeSlideUp 0.7s ease-out forwards',
       },
     },

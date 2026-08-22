@@ -104,11 +104,15 @@ export default function Home() {
           <About />
         </div>
 
-        {/* Portfolio / Companies showcase — sits naturally after About */}
-        <CompaniesSection />
+        {/* CompaniesSection — Siena card slides up over the About orange band */}
+        <div className="relative z-20 -mt-[40px]">
+          <CompaniesSection />
+        </div>
 
-        {/* Companies carousel showcase — Siena entry from CompaniesSection */}
-        <CompaniesShowcase />
+        {/* CompaniesShowcase — Siena card slides up over CompaniesSection */}
+        <div className="relative z-30 -mt-[40px]">
+          <CompaniesShowcase />
+        </div>
 
         <div className="relative z-10 bg-canvas">
           <ParallaxSection delay={0}>

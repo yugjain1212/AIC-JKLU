@@ -84,7 +84,7 @@ export default function MissionVisionPage() {
 
             <div className="mx-auto mt-6 h-0.5 w-14 rounded-full bg-[#EB5725]" />
 
-            <p className="mx-auto mt-8 max-w-2xl font-inter text-[18px] sm:text-[20px] leading-relaxed text-[#52525B] font-normal">
+            <p className="mx-auto mt-8 max-w-2xl font-robotoMono text-[16px] sm:text-[18px] leading-relaxed text-[#52525B] font-normal">
               AIC-JKLU is driven by a vision to create an ecosystem where ideas
               can become meaningful, sustainable ventures.
             </p>
@@ -110,11 +110,11 @@ export default function MissionVisionPage() {
                 Vision
               </h2>
 
-              <blockquote className="mt-2 font-inter text-[18px] sm:text-[22px] leading-[1.65] text-[#121212] font-normal">
+              <blockquote className="mt-2 font-robotoMono text-[17px] sm:text-[20px] leading-[1.65] text-[#121212] font-normal">
                 To build an enduring ecosystem that transforms ambitious ideas into scalable, impactful ventures—fostering innovation, entrepreneurship, and sustainable growth from Jaipur to the world.
               </blockquote>
 
-              <p className="font-inter text-[16px] leading-[1.75] text-[#52525B] max-w-3xl">
+              <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] max-w-3xl">
                 We envision a future where high-potential innovators receive the institutional backing, strategic mentorship, and market connectivity needed to solve tangible problems and build enduring institutions.
               </p>
             </div>
@@ -140,7 +140,7 @@ export default function MissionVisionPage() {
                 Mission
               </h2>
 
-              <p className="font-inter text-[18px] sm:text-[20px] leading-[1.65] text-[#121212]">
+              <p className="font-robotoMono text-[16px] sm:text-[18px] leading-[1.65] text-[#121212]">
                 To empower early-stage founders by providing an integration of robust mentorship, strategic resources, industry networks, and state-of-the-art incubation infrastructure.
               </p>
             </div>
@@ -171,7 +171,7 @@ export default function MissionVisionPage() {
                     </h3>
 
                     {/* Pillar Description */}
-                    <p className="font-inter text-[15px] sm:text-[16px] leading-[1.7] text-[#52525B]">
+                    <p className="font-robotoMono text-[14px] sm:text-[15px] leading-[1.7] text-[#52525B]">
                       {pillar.description}
                     </p>
                   </div>
@@ -199,10 +199,10 @@ export default function MissionVisionPage() {
 
             <Link
               href="/apply"
-              className="inline-flex items-center gap-2 rounded-full bg-[#EB5725] px-6 py-3.5 font-robotoMono text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#C84214] shrink-0 shadow-sm"
+              className="inline-flex items-center gap-2 rounded-full bg-[#EB5725] px-6 py-3.5 font-robotoMono text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors duration-200 hover:bg-[#C84214] shrink-0 shadow-sm cursor-pointer"
             >
               Apply Now
-              <ArrowUpRight className="h-4 w-4" />
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
             </Link>
           </motion.div>
 

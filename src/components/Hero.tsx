@@ -1,9 +1,11 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -17,14 +19,12 @@ export default function Hero() {
     restDelta: 0.0001,
   });
 
-  const scale = useTransform(smoothProgress, [0, 0.85], [1, 0.88]);
-  const borderRadius = useTransform(smoothProgress, [0, 0.85], [0, 36]);
-  const opacity = useTransform(smoothProgress, [0, 0.6, 1], [1, 0.9, 0.3]);
-  const headlineY = useTransform(smoothProgress, [0, 1], [0, -60]);
-  const subheadY = useTransform(smoothProgress, [0, 1], [0, -30]);
-  const subheadOpacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
-  const indicatorOpacity = useTransform(smoothProgress, [0, 0.25], [1, 0]);
-  const indicatorScale = useTransform(smoothProgress, [0, 0.25], [1, 0.7]);
+  const scale = useTransform(smoothProgress, [0, 0.85], reduced ? [1, 1] : [1, 0.88]);
+  const borderRadius = useTransform(smoothProgress, [0, 0.85], reduced ? [0, 0] : [0, 36]);
+  const opacity = useTransform(smoothProgress, [0, 0.6, 1], reduced ? [1, 1, 1] : [1, 0.9, 0.3]);
+  const headlineY = useTransform(smoothProgress, [0, 1], reduced ? [0, 0] : [0, -60]);
+  const subheadY = useTransform(smoothProgress, [0, 1], reduced ? [0, 0] : [0, -30]);
+  const subheadOpacity = useTransform(smoothProgress, [0, 0.5], reduced ? [1, 1] : [1, 0]);
 
   return (
     <div
@@ -46,7 +46,7 @@ export default function Hero() {
               <div className="mx-auto flex w-full max-w-screen-2xl flex-col items-center text-center">
                 <motion.h1
                   style={{ y: headlineY }}
-                  className="max-w-6xl select-none font-marcellus text-[clamp(3rem,5vw,6rem)] leading-[0.95] tracking-[-0.05em] text-obsidian"
+                  className="max-w-6xl select-none font-marcellus text-[clamp(3rem,5vw,6rem)] leading-[0.95] tracking-[-0.05em] text-obsidian text-balance"
                 >
                   Innovate Beyond
                   <br />

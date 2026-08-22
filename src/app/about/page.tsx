@@ -197,7 +197,7 @@ export default function AboutPage() {
                   The Goal
                 </h3>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-4">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-4">
                   The goal of AIC JKLU is to help startups{' '}
                   <strong className="font-semibold text-[#121212]">
                     build, validate, grow, and scale
@@ -205,18 +205,18 @@ export default function AboutPage() {
                   .
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-6">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-6">
                   Startups enter the incubation ecosystem at different stages.
                   Some may have only an idea, while others may already have a
                   product, customers, or early traction.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-4">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-4">
                   Wherever you begin, AIC JKLU aims to help you move
                   significantly forward by providing access to:
                 </p>
 
-                <ul className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-3 font-inter text-[15px] text-[#121212]">
+                <ul className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-3 font-robotoMono text-[13px] sm:text-[14px] text-[#121212]">
                   {[
                     'Expert mentorship',
                     'Startup-focused guidance',
@@ -236,7 +236,7 @@ export default function AboutPage() {
                   ))}
                 </ul>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mt-6">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mt-6">
                   The focus is not just on building a product, but on building a{' '}
                   <strong className="font-semibold text-[#121212]">
                     sustainable and scalable venture
@@ -251,17 +251,17 @@ export default function AboutPage() {
                   Mentorship &amp; Guidance
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   One of the most valuable parts of the AIC JKLU ecosystem is
                   access to experienced mentors, entrepreneurs, industry
                   professionals, and subject-matter experts.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-4">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-4">
                   Founders can seek guidance on areas such as:
                 </p>
 
-                <div className="my-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-inter text-[14px]">
+                <div className="my-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-robotoMono text-[12px] sm:text-[13px]">
                   {[
                     'Product development',
                     'Business models',
@@ -283,7 +283,7 @@ export default function AboutPage() {
                   ))}
                 </div>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mt-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mt-5">
                   The objective is to help founders make better decisions and
                   avoid common mistakes during the early stages of their journey.
                 </p>
@@ -295,19 +295,19 @@ export default function AboutPage() {
                   Incubation Support
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   AIC JKLU provides an environment designed to help startups focus
                   on building their businesses.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   Depending on the startup&apos;s requirements, founders can get access
                   to incubation infrastructure, workspaces, institutional
                   resources, and other facilities that support their day-to-day
                   operations.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B]">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B]">
                   This allows founders to spend more time solving customer
                   problems and building their ventures.
                 </p>
@@ -319,23 +319,23 @@ export default function AboutPage() {
                   Startup Community
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   Building a startup can be challenging when you are doing it
                   alone.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   At AIC JKLU, founders become part of an entrepreneurial
                   ecosystem where they can interact with other startups,
                   entrepreneurs, mentors, students, faculty, industry
                   professionals, and ecosystem partners.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-4">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-4">
                   This community creates opportunities to:
                 </p>
 
-                <ul className="my-6 space-y-2.5 font-inter text-[15px] text-[#121212]">
+                <ul className="my-6 space-y-2.5 font-robotoMono text-[13px] sm:text-[14px] text-[#121212]">
                   {[
                     'Share experiences',
                     'Exchange ideas',
@@ -358,21 +358,21 @@ export default function AboutPage() {
                   Workshops &amp; Learning
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   Entrepreneurship requires continuous learning.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   AIC JKLU organizes workshops, talks, training sessions,
                   bootcamps, and other learning opportunities to help founders
                   develop the skills required to build and operate a startup.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-4">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-4">
                   Sessions may cover areas such as:
                 </p>
 
-                <div className="my-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-inter text-[14px]">
+                <div className="my-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-robotoMono text-[12px] sm:text-[13px]">
                   {[
                     'Entrepreneurship',
                     'Product development',
@@ -401,19 +401,19 @@ export default function AboutPage() {
                   Industry Connections
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   AIC JKLU helps bridge the gap between startups and the larger
                   business ecosystem.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   Through industry interactions, partnerships, events, and
                   networking opportunities, startups can connect with people who
                   can help them understand markets, identify opportunities, and
                   develop meaningful business relationships.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B]">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B]">
                   These connections can open doors to potential customers,
                   partners, mentors, investors, and other stakeholders.
                 </p>
@@ -425,21 +425,21 @@ export default function AboutPage() {
                   Funding &amp; Investor Access
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   Building a startup often requires capital at the right stage.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   AIC JKLU helps founders understand the fundraising process and
                   provides opportunities to connect with the broader startup and
                   investment ecosystem.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-4">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-4">
                   Startups can receive guidance on:
                 </p>
 
-                <ul className="my-6 space-y-2.5 font-inter text-[15px] text-[#121212]">
+                <ul className="my-6 space-y-2.5 font-robotoMono text-[13px] sm:text-[14px] text-[#121212]">
                   {[
                     'Preparing for fundraising',
                     'Developing an investor-ready pitch',
@@ -454,7 +454,7 @@ export default function AboutPage() {
                   ))}
                 </ul>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mt-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mt-5">
                   The goal is to help founders become better prepared to raise
                   capital and grow sustainably.
                 </p>
@@ -466,17 +466,17 @@ export default function AboutPage() {
                   Product &amp; Market Validation
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   A great idea is only valuable when it solves a real problem.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-6">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-6">
                   AIC JKLU encourages startups to validate their assumptions,
                   understand their customers, build products, and continuously
                   improve based on real-world feedback.
                 </p>
 
-                <p className="font-inter text-[15px] font-semibold uppercase tracking-[0.08em] text-[#52525B] mb-3">
+                <p className="font-robotoMono text-[14px] font-semibold uppercase tracking-[0.08em] text-[#52525B] mb-3">
                   Founders are encouraged to focus on:
                 </p>
 
@@ -488,13 +488,13 @@ export default function AboutPage() {
                         <span className="rounded-md bg-white px-3 py-1.5 shadow-sm border border-[#E4E4E0]">
                           {step}
                         </span>
-                        {idx < 5 && <span className="text-[#EB5725] font-bold">→</span>}
+                        {idx < 5 && <span aria-hidden="true" className="text-[#EB5725] font-bold">→</span>}
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mt-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mt-5">
                   This approach helps startups move beyond ideas and build
                   solutions that people actually need.
                 </p>
@@ -506,18 +506,18 @@ export default function AboutPage() {
                   Events &amp; Networking
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   Throughout the incubation journey, startups get opportunities
                   to participate in entrepreneurial events, networking sessions,
                   startup showcases, competitions, pitch sessions, and ecosystem
                   programs.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-4">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-4">
                   These events provide founders with opportunities to meet:
                 </p>
 
-                <ul className="my-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-inter text-[15px] text-[#121212]">
+                <ul className="my-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 font-robotoMono text-[13px] sm:text-[14px] text-[#121212]">
                   {[
                     'Entrepreneurs',
                     'Investors',
@@ -535,7 +535,7 @@ export default function AboutPage() {
                   ))}
                 </ul>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mt-5 italic">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mt-5 italic">
                   Every interaction can become the beginning of a new
                   opportunity.
                 </p>
@@ -547,18 +547,18 @@ export default function AboutPage() {
                   Startup Showcase
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   As startups grow, opportunities to showcase their work become
                   increasingly important.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   AIC JKLU provides platforms and opportunities for startups to
                   present their products, ideas, innovations, and achievements
                   to relevant audiences.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B]">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B]">
                   These opportunities can help startups gain visibility, receive
                   feedback, and build connections with potential customers,
                   partners, and investors.
@@ -571,18 +571,18 @@ export default function AboutPage() {
                   Building Beyond Incubation
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   The relationship with AIC JKLU does not have to end when a
                   startup moves beyond the incubation stage.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   As startups grow, the ecosystem can continue to provide
                   opportunities for mentorship, networking, collaboration, and
                   engagement with the wider entrepreneurial community.
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B]">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B]">
                   The objective is to create long-term relationships that
                   continue to support founders as they build and scale their
                   ventures.
@@ -595,18 +595,18 @@ export default function AboutPage() {
                   More Than an Incubator
                 </h2>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-5">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-5">
                   AIC JKLU is more than a workspace or a program.
                 </p>
 
-                <p className="font-inter text-[18px] sm:text-[20px] leading-[1.75] text-[#121212] font-medium mb-5">
+                <p className="font-robotoMono text-[16px] sm:text-[18px] leading-[1.75] text-[#121212] font-medium mb-5">
                   It is an{' '}
                   <strong className="text-[#EB5725] font-semibold">
                     ecosystem for founders to learn, build, connect, and grow.
                   </strong>
                 </p>
 
-                <p className="font-inter text-[17px] leading-[1.75] text-[#52525B] mb-12">
+                <p className="font-robotoMono text-[15px] sm:text-[16px] leading-[1.75] text-[#52525B] mb-12">
                   From the first idea to product validation, from early
                   customers to fundraising, AIC JKLU aims to provide the
                   support and connections that help entrepreneurs take their next
@@ -623,16 +623,16 @@ export default function AboutPage() {
                     </span>
                   </p>
 
-                  <p className="font-inter text-[15px] text-[#52525B] mb-6">
+                  <p className="font-robotoMono text-[14px] text-[#52525B] mb-6">
                     Join our incubation ecosystem and turn your vision into a scalable venture.
                   </p>
 
                   <Link
                     href="/apply"
-                    className="group inline-flex items-center gap-3 rounded-full bg-[#EB5725] px-8 py-4 font-robotoMono text-[12px] font-bold uppercase tracking-[0.12em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25"
+                    className="group inline-flex items-center gap-3 rounded-full bg-[#EB5725] px-8 py-4 font-robotoMono text-[12px] font-bold uppercase tracking-[0.12em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 cursor-pointer"
                   >
                     <span>Apply to AIC-JKLU</span>
-                    <span className="text-base transition-transform duration-300 group-hover:translate-x-1">
+                    <span aria-hidden="true" className="text-base transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
                   </Link>

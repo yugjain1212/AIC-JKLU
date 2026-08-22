@@ -6,9 +6,10 @@ import Link from 'next/link';
 import {
   motion,
   useScroll,
-  useSpring,
   useTransform,
+  useSpring,
   useReducedMotion,
+  type MotionValue,
 } from 'framer-motion';
 
 // ── Configurable stat ──────────────────────────────────────────────────────
@@ -22,343 +23,259 @@ interface Company {
 }
 
 const COMPANIES: Company[] = [
-  { name: 'BAS',      logo: '/companies/BAS.svg' },
-  { name: 'Bowlers',     logo: '/companies/bowlers_acadmey.svg' },
-  { name: 'CaviSafe', logo: '/companies/CaviSafe.svg' },
-  { name: 'FinQuanta',  logo: '/companies/FinQuanata.svg' },
-  { name: 'Marketing_Chai',     logo: '/companies/Marketing_chai.svg' },
-  { name: 'Papair',     logo: '/companies/Papair.svg' },
-  { name: 'Plant_Protector',    logo: '/companies/plant_protector.svg' },
-  { name: 'SunEmission',       logo: '/companies/SunEmission.svg' },
-  { name: 'Telemed',     logo: '/companies/Telemedonwheels.svg' },
-  { name: 'Snas',   logo: '/companies/Snas IoT.svg' },
-  { name: 'star',   logo: '/companies/Starfiree Logo.svg' },
-  { name: 'SunBirds',    logo: '/companies/Sunbirds.svg' },
+  { name: 'BAS', logo: '/companies/images/BAS.png' },
+  { name: "Bowler's Academy", logo: '/companies/images/bowlers_acadmey.png' },
+  { name: 'CaviSafe', logo: '/companies/images/CaviSafe.png' },
+  { name: 'FinQuanata', logo: '/companies/images/FinQuanata.png' },
+  { name: 'Marketing Chai', logo: '/companies/images/Marketing_chai.png' },
+  { name: 'Papair', logo: '/companies/images/Papair.png' },
+  { name: 'Plant Protector', logo: '/companies/images/plant_protector.png' },
+  { name: 'SunEmission', logo: '/companies/images/SunEmission.png' },
+  { name: 'Telemed on Wheels', logo: '/companies/images/Telemedonwheels.png' },
+  { name: 'Snas IoT', logo: '/companies/images/Snas IoT.jpg' },
+  { name: 'Starfire', logo: '/companies/images/Starfiree Logo.png' },
+  { name: 'Sunbirds', logo: '/companies/images/Sunbirds.png' },
 ];
 
-// ── Split companies into 4 rows × 3 logos per side ────────────────────────
-function buildRows(companies: Company[]): {
-  leftRows: Company[][];
-  rightRows: Company[][];
-} {
-  // Always build 4 rows × 3 logos per side, cycling through the list
-  const makeRows = (pool: Company[], rowCount: number, perRow: number): Company[][] =>
-    Array.from({ length: rowCount }, (_, r) =>
-      Array.from({ length: perRow }, (__, c) => pool[(r * perRow + c) % pool.length])
+// ── Row builder — 4 rows × 6 per side for a rich continuous wall of startups ──
+function buildRows(list: Company[]) {
+  const make = (pool: Company[], rows: number, perRow: number, offset = 0) =>
+    Array.from({ length: rows }, (_, r) =>
+      Array.from({ length: perRow }, (__, c) => pool[(r * 3 + c + offset) % pool.length])
     );
-
-  const half = Math.ceil(companies.length / 2);
-  const left  = companies.slice(0, half);
-  const right = companies.slice(half);
-
   return {
-    leftRows:  makeRows(left.length  ? left  : companies, 4, 3),
-    rightRows: makeRows(right.length ? right : companies, 4, 3),
+    leftRows: make(list, 4, 6, 0),
+    rightRows: make(list, 4, 6, 6),
   };
 }
 
-// ── LogoCell ───────────────────────────────────────────────────────────────
+// ── Logo cell — clean, no border, no background ───────────────────────────
 function LogoCell({ company }: { company: Company }) {
   return (
-    <div
-      className="
-        flex items-center justify-center
-        w-[110px] sm:w-[130px] lg:w-[150px]
-        h-[48px] sm:h-[54px] lg:h-[58px]
-        shrink-0
-      "
-    >
+    <div className="flex items-center justify-center w-[140px] xl:w-[160px] h-[54px] shrink-0">
       <Image
         src={company.logo}
         alt={company.name}
-        width={140}
-        height={52}
-        className="max-w-full max-h-full object-contain select-none"
+        width={150}
+        height={54}
+        className="w-full h-full object-contain select-none transition-transform duration-300 hover:scale-105"
         draggable={false}
       />
     </div>
   );
 }
 
-// ── LogoRow ────────────────────────────────────────────────────────────────
-function LogoRow({ companies }: { companies: Company[] }) {
-  return (
-    <div className="flex items-center gap-3 sm:gap-5 lg:gap-8">
-      {companies.map((c, i) => (
-        <LogoCell key={`${c.name}-${i}`} company={c} />
-      ))}
-    </div>
-  );
-}
-
-
-
-// ── Main component ─────────────────────────────────────────────────────────
+// ── Main ──────────────────────────────────────────────────────────────────
 export default function CompaniesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const prefersReducedMotion = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
 
-  // Scroll tracking across the tall outer section
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: ref,
     offset: ['start start', 'end end'],
   });
 
-  // Smooth physics spring for fluid 60fps motion
-  const smooth = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
-    mass: 0.5,
+  // Spring physics for smooth 60fps parallax motion with natural inertia
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 75,
+    damping: 26,
+    mass: 0.18,
+    restDelta: 0.0001,
   });
 
-  // ── Motion values (disabled when reduced-motion is preferred) ──
+  const nm = ['0%', '0%'] as string[];
 
-  // Left rows: alternating horizontal movement for layered parallax
-  const noMove: string[] = ['0%', '0%'];
-  const noPx: string[] = ['0px', '0px'];
+  // ── Symmetrical Row Parallax Speeds ─────────────────────────────────────
+  // Row 0 & 2: Left drifts LEFT (-15%), Right drifts RIGHT (+15%)
+  // Row 1 & 3: Left drifts RIGHT (+10%), Right drifts LEFT (-10%)
+  const lx0 = useTransform(smoothProgress, [0, 1], reduced ? nm : ['0%', '-15%']);
+  const lx1 = useTransform(smoothProgress, [0, 1], reduced ? nm : ['0%', '10%']);
+  const lx2 = useTransform(smoothProgress, [0, 1], reduced ? nm : ['0%', '-15%']);
+  const lx3 = useTransform(smoothProgress, [0, 1], reduced ? nm : ['0%', '10%']);
 
-  const leftX0 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '-26%']);
-  const leftX1 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '10%']);
-  const leftX2 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '-32%']);
-  const leftX3 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '14%']);
+  const rx0 = useTransform(smoothProgress, [0, 1], reduced ? nm : ['0%', '15%']);
+  const rx1 = useTransform(smoothProgress, [0, 1], reduced ? nm : ['0%', '-10%']);
+  const rx2 = useTransform(smoothProgress, [0, 1], reduced ? nm : ['0%', '15%']);
+  const rx3 = useTransform(smoothProgress, [0, 1], reduced ? nm : ['0%', '-10%']);
 
-  // Right rows: mirrored opposing movement
-  const rightX0 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '26%']);
-  const rightX1 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '-10%']);
-  const rightX2 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '32%']);
-  const rightX3 = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noMove : ['0%', '-14%']);
-
-  // Subtle vertical parallax per side
-  const leftY = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noPx : ['0px', '-50px']);
-  const rightY = useTransform(smooth, [0, 0.8], prefersReducedMotion ? noPx : ['0px', '50px']);
-
-  // Center statistic: subtle scale breathing
-  const centerScale = useTransform(
-    smooth,
-    [0, 0.4, 0.8],
-    prefersReducedMotion ? [1, 1, 1] : [0.97, 1, 0.97]
-  );
-
-  const leftXValues = [leftX0, leftX1, leftX2, leftX3];
-  const rightXValues = [rightX0, rightX1, rightX2, rightX3];
-
+  const lxv: MotionValue<string>[] = [lx0, lx1, lx2, lx3];
+  const rxv: MotionValue<string>[] = [rx0, rx1, rx2, rx3];
   const { leftRows, rightRows } = buildRows(COMPANIES);
 
   return (
     <section
-      ref={sectionRef}
+      ref={ref}
       id="portfolio"
       aria-label="Our Portfolio"
       className="
         relative overflow-hidden
-        h-[120vh] md:h-[150vh] lg:h-[90vh]
+        h-[150vh] md:h-[160vh] lg:h-[160vh]
         bg-canvas
-        border-t border-hairline/60
+        rounded-t-[36px] md:rounded-t-[52px]
+        shadow-[0_-24px_60px_rgba(0,0,0,0.07)]
       "
     >
-      {/* ── STICKY VIEWPORT PANEL ── */}
-      <div className="sticky top-0 h-screen overflow-hidden bg-canvas flex flex-col isolate">
+      {/* ── STICKY PANEL ── */}
+      <div className="sticky top-0 h-screen flex flex-col justify-between overflow-hidden bg-canvas py-8 lg:py-10">
 
-        {/* ── SECTION HEADER ── */}
+        {/* ── HEADER ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center pt-12 lg:pt-14 pb-6 lg:pb-8 px-6 shrink-0"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center pt-2 pb-3 px-6 shrink-0 text-center"
         >
-          {/* Eyebrow */}
-          <p
-            className="
-              font-robotoMono text-[10px] uppercase tracking-[0.22em]
-              text-brand mb-4
-            "
-          >
+          <p className="font-robotoMono text-[10px] uppercase tracking-[0.24em] text-brand mb-2.5">
             Our Portfolio
           </p>
-
-          {/* Heading */}
-          <h2
-            className="
-              font-marcellus
-              text-[clamp(2rem,4vw,3.75rem)]
-              leading-[1.05]
-              tracking-[-0.025em]
-              text-obsidian
-              text-center
-              mb-4
-            "
-          >
+          <h2 className="
+            font-marcellus
+            text-[clamp(1.85rem,3.4vw,3.25rem)]
+            leading-[1.08] tracking-[-0.025em]
+            text-obsidian mb-2.5
+          ">
             Building the future, together.
           </h2>
-
-          {/* Description */}
-          <p
-            className="
-              font-robotoMono text-[15px] leading-relaxed
-              text-slateMuted text-center
-              max-w-[560px]
-            "
-          >
+          <p className="font-robotoMono text-[13px] leading-relaxed text-slateMuted max-w-[480px]">
             AIC-JKLU supports ambitious founders and innovative companies
             building solutions for the future.
           </p>
         </motion.div>
 
-        {/* ── SHOWCASE: logos + center stat ── */}
-        <div className="relative flex-1 overflow-hidden">
+        {/* ── SHOWCASE ── */}
+        <div className="relative flex-1 min-h-0 flex items-center overflow-hidden">
 
-          {/* ── Left & right edge fades (both mobile + desktop) ── */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-24 lg:w-36 bg-gradient-to-r from-canvas to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-24 lg:w-36 bg-gradient-to-l from-canvas to-transparent" />
+          {/* Edge fades — smooth multi-stop mask so logos dissolve naturally at boundaries */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 sm:w-36 lg:w-48 bg-gradient-to-r from-canvas via-canvas/90 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 sm:w-36 lg:w-48 bg-gradient-to-l from-canvas via-canvas/90 to-transparent" />
 
-          {/* ── DESKTOP 3-column grid ── */}
-          <div className="hidden lg:grid h-full items-center"
-            style={{ gridTemplateColumns: '1fr 280px 1fr' }}
+          {/* ── DESKTOP: 3-column CSS grid ── */}
+          <div
+            className="hidden lg:grid w-full h-full items-center"
+            style={{ gridTemplateColumns: '1fr 230px 1fr' }}
           >
+            {/* LEFT */}
+            <div className="overflow-hidden h-full flex flex-col justify-center">
+              <div className="flex flex-col">
+                {leftRows.map((row, i) => (
+                  <div key={i}>
+                    <div className="h-px bg-hairline/60" />
+                    <motion.div
+                      style={{ x: lxv[i] }}
+                      className="flex items-center justify-end gap-7 xl:gap-10 py-4 xl:py-5 pr-2 xl:pr-4 will-change-transform"
+                    >
+                      {row.map((c, j) => <LogoCell key={j} company={c} />)}
+                    </motion.div>
+                  </div>
+                ))}
+                <div className="h-px bg-hairline/60" />
+              </div>
+            </div>
 
-            {/* LEFT LOGO GRID */}
-            <motion.div style={{ y: leftY }} className="overflow-hidden">
-              {leftRows.map((row, i) => (
-                <div key={`d-left-${i}`}>
-                  <div className="w-full h-px bg-hairline opacity-50" />
-                  <motion.div
-                    style={{ x: leftXValues[i] }}
-                    className="flex items-center justify-end gap-6 xl:gap-10 py-5 pr-6 xl:pr-10"
-                  >
-                    {row.map((c, j) => (
-                      <LogoCell key={`${c.name}-${j}`} company={c} />
-                    ))}
-                  </motion.div>
-                </div>
-              ))}
-              <div className="w-full h-px bg-hairline opacity-50" />
-            </motion.div>
-
-            {/* CENTER STATISTIC — fixed column, never moves */}
+            {/* CENTER */}
             <motion.div
-              style={{ scale: centerScale }}
-              className="flex flex-col items-center justify-center z-30 px-4"
+              className="flex flex-col items-center justify-center z-30 px-2 py-4"
             >
               <p className="
                 font-marcellus
-                text-[clamp(2.2rem,3.5vw,4rem)]
-                leading-[1]
-                tracking-[-0.03em]
-                text-obsidian
-                text-center
-                whitespace-nowrap
+                text-[clamp(2.1rem,2.8vw,3.5rem)]
+                leading-none tracking-[-0.035em]
+                text-obsidian text-center whitespace-nowrap
               ">
                 {COMBINED_VALUATION}
               </p>
-              <p className="
-                font-robotoMono text-[10px]
-                uppercase tracking-[0.2em]
-                text-slateMuted
-                mt-3 mb-5
-                text-center
-              ">
+              <p className="font-robotoMono text-[10px] uppercase tracking-[0.2em] text-slateMuted mt-3 mb-5 text-center">
                 {VALUATION_LABEL}
               </p>
-              <div className="flex items-center gap-2 mb-5">
-                <div className="h-px w-8 bg-brand/40" />
-                <span className="text-brand text-[9px]">✦</span>
-                <div className="h-px w-8 bg-brand/40" />
+              <div className="flex items-center gap-3 mb-5">
+                <div className="h-px w-8 bg-brand/35" />
+                <span className="text-brand/70 text-[10px]">✦</span>
+                <div className="h-px w-8 bg-brand/35" />
               </div>
               <Link
-                href="/companies"
+                href="#showcase"
                 className="
                   group inline-flex items-center gap-2
-                  font-robotoMono text-[11px] font-medium
-                  uppercase tracking-[0.14em]
+                  font-robotoMono text-[10px] font-medium
+                  uppercase tracking-[0.16em]
                   text-obsidian hover:text-brand
-                  transition-colors duration-300
+                  transition-colors duration-200
                   focus-visible:outline-none focus-visible:ring-2
                   focus-visible:ring-brand focus-visible:ring-offset-2 rounded-sm
+                  cursor-pointer
                 "
               >
                 All Companies
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
             </motion.div>
 
-            {/* RIGHT LOGO GRID */}
-            <motion.div style={{ y: rightY }} className="overflow-hidden">
-              {rightRows.map((row, i) => (
-                <div key={`d-right-${i}`}>
-                  <div className="w-full h-px bg-hairline opacity-50" />
-                  <motion.div
-                    style={{ x: rightXValues[i] }}
-                    className="flex items-center justify-start gap-6 xl:gap-10 py-5 pl-6 xl:pl-10"
-                  >
-                    {row.map((c, j) => (
-                      <LogoCell key={`${c.name}-${j}`} company={c} />
-                    ))}
-                  </motion.div>
-                </div>
-              ))}
-              <div className="w-full h-px bg-hairline opacity-50" />
-            </motion.div>
-
+            {/* RIGHT */}
+            <div className="overflow-hidden h-full flex flex-col justify-center">
+              <div className="flex flex-col">
+                {rightRows.map((row, i) => (
+                  <div key={i}>
+                    <div className="h-px bg-hairline/60" />
+                    <motion.div
+                      style={{ x: rxv[i] }}
+                      className="flex items-center justify-start gap-7 xl:gap-10 py-4 xl:py-5 pl-2 xl:pl-4 will-change-transform"
+                    >
+                      {row.map((c, j) => <LogoCell key={j} company={c} />)}
+                    </motion.div>
+                  </div>
+                ))}
+                <div className="h-px bg-hairline/60" />
+              </div>
+            </div>
           </div>
 
-          {/* ── MOBILE: stat above, rows below ── */}
-          <div className="lg:hidden flex flex-col items-center h-full">
-
-            {/* Center stat */}
-            <div className="flex flex-col items-center shrink-0 pt-2 pb-5 px-6 relative z-30">
-              <p className="
-                font-marcellus text-[clamp(2.4rem,8vw,3.5rem)]
-                leading-[1] tracking-[-0.03em] text-obsidian text-center
-              ">
+          {/* ── MOBILE ── */}
+          <div className="lg:hidden flex flex-col items-center justify-between h-full w-full py-2">
+            {/* Stat */}
+            <div className="flex flex-col items-center shrink-0 py-2 px-6 z-30">
+              <p className="font-marcellus text-[clamp(2rem,7vw,2.8rem)] leading-none tracking-[-0.03em] text-obsidian text-center">
                 {COMBINED_VALUATION}
               </p>
-              <p className="
-                font-robotoMono text-[10px] uppercase tracking-[0.2em]
-                text-slateMuted mt-2 mb-3 text-center
-              ">
+              <p className="font-robotoMono text-[9px] uppercase tracking-[0.2em] text-slateMuted mt-2 mb-2.5 text-center">
                 {VALUATION_LABEL}
               </p>
-              <div className="flex items-center gap-2 mb-3">
-                <div className="h-px w-8 bg-brand/40" />
-                <span className="text-brand text-[10px]">✦</span>
-                <div className="h-px w-8 bg-brand/40" />
+              <div className="flex items-center gap-2 mb-2.5">
+                <div className="h-px w-7 bg-brand/35" />
+                <span className="text-brand/70 text-[9px]">✦</span>
+                <div className="h-px w-7 bg-brand/35" />
               </div>
               <Link
-                href="/companies"
-                className="
-                  group inline-flex items-center gap-2
-                  font-robotoMono text-[11px] font-medium
-                  uppercase tracking-[0.14em]
-                  text-obsidian hover:text-brand
-                  transition-colors duration-300
-                "
+                href="#showcase"
+                className="group inline-flex items-center gap-2 font-robotoMono text-[10px] uppercase tracking-[0.14em] text-obsidian hover:text-brand transition-colors duration-200 cursor-pointer"
               >
                 All Companies
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <span className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
             </div>
-
             {/* Logo rows */}
-            <div className="flex-1 w-full overflow-hidden">
-              <motion.div style={{ y: leftY }} className="flex flex-col">
-                {[...leftRows, ...rightRows].slice(0, 5).map((row, i) => (
-                  <div key={`m-${i}`}>
-                    <div className="w-full h-px bg-hairline opacity-40" />
+            <div className="flex-1 w-full overflow-hidden flex flex-col justify-center">
+              <div className="flex flex-col">
+                {[...leftRows, ...rightRows].slice(0, 4).map((row, i) => (
+                  <div key={i}>
+                    <div className="h-px bg-hairline/50" />
                     <motion.div
-                      style={{ x: i % 2 === 0 ? leftXValues[i % 4] : rightXValues[i % 4] }}
-                      className="flex items-center justify-center gap-4 sm:gap-6 py-3 sm:py-4"
+                      style={{ x: i % 2 === 0 ? lxv[i % 4] : rxv[i % 4] }}
+                      className="flex items-center justify-center gap-4 py-2.5 will-change-transform"
                     >
                       {row.map((c, j) => (
-                        <LogoCell key={`${c.name}-${j}`} company={c} />
+                        <div key={j} className="flex items-center justify-center w-[100px] h-[44px] shrink-0">
+                          <Image src={c.logo} alt={c.name} width={100} height={44} className="w-full h-full object-contain select-none" draggable={false} />
+                        </div>
                       ))}
                     </motion.div>
                   </div>
                 ))}
-                <div className="w-full h-px bg-hairline opacity-40" />
-              </motion.div>
+                <div className="h-px bg-hairline/50" />
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

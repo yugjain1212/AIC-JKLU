@@ -37,7 +37,7 @@ export default function CompanyInformation({ company }: CompanyInformationProps)
             <h3 className="font-marcellus text-[1.35rem] lg:text-[1.6rem] leading-tight tracking-[-0.02em] text-obsidian">
               {company.name}
             </h3>
-            <p className="font-inter text-[14px] lg:text-[15px] leading-relaxed text-slateMuted max-w-lg">
+            <p className="font-robotoMono text-[14px] lg:text-[15px] leading-relaxed text-slateMuted max-w-lg">
               {company.description}
             </p>
             {/* View Company CTA */}
@@ -53,6 +53,7 @@ export default function CompanyInformation({ company }: CompanyInformationProps)
                 transition-colors duration-200
                 focus-visible:outline-none focus-visible:ring-2
                 focus-visible:ring-brand focus-visible:ring-offset-2 rounded-sm
+                cursor-pointer
               "
             >
               View Company
@@ -90,7 +91,7 @@ function MetaItem({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <span className="font-robotoMono text-[9px] uppercase tracking-[0.18em] text-slateMuted/60">
+      <span className="font-robotoMono text-[9px] uppercase tracking-[0.18em] text-slateMuted/80">
         {label}
       </span>
       {isLink ? (
@@ -98,12 +99,12 @@ function MetaItem({
           href={`https://${value}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-inter text-[13px] text-brand hover:text-brandHover transition-colors"
+          className="font-robotoMono text-[13px] text-brand hover:text-brandHover transition-colors cursor-pointer"
         >
           {value}
         </a>
       ) : (
-        <span className="font-inter text-[13px] lg:text-[14px] text-obsidian leading-snug">
+        <span className="font-robotoMono text-[13px] lg:text-[14px] text-obsidian leading-snug">
           {value}
         </span>
       )}

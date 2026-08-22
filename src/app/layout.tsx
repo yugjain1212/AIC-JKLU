@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
-import { Marcellus, Roboto_Mono, Inter } from "next/font/google";
+import { Marcellus, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 const marcellus = Marcellus({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-marcellus",
+  display: "swap",
 });
 
 const robotoMono = Roboto_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-roboto-mono",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -30,10 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${marcellus.variable} ${robotoMono.variable} ${inter.variable} bg-canvas text-obsidian font-inter antialiased`}
-      >
+    <html lang="en" className={`${marcellus.variable} ${robotoMono.variable}`}>
+      <body className="bg-canvas text-obsidian font-robotoMono antialiased">
         {children}
       </body>
     </html>

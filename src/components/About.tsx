@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
@@ -59,6 +59,7 @@ function AnimatedCounter({
 // ── Siena Parallax About Section ─────────────────────────────────────────────
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
 
   // Raw scroll progress of the about section
   const { scrollYProgress } = useScroll({
@@ -75,16 +76,16 @@ export default function About() {
   });
 
   // Left statement panel: slow upward parallax drift
-  const leftY = useTransform(smoothProgress, [0, 1], ['40px', '-40px']);
+  const leftY = useTransform(smoothProgress, [0, 1], reduced ? ['0px', '0px'] : ['40px', '-40px']);
 
   // Right panel: rises into position smoothly
-  const rightY = useTransform(smoothProgress, [0, 0.5], ['30px', '0px']);
+  const rightY = useTransform(smoothProgress, [0, 0.5], reduced ? ['0px', '0px'] : ['30px', '0px']);
 
   // Eyebrow opacity: fades in as section enters
-  const eyebrowOpacity = useTransform(smoothProgress, [0, 0.15], [0, 1]);
+  const eyebrowOpacity = useTransform(smoothProgress, [0, 0.15], reduced ? [1, 1] : [0, 1]);
 
   // Right content: fade + rise on entry
-  const rightOpacity = useTransform(smoothProgress, [0.05, 0.25], [0, 1]);
+  const rightOpacity = useTransform(smoothProgress, [0.05, 0.25], reduced ? [1, 1] : [0, 1]);
 
   return (
     <section
@@ -138,6 +139,7 @@ export default function About() {
                 leading-[1.0]
                 tracking-[-0.03em]
                 text-obsidian
+                text-balance
               "
             >
               We build the
@@ -148,7 +150,7 @@ export default function About() {
               <br />
               become
               <br />
-              <em className="font-normal text-brand not-italic italic">ventures.</em>
+              <em className="font-marcellus text-brand not-italic italic">ventures.</em>
             </h2>
           </motion.div>
 
@@ -180,7 +182,7 @@ export default function About() {
 
             {/* CTA link with Lucide Icon */}
             <Link
-              href="#apply"
+              href="/apply"
               className="
                 group
                 inline-flex
@@ -202,10 +204,11 @@ export default function About() {
                 rounded-sm
                 w-fit
                 mt-2
+                cursor-pointer
               "
             >
               Explore AIC-JKLU
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
 
@@ -216,7 +219,7 @@ export default function About() {
           PART 2 — BY THE NUMBERS BAND
           brand orange (#EB5725) background — metrics grid
       ================================================================ */}
-      <div className="bg-brand px-6 lg:px-16 py-12 sm:py-10 lg:py-10">
+      <div className="bg-brand px-6 lg:px-16 pt-12 pb-20 sm:pt-10 sm:pb-20 lg:pt-10 lg:pb-24">
         <div className="mx-auto max-w-screen-2xl">
 
           {/* Band heading */}

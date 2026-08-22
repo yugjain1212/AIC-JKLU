@@ -1,19 +1,20 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LEFT_NAV_LINKS = [
-  'Companies',
-  'Library',
-  'Programs',
+  { label: 'Companies', href: '/#portfolio' },
+  { label: 'Library', href: '/#showcase' },
+  { label: 'Programs', href: '/#about' },
 ] as const;
 
 const RIGHT_NAV_LINKS = [
-  'Events',
-  'About',
-  'Stake Holders',
+  { label: 'Events', href: '/#about' },
+  { label: 'About', href: '#about' },
+  { label: 'Stake Holders', href: '/#portfolio' },
 ] as const;
 
 const ALL_NAV_LINKS = [
@@ -23,10 +24,10 @@ const ALL_NAV_LINKS = [
 
 const ABOUT_DROPDOWN_ITEMS = [
   { label: 'About AIC-JKLU', href: '/about' },
-  { label: 'Our Team', href: '#our-team' },
   { label: 'Vision & Mission', href: '/about/mission-vision' },
-  { label: 'What We Do', href: '#what-we-do' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Our Portfolio', href: '/#portfolio' },
+  { label: 'Featured Companies', href: '/#showcase' },
+  { label: 'Apply for Incubation', href: '/apply' },
 ] as const;
 
 export default function Navbar() {
@@ -92,10 +93,10 @@ export default function Navbar() {
               lg:pr-10
             "
           >
-            {LEFT_NAV_LINKS.map((link) => (
+            {LEFT_NAV_LINKS.map((item) => (
               <Link
-                key={link}
-                href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
+                key={item.label}
+                href={item.href}
                 className="
                   group
                   relative
@@ -111,9 +112,10 @@ export default function Navbar() {
                   duration-300
                   ease-out
                   hover:text-[#EB5725]
+                  cursor-pointer
                 "
               >
-                {link}
+                {item.label}
 
                 {/* Orange hover underline */}
                 <span
@@ -151,11 +153,15 @@ export default function Navbar() {
               justify-center
               px-8
               lg:px-10
+              cursor-pointer
             "
           >
-            <img
+            <Image
               src="/logo.svg"
               alt="AIC JKLU"
+              width={100}
+              height={48}
+              priority
               className="
                 h-12
                 w-auto
@@ -186,8 +192,8 @@ export default function Navbar() {
               lg:pl-10
             "
           >
-            {RIGHT_NAV_LINKS.map((link) => {
-              if (link === 'About') {
+            {RIGHT_NAV_LINKS.map((item) => {
+              if (item.label === 'About') {
                 return (
                   <div key="About" ref={dropdownRef} className="relative">
                     <button
@@ -215,10 +221,12 @@ export default function Navbar() {
                         ease-out
                         hover:text-[#EB5725]
                         focus:outline-none
+                        cursor-pointer
                       "
                     >
                       <span className={aboutOpen ? 'text-[#EB5725]' : ''}>About</span>
                       <svg
+                        aria-hidden="true"
                         className={`h-3 w-3 transition-transform duration-200 ease-out ${
                           aboutOpen ? 'rotate-180 text-[#EB5725]' : 'text-slateMuted group-hover:text-[#EB5725]'
                         }`}
@@ -264,7 +272,7 @@ export default function Navbar() {
                             top-full
                             z-50
                             mt-3.5
-                            w-52
+                            w-56
                             -translate-x-1/2
                             rounded-[10px]
                             border
@@ -274,16 +282,16 @@ export default function Navbar() {
                             shadow-[0_8px_30px_rgba(0,0,0,0.06)]
                           "
                         >
-                          {ABOUT_DROPDOWN_ITEMS.map((item) => (
+                          {ABOUT_DROPDOWN_ITEMS.map((dropdownItem) => (
                             <Link
-                              key={item.label}
-                              href={item.href}
+                              key={dropdownItem.label}
+                              href={dropdownItem.href}
                               role="menuitem"
                               onClick={() => setAboutOpen(false)}
                               className="
                                 block
                                 rounded-md
-                                px-3.0
+                                px-3.5
                                 py-2.5
                                 font-robotoMono
                                 text-[12px]
@@ -293,9 +301,10 @@ export default function Navbar() {
                                 duration-150
                                 hover:bg-[#FFF2ED]
                                 hover:text-[#EB5725]
+                                cursor-pointer
                               "
                             >
-                              {item.label}
+                              {dropdownItem.label}
                             </Link>
                           ))}
                         </motion.div>
@@ -307,8 +316,8 @@ export default function Navbar() {
 
               return (
                 <Link
-                  key={link}
-                  href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
+                  key={item.label}
+                  href={item.href}
                   className="
                     group
                     relative
@@ -324,9 +333,10 @@ export default function Navbar() {
                     duration-300
                     ease-out
                     hover:text-[#EB5725]
+                    cursor-pointer
                   "
                 >
-                  {link}
+                  {item.label}
 
                   {/* Orange hover underline */}
                   <span
@@ -419,11 +429,14 @@ export default function Navbar() {
           <Link
             href="/"
             aria-label="AIC JKLU Home"
-            className="flex items-center"
+            className="flex items-center cursor-pointer"
           >
-            <img
+            <Image
               src="/logo.svg"
               alt="AIC JKLU"
+              width={85}
+              height={40}
+              priority
               className="h-10 w-auto max-w-[85px] object-contain"
             />
           </Link>
@@ -449,6 +462,7 @@ export default function Navbar() {
                 transition-colors
                 duration-300
                 hover:bg-[#C84214]
+                cursor-pointer
               "
             >
               Apply
@@ -464,14 +478,15 @@ export default function Navbar() {
               onClick={() => setMenuOpen((prev) => !prev)}
               className="
                 flex
-                h-9
-                w-9
+                min-h-[44px]
+                min-w-[44px]
+                cursor-pointer
                 flex-col
                 items-center
                 justify-center
                 gap-[5px]
                 rounded-md
-                p-1
+                p-2
               "
             >
               {/* Top */}
@@ -557,8 +572,8 @@ export default function Navbar() {
       >
         <nav className="flex flex-col px-6 py-5">
 
-          {ALL_NAV_LINKS.map((link) => {
-            if (link === 'About') {
+          {ALL_NAV_LINKS.map((item) => {
+            if (item.label === 'About') {
               return (
                 <div key="About" className="border-b border-hairline py-2">
                   <button
@@ -579,10 +594,12 @@ export default function Navbar() {
                       transition-colors
                       duration-300
                       hover:text-[#EB5725]
+                      cursor-pointer
                     "
                   >
                     <span className={mobileAboutOpen ? 'text-[#EB5725]' : ''}>About</span>
                     <svg
+                      aria-hidden="true"
                       className={`h-3.5 w-3.5 transition-transform duration-200 ${
                         mobileAboutOpen ? 'rotate-180 text-[#EB5725]' : 'text-slateMuted'
                       }`}
@@ -604,10 +621,10 @@ export default function Navbar() {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden pl-3 pt-1 space-y-1"
                       >
-                        {ABOUT_DROPDOWN_ITEMS.map((item) => (
+                        {ABOUT_DROPDOWN_ITEMS.map((dropdownItem) => (
                           <Link
-                            key={item.label}
-                            href={item.href}
+                            key={dropdownItem.label}
+                            href={dropdownItem.href}
                             onClick={() => {
                               setMobileAboutOpen(false);
                               setMenuOpen(false);
@@ -620,14 +637,15 @@ export default function Navbar() {
                               font-robotoMono
                               text-[11px]
                               font-medium
-                              text-[##52525a]
+                              text-[#52525B]
                               transition-colors
                               duration-150
                               hover:bg-[#FFF2ED]
                               hover:text-[#EB5725]
+                              cursor-pointer
                             "
                           >
-                            {item.label}
+                            {dropdownItem.label}
                           </Link>
                         ))}
                       </motion.div>
@@ -639,8 +657,8 @@ export default function Navbar() {
 
             return (
               <Link
-                key={link}
-                href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
+                key={item.label}
+                href={item.href}
                 role="menuitem"
                 onClick={() => setMenuOpen(false)}
                 className="
@@ -656,9 +674,10 @@ export default function Navbar() {
                   transition-colors
                   duration-300
                   hover:text-[#EB5725]
+                  cursor-pointer
                 "
               >
-                {link}
+                {item.label}
               </Link>
             );
           })}

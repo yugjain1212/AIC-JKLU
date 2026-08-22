@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 const TOTAL_BOXES = 10;
@@ -110,9 +111,12 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           shadow-[0_8px_25px_rgba(0,0,0,0.12)]
          "
         >
-          <img
+          <Image
             src="/logo.svg"
             alt="AIC-JKLU"
+            width={100}
+            height={100}
+            priority
             className="w-full h-full object-contain"
           />
           </motion.div>
@@ -128,16 +132,16 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             </p>
           </motion.div>
 
-          {/* Bottom-left note */}
+          {/* Bottom-left note - high contrast white text on Jaipur orange */}
           <motion.div
             initial={{ opacity: 0, rotate: -5, y: 20 }}
             animate={{ opacity: 1, rotate: -5, y: 0, transition: { delay: 0.45, duration: 0.6 } }}
             className="absolute bottom-[18%] left-[9%] w-44 bg-[#EB5725] rounded-[4px] p-4 shadow-lg"
           >
-            <p className="font-robotoMono text-[11px] uppercase leading-snug text-[#1a1a1a]">
+            <p className="font-robotoMono text-[11px] font-medium uppercase leading-snug text-white">
               Startups,<br />Founders,<br />Great Ideas
             </p>
-            <p className="font-robotoMono text-[11px] uppercase leading-snug text-[#1a1a1a] mt-3">
+            <p className="font-robotoMono text-[11px] font-medium uppercase leading-snug text-white/90 mt-3">
               Cohort<br />Fall 2026
             </p>
           </motion.div>
@@ -148,10 +152,10 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             animate={{ opacity: 1, y: 0, transition: { delay: 0.55, duration: 0.6 } }}
             className="absolute bottom-[18%] right-[10%] w-56 bg-[#141414] border border-white/10 rounded-2xl p-5 shadow-lg"
           >
-            <p className="font-robotoMono text-[10px] uppercase tracking-widest text-[#666] mb-2">
+            <p className="font-robotoMono text-[10px] uppercase tracking-widest text-[#888] mb-2">
               Useful Info
             </p>
-            <p className="font-inter text-[12px] text-[#888] leading-relaxed">
+            <p className="font-robotoMono text-[12px] text-[#ccc] leading-relaxed">
               Seed capital, lab infrastructure &amp; hands-on mentorship for early-stage founders.
             </p>
           </motion.div>

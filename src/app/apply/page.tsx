@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const GOOGLE_FORM_ACTION =
@@ -79,19 +80,22 @@ export default function ApplyPage() {
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                     className="mx-auto flex h-[72px] max-w-6xl items-center justify-between border-b border-[#E4E4E0]"
                 >
-                    <Link href="/" className="flex items-center">
-                        <img
+                    <Link href="/" className="flex items-center cursor-pointer">
+                        <Image
                             src="/logo.svg"
                             alt="AIC-JKLU"
+                            width={85}
+                            height={40}
+                            priority
                             className="h-10 w-auto object-contain"
                         />
                     </Link>
 
                     <Link
                         href="/"
-                        className="group flex items-center gap-2 font-robotoMono text-xs font-semibold uppercase tracking-[0.12em] text-[#52525B] transition-all duration-300 hover:text-[#EB5725]"
+                        className="group flex items-center gap-2 font-robotoMono text-xs font-semibold uppercase tracking-[0.12em] text-[#52525B] transition-colors duration-200 hover:text-[#EB5725] cursor-pointer"
                     >
-                        <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                        <span aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-x-1">
                             ←
                         </span>
                         Back to Home
@@ -105,7 +109,7 @@ export default function ApplyPage() {
                         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                         className="w-full max-w-lg rounded-[24px] border border-[#E4E4E0] bg-[#FFFFFF] p-8 sm:p-12 text-center shadow-[0_8px_30px_rgba(0,0,0,0.03)]"
                     >
-                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#EB5725] text-2xl text-white shadow-md shadow-[#EB5725]/20">
+                        <div aria-hidden="true" className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#EB5725] text-2xl text-white shadow-md shadow-[#EB5725]/20">
                             ✓
                         </div>
 
@@ -113,7 +117,7 @@ export default function ApplyPage() {
                             AIC — JKLU
                         </p>
 
-                        <h1 className="font-marcellus text-4xl sm:text-5xl leading-[1.05] tracking-[-0.03em] text-[#121212]">
+                        <h1 className="font-marcellus text-4xl sm:text-5xl leading-[1.05] tracking-[-0.03em] text-[#121212] text-balance">
                             Application
                             <br />
                             <em className="font-normal italic">
@@ -121,7 +125,7 @@ export default function ApplyPage() {
                             </em>
                         </h1>
 
-                        <p className="mx-auto mt-4 max-w-md font-inter text-[15px] leading-relaxed text-[#52525B]">
+                        <p className="mx-auto mt-4 max-w-md font-robotoMono text-[14px] sm:text-[15px] leading-relaxed text-[#52525B]">
                             Thank you for applying to AIC-JKLU. Your application has been
                             received and will be reviewed by our team.
                         </p>
@@ -138,7 +142,7 @@ export default function ApplyPage() {
                                     describe: "",
                                 });
                             }}
-                            className="mt-8 rounded-full bg-[#EB5725] px-8 py-3.5 font-robotoMono text-[14px] sm:text-[15px] font-semibold uppercase tracking-[0.1em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25"
+                            className="mt-8 rounded-full bg-[#EB5725] px-8 py-3.5 font-robotoMono text-[14px] sm:text-[15px] font-semibold uppercase tracking-[0.1em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 cursor-pointer"
                         >
                             Submit Another Application
                         </button>
@@ -166,11 +170,14 @@ export default function ApplyPage() {
                 {/* AIC LOGO */}
                 <Link
                     href="/"
-                    className="flex items-center"
+                    className="flex items-center cursor-pointer"
                 >
-                    <img
+                    <Image
                         src="/logo.svg"
                         alt="AIC-JKLU"
+                        width={85}
+                        height={40}
+                        priority
                         className="h-10 w-auto object-contain"
                     />
                 </Link>
@@ -178,9 +185,9 @@ export default function ApplyPage() {
                 {/* BACK BUTTON */}
                 <Link
                     href="/"
-                    className="group flex items-center gap-2 font-robotoMono text-xs sm:text-[13px] font-semibold uppercase tracking-[0.12em] text-[#52525B] transition-all duration-300 hover:text-[#EB5725]"
+                    className="group flex items-center gap-2 font-robotoMono text-xs sm:text-[13px] font-semibold uppercase tracking-[0.12em] text-[#52525B] transition-colors duration-200 hover:text-[#EB5725] cursor-pointer"
                 >
-                    <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                    <span aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-x-1">
                         ←
                     </span>
                     Back to Home
@@ -200,18 +207,15 @@ export default function ApplyPage() {
                     Apply Now
                 </p>
 
-                <h1 className="font-marcellus text-[42px] leading-[0.95] tracking-[-0.04em] sm:text-[52px] md:text-[60px] text-[#121212]">
+                <h1 className="font-marcellus text-[42px] leading-[0.95] tracking-[-0.04em] sm:text-[52px] md:text-[60px] text-[#121212] text-balance">
                     Ready to
                     <br />
-
-                </h1>
-                <h1>
-                    <em className="font-marcellus not-italic text-[#EB5725] text-6xl">
-                        Innovate ?
+                    <em className="font-marcellus not-italic text-[#EB5725] text-5xl sm:text-6xl">
+                        Innovate?
                     </em>
                 </h1>
 
-                <p className="mx-auto mt-4 max-w-lg font-inter text-[15px] leading-relaxed text-[#52525B]">
+                <p className="mx-auto mt-4 max-w-lg font-robotoMono text-[14px] sm:text-[15px] leading-relaxed text-[#52525B]">
                     Tell us about yourself and what you are building.
                 </p>
             </motion.section>
@@ -234,7 +238,7 @@ export default function ApplyPage() {
                         <div>
                             <label
                                 htmlFor="email"
-                                className="mb-2 block font-inter text-[15px] font-medium text-[#121212]"
+                                className="mb-2 block font-robotoMono text-[13px] font-semibold uppercase tracking-[0.08em] text-[#121212]"
                             >
                                 Email
                                 <span className="ml-1 text-[#EB5725]">*</span>
@@ -249,7 +253,8 @@ export default function ApplyPage() {
                                 placeholder="you@example.com"
                                 required
                                 autoComplete="email"
-                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 text-[16px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                spellCheck={false}
+                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
@@ -257,7 +262,7 @@ export default function ApplyPage() {
                         <div>
                             <label
                                 htmlFor="name"
-                                className="mb-2 block font-inter text-[15px] font-medium text-[#121212]"
+                                className="mb-2 block font-robotoMono text-[13px] font-semibold uppercase tracking-[0.08em] text-[#121212]"
                             >
                                 Your Name
                             </label>
@@ -270,7 +275,7 @@ export default function ApplyPage() {
                                 onChange={handleChange}
                                 placeholder="Enter your full name"
                                 autoComplete="name"
-                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 text-[16px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
@@ -278,7 +283,7 @@ export default function ApplyPage() {
                         <div>
                             <label
                                 htmlFor="startupName"
-                                className="mb-2 block font-inter text-[15px] font-medium text-[#121212]"
+                                className="mb-2 block font-robotoMono text-[13px] font-semibold uppercase tracking-[0.08em] text-[#121212]"
                             >
                                 Startup Name
                             </label>
@@ -290,7 +295,8 @@ export default function ApplyPage() {
                                 value={formData.startupName}
                                 onChange={handleChange}
                                 placeholder="Enter your startup name"
-                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 text-[16px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                autoComplete="organization"
+                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
@@ -298,7 +304,7 @@ export default function ApplyPage() {
                         <div>
                             <label
                                 htmlFor="alternateEmail"
-                                className="mb-2 block font-inter text-[15px] font-medium text-[#121212]"
+                                className="mb-2 block font-robotoMono text-[13px] font-semibold uppercase tracking-[0.08em] text-[#121212]"
                             >
                                 Alternate E-mail
                             </label>
@@ -311,7 +317,8 @@ export default function ApplyPage() {
                                 onChange={handleChange}
                                 placeholder="Additional email address"
                                 autoComplete="email"
-                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 text-[16px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                spellCheck={false}
+                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
@@ -319,7 +326,7 @@ export default function ApplyPage() {
                         <div>
                             <label
                                 htmlFor="describe"
-                                className="mb-2 block font-inter text-[15px] font-medium text-[#121212]"
+                                className="mb-2 block font-robotoMono text-[13px] font-semibold uppercase tracking-[0.08em] text-[#121212]"
                             >
                                 Describe
                             </label>
@@ -331,7 +338,7 @@ export default function ApplyPage() {
                                 onChange={handleChange}
                                 rows={4}
                                 placeholder="Tell us about your startup, idea, or what you are building..."
-                                className="w-full resize-none rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 text-[16px] leading-relaxed text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                className="w-full resize-none rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] leading-relaxed text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
@@ -340,7 +347,7 @@ export default function ApplyPage() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="group flex w-full items-center justify-center gap-3 rounded-full bg-[#EB5725] px-8 py-4 font-robotoMono text-[15px] font-bold uppercase tracking-[0.1em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="group flex w-full items-center justify-center gap-3 rounded-full bg-[#EB5725] px-8 py-4 font-robotoMono text-[15px] font-bold uppercase tracking-[0.1em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
                             >
                                 <span>
                                     {isSubmitting
@@ -349,14 +356,14 @@ export default function ApplyPage() {
                                 </span>
 
                                 {!isSubmitting && (
-                                    <span className="text-base transition-transform duration-300 group-hover:translate-x-1">
+                                    <span aria-hidden="true" className="text-base transition-transform duration-300 group-hover:translate-x-1">
                                         →
                                     </span>
                                 )}
                             </button>
                         </div>
 
-                        <p className="pt-1 text-center font-inter text-[14px] leading-relaxed text-[#52525B]">
+                        <p className="pt-1 text-center font-robotoMono text-[12px] leading-relaxed text-[#52525B]">
                             By submitting this application, you confirm that the information
                             provided is accurate.
                         </p>

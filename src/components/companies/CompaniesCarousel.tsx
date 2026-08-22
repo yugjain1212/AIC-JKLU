@@ -93,16 +93,17 @@ export default function CompaniesCarousel({
           aria-label="Previous company"
           className="
             group
-            w-10 h-10 rounded-full
+            w-11 h-11 min-h-[44px] min-w-[44px] rounded-full
             border border-black/15
             flex items-center justify-center
             text-slateMuted
             hover:bg-obsidian hover:border-obsidian hover:text-white
-            transition-all duration-200
+            transition-colors duration-200
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand
+            cursor-pointer
           "
         >
-          <ChevronLeft size={16} />
+          <ChevronLeft size={16} aria-hidden="true" />
         </button>
 
         <button
@@ -110,16 +111,17 @@ export default function CompaniesCarousel({
           aria-label="Next company"
           className="
             group
-            w-10 h-10 rounded-full
+            w-11 h-11 min-h-[44px] min-w-[44px] rounded-full
             border border-black/15
             flex items-center justify-center
             text-slateMuted
             hover:bg-obsidian hover:border-obsidian hover:text-white
-            transition-all duration-200
+            transition-colors duration-200
             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand
+            cursor-pointer
           "
         >
-          <ChevronRight size={16} />
+          <ChevronRight size={16} aria-hidden="true" />
         </button>
       </div>
     </div>

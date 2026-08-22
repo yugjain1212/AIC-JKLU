@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Font variable anchors ────────────────────────────────────
+   These rules ensure the CSS custom properties from next/font
+   always cascade correctly to utility classes, regardless of
+   any Tailwind base layer resets.
+─────────────────────────────────────────────────────────────── */
+.font-marcellus,
+.font-serif {
+  font-family: var(--font-marcellus), Georgia, serif !important;
+}
+
+.font-robotoMono,
+.font-roboto-mono,
+.font-mono {
+  font-family: var(--font-roboto-mono), 'Courier New', monospace !important;
+}
+
 /* ── Scroll behaviour ─────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
