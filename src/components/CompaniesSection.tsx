@@ -23,18 +23,21 @@ interface Company {
 }
 
 const COMPANIES: Company[] = [
-  { name: 'BAS', logo: '/companies/images/BAS.png' },
-  { name: "Bowler's Academy", logo: '/companies/images/bowlers_acadmey.png' },
-  { name: 'CaviSafe', logo: '/companies/images/CaviSafe.png' },
-  { name: 'FinQuanata', logo: '/companies/images/FinQuanata.png' },
-  { name: 'Marketing Chai', logo: '/companies/images/Marketing_chai.png' },
-  { name: 'Papair', logo: '/companies/images/Papair.png' },
-  { name: 'Plant Protector', logo: '/companies/images/plant_protector.png' },
-  { name: 'SunEmission', logo: '/companies/images/SunEmission.png' },
-  { name: 'Telemed on Wheels', logo: '/companies/images/Telemedonwheels.png' },
-  { name: 'Snas IoT', logo: '/companies/images/Snas IoT.jpg' },
-  { name: 'Starfire', logo: '/companies/images/Starfiree Logo.png' },
-  { name: 'Sunbirds', logo: '/companies/images/Sunbirds.png' },
+  { name: 'BAS', logo: '/companies/BAS.svg' },
+  { name: "Bowler's Academy", logo: '/companies/bowlers_acadmey.svg' },
+  { name: 'CaviSafe', logo: '/companies/CaviSafe.svg' },
+  { name: 'FinQuanata', logo: '/companies/FinQuanata.svg' },
+  { name: 'Marketing Chai', logo: '/companies/Marketing_chai.svg' },
+  { name: 'Papair', logo: '/companies/Papair.svg' },
+  { name: 'Plant Protector', logo: '/companies/plant_protector.svg' },
+  { name: 'SunEmission', logo: '/companies/SunEmission.svg' },
+  { name: 'Telemed on Wheels', logo: '/companies/Telemedonwheels.svg' },
+  { name: 'Snas IoT', logo: '/companies/Snas IoT.svg' },
+  { name: 'Starfire', logo: '/companies/Starfiree Logo.svg' },
+  { name: 'Sunbirds', logo: '/companies/Sunbirds.svg' },
+  { name: 'The Infinite Design', logo: '/companies/The Infinite Design.svg' },
+  { name: 'Tidor Tech', logo: '/companies/Tidor Tech.svg' },
+  { name: 'Satyukt', logo: '/companies/satyukt.svg' },
 ];
 
 // ── Row builder — 4 rows × 6 per side for a rich continuous wall of startups ──
@@ -109,7 +112,7 @@ export default function CompaniesSection() {
       aria-label="Our Portfolio"
       className="
         relative overflow-hidden
-        h-[150vh] md:h-[160vh] lg:h-[160vh]
+        h-[150vh] md:h-[160vh] lg:h-[110vh]
         bg-canvas
         rounded-t-[36px] md:rounded-t-[52px]
         shadow-[0_-24px_60px_rgba(0,0,0,0.07)]

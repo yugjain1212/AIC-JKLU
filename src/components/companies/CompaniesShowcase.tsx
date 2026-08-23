@@ -45,26 +45,27 @@ export default function CompaniesShowcase() {
         rounded-t-[32px] md:rounded-t-[48px]
         shadow-[0_-20px_50px_rgba(0,0,0,0.06)]
         border-t border-hairline/40
-        pt-16 pb-20 lg:pt-20 lg:pb-28
+        pt-5 pb-5 lg:pt-6 lg:pb-6
+        scroll-mt-24
         overflow-hidden
       "
     >
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <CompaniesHeader />
       </motion.div>
 
       {/* Carousel */}
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.05 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
       >
         <CompaniesCarousel
           companies={companies}
@@ -82,13 +83,6 @@ export default function CompaniesShowcase() {
 
       {/* Company information panel */}
       <CompanyInformation company={activeCompany} />
-
-      {/* Scroll hint */}
-      <div className="flex justify-center pt-8">
-        <p className="font-robotoMono text-[10px] uppercase tracking-[0.22em] text-slateMuted/75">
-          Scroll to explore more companies
-        </p>
-      </div>
     </section>
   );
 }

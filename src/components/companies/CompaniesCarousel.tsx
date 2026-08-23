@@ -33,7 +33,7 @@ export default function CompaniesCarousel({
   const swiperRef = useRef<SwiperRef>(null);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6">
       <Swiper
         ref={swiperRef}
         modules={[EffectCoverflow, Navigation, Autoplay]}
@@ -43,8 +43,8 @@ export default function CompaniesCarousel({
         loop
         initialSlide={initialIndex}
         slidesPerView={1.25}
-        spaceBetween={16}
-        speed={900}
+        spaceBetween={14}
+        speed={850}
         autoplay={{
           delay: 4200,
           disableOnInteraction: false,
@@ -53,25 +53,25 @@ export default function CompaniesCarousel({
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
-          depth: 140,
-          modifier: 1.6,
+          depth: 110,
+          modifier: 1.25,
           slideShadows: false,
         }}
         breakpoints={{
           640: {
-            slidesPerView: 1.6,
-            spaceBetween: 20,
-            coverflowEffect: { rotate: 0, stretch: 0, depth: 140, modifier: 1.7, slideShadows: false },
+            slidesPerView: 1.5,
+            spaceBetween: 18,
+            coverflowEffect: { rotate: 0, stretch: 0, depth: 115, modifier: 1.25, slideShadows: false },
           },
           1024: {
-            slidesPerView: 2.4,
-            spaceBetween: 28,
-            coverflowEffect: { rotate: 0, stretch: 0, depth: 160, modifier: 1.8, slideShadows: false },
+            slidesPerView: 1.85,
+            spaceBetween: 24,
+            coverflowEffect: { rotate: 0, stretch: 0, depth: 120, modifier: 1.3, slideShadows: false },
           },
           1280: {
-            slidesPerView: 2.6,
-            spaceBetween: 32,
-            coverflowEffect: { rotate: 0, stretch: 0, depth: 170, modifier: 1.85, slideShadows: false },
+            slidesPerView: 1.95,
+            spaceBetween: 28,
+            coverflowEffect: { rotate: 0, stretch: 0, depth: 125, modifier: 1.35, slideShadows: false },
           },
         }}
         onSlideChange={onSlideChange}
@@ -87,13 +87,13 @@ export default function CompaniesCarousel({
       </Swiper>
 
       {/* ── Navigation Buttons ── */}
-      <div className="flex items-center justify-center gap-4 mt-6">
+      <div className="flex items-center justify-center gap-3 mt-2 lg:mt-2.5">
         <button
           onClick={() => swiperRef.current?.swiper.slidePrev()}
           aria-label="Previous company"
           className="
             group
-            w-11 h-11 min-h-[44px] min-w-[44px] rounded-full
+            w-9 h-9 min-h-[36px] min-w-[36px] rounded-full
             border border-black/15
             flex items-center justify-center
             text-slateMuted
@@ -103,7 +103,7 @@ export default function CompaniesCarousel({
             cursor-pointer
           "
         >
-          <ChevronLeft size={16} aria-hidden="true" />
+          <ChevronLeft size={15} aria-hidden="true" />
         </button>
 
         <button
@@ -111,7 +111,7 @@ export default function CompaniesCarousel({
           aria-label="Next company"
           className="
             group
-            w-11 h-11 min-h-[44px] min-w-[44px] rounded-full
+            w-9 h-9 min-h-[36px] min-w-[36px] rounded-full
             border border-black/15
             flex items-center justify-center
             text-slateMuted
@@ -121,7 +121,7 @@ export default function CompaniesCarousel({
             cursor-pointer
           "
         >
-          <ChevronRight size={16} aria-hidden="true" />
+          <ChevronRight size={15} aria-hidden="true" />
         </button>
       </div>
     </div>
