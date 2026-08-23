@@ -45,7 +45,7 @@ export default function CompaniesShowcase() {
         rounded-t-[32px] md:rounded-t-[48px]
         shadow-[0_-20px_50px_rgba(0,0,0,0.06)]
         border-t border-hairline/40
-        pt-5 pb-5 lg:pt-6 lg:pb-6
+        pt-5 pb-24 lg:pt-6 lg:pb-32
         scroll-mt-24
         overflow-hidden
       "
