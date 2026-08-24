@@ -7,6 +7,7 @@ import About from '@/components/About';
 import CompaniesSection from '@/components/CompaniesSection';
 import CompaniesShowcase from '@/components/companies/CompaniesShowcase';
 import TeamSection from '@/components/team/TeamSection';
+import Footer from '@/components/Footer';
 import Preloader from '@/components/Preloader';
 
 const SESSION_KEY = 'aic_intro_shown';
@@ -120,20 +121,8 @@ export default function Home() {
           <TeamSection />
         </div>
 
-        <div className="relative z-10 bg-canvas">
-          <ParallaxSection delay={0}>
-            <footer className="bg-surface border-t border-hairline py-8 px-6">
-              <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="font-marcellus text-[18px] text-obsidian">
-                  AIC-JKLU
-                </div>
-                <div className="font-robotoMono text-[11px] text-slateMuted">
-                  © 2026 Atal Incubation Centre – JK Lakshmipat University. Supported by NITI Aayog.
-                </div>
-              </div>
-            </footer>
-          </ParallaxSection>
-        </div>
+        {/* Premium Animated Footer — Team to Footer transition */}
+        <Footer />
       </main>
     </>
   );
