@@ -5,6 +5,19 @@ import Image from 'next/image';
 
 import type { TeamMember } from '@/data/team';
 
+function LinkedInIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+    </svg>
+  );
+}
+
 interface TeamCardProps {
   member: TeamMember;
   index: number;
@@ -114,6 +127,79 @@ export default function TeamCard({
       />
 
       {/* ================================================================
+          LINKEDIN ICON (BOTTOM-LEFT HOVER)
+      ================================================================= */}
+
+      {member.linkedin && (
+        <a
+          href={member.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          aria-label={`View ${member.name}'s LinkedIn profile`}
+          title={`View ${member.name}'s LinkedIn`}
+          className="
+            group/btn
+            absolute
+            bottom-5
+            left-5
+            sm:bottom-6
+            sm:left-6
+            z-30
+
+            flex
+            items-center
+            justify-center
+
+            w-9
+            h-9
+            sm:w-10
+            sm:h-10
+
+            rounded-full
+            bg-black/60
+            hover:bg-[#0077b5]
+            text-[#FBF7F0]
+            hover:text-white
+
+            backdrop-blur-md
+            border
+            border-white/20
+            hover:border-[#0077b5]
+
+            shadow-[0_4px_16px_rgba(0,0,0,0.4)]
+            hover:shadow-[0_0_20px_rgba(0,119,181,0.6)]
+
+            opacity-0
+            scale-75
+            translate-y-2
+            group-hover:opacity-100
+            group-hover:scale-100
+            group-hover:translate-y-0
+
+            transition-all
+            duration-300
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+
+            hover:scale-110
+            active:scale-95
+          "
+        >
+          <LinkedInIcon
+            className="
+              w-4
+              h-4
+              sm:w-[18px]
+              sm:h-[18px]
+              transition-transform
+              duration-300
+              group-hover/btn:scale-110
+            "
+          />
+        </a>
+      )}
+
+      {/* ================================================================
           MEMBER INFORMATION
       ================================================================= */}
 
@@ -124,13 +210,14 @@ export default function TeamCard({
           bottom-0
           z-20
 
-          px-5
+          px-14
           pb-6
 
-          sm:px-6
+          sm:px-14
           sm:pb-7
 
           text-center
+          pointer-events-none
         "
       >
         <h3
