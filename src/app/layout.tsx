@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Marcellus, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const marcellus = Marcellus({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en" className={`${marcellus.variable} ${robotoMono.variable}`}>
       <body className="bg-canvas text-obsidian font-robotoMono antialiased">
         {children}
+        <Footer />
       </body>
     </html>
   );

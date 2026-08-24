@@ -7,7 +7,6 @@ import About from '@/components/About';
 import CompaniesSection from '@/components/CompaniesSection';
 import CompaniesShowcase from '@/components/companies/CompaniesShowcase';
 import TeamSection from '@/components/team/TeamSection';
-import Footer from '@/components/Footer';
 import Preloader from '@/components/Preloader';
 
 const SESSION_KEY = 'aic_intro_shown';
@@ -120,9 +119,6 @@ export default function Home() {
         <div className="relative z-40 -mt-[40px]">
           <TeamSection />
         </div>
-
-        {/* Premium Animated Footer — Team to Footer transition */}
-        <Footer />
       </main>
     </>
   );

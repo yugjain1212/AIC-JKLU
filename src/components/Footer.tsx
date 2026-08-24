@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -57,6 +58,7 @@ export default function Footer() {
   const contentRef = useRef<HTMLDivElement>(null);
   const giantTextRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
+  const pathname = usePathname();
 
   // ── GSAP ScrollTrigger Transition Choreography ─────────────────────────────
   useLayoutEffect(() => {
@@ -141,6 +143,17 @@ export default function Footer() {
 
     return () => ctx.revert();
   }, [prefersReduced]);
+
+  // Refresh ScrollTrigger when the route changes
+  useLayoutEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Small delay to allow new page layout to render and push footer down
+      const timeoutId = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [pathname]);
 
   const scrollToTop = () => {
     window.scrollTo({
