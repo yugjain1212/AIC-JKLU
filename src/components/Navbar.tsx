@@ -7,12 +7,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const LEFT_NAV_LINKS = [
   { label: 'Companies', href: '/#portfolio' },
-  { label: 'Library', href: '/#showcase' },
+  { label: 'Library', href: '/library' },
   { label: 'Programs', href: '/programs' },
 ] as const;
 
 const RIGHT_NAV_LINKS = [
-  { label: 'Events', href: '/#about' },
+  { label: 'Aarohan', href: 'https://aarohan3.vercel.app/', external: true },
   { label: 'About', href: '#about' },
   { label: 'Stake Holders', href: '/#portfolio' },
 ] as const;
@@ -36,22 +36,14 @@ const STAKEHOLDERS_DROPDOWN_ITEMS = [
   { label: 'Partners', href: '/stakeholders' },
 ] as const;
 
-const EVENTS_DROPDOWN_ITEMS = [
-  { label: 'Aarohan', href: 'https://aarohan3.vercel.app/', external: true },
-  { label: 'Events', href: '/#about', external: false },
-] as const;
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [stakeholdersOpen, setStakeholdersOpen] = useState(false);
   const [mobileStakeholdersOpen, setMobileStakeholdersOpen] = useState(false);
-  const [eventsOpen, setEventsOpen] = useState(false);
-  const [mobileEventsOpen, setMobileEventsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const stakeholdersDropdownRef = useRef<HTMLDivElement>(null);
-  const eventsDropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown on outside click or Escape key
   useEffect(() => {
@@ -62,20 +54,16 @@ export default function Navbar() {
       if (stakeholdersDropdownRef.current && !stakeholdersDropdownRef.current.contains(event.target as Node)) {
         setStakeholdersOpen(false);
       }
-      if (eventsDropdownRef.current && !eventsDropdownRef.current.contains(event.target as Node)) {
-        setEventsOpen(false);
-      }
     }
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setAboutOpen(false);
         setStakeholdersOpen(false);
-        setEventsOpen(false);
       }
     }
 
-    if (aboutOpen || stakeholdersOpen || eventsOpen) {
+    if (aboutOpen || stakeholdersOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
     }
@@ -84,7 +72,7 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [aboutOpen, stakeholdersOpen, eventsOpen]);
+  }, [aboutOpen, stakeholdersOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-hairline bg-surface">
@@ -218,155 +206,50 @@ export default function Navbar() {
             "
           >
             {RIGHT_NAV_LINKS.map((item) => {
-              if (item.label === 'Events') {
+              if (item.label === 'Aarohan') {
                 return (
-                  <div key="Events" ref={eventsDropdownRef} className="relative">
-                    <button
-                      type="button"
-                      onClick={() => setEventsOpen((prev) => !prev)}
-                      aria-expanded={eventsOpen}
-                      aria-haspopup="menu"
-                      aria-controls="events-dropdown-menu"
+                  <a
+                    key="Aarohan"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      group
+                      relative
+                      whitespace-nowrap
+                      font-robotoMono
+                      text-[11px]
+                      lg:text-xs
+                      font-medium
+                      uppercase
+                      tracking-[0.13em]
+                      text-slateMuted
+                      transition-colors
+                      duration-300
+                      ease-out
+                      hover:text-[#EB5725]
+                      cursor-pointer
+                    "
+                  >
+                    {item.label}
+
+                    {/* Orange hover underline */}
+                    <span
                       className="
-                        group
-                        relative
-                        flex
-                        items-center
-                        gap-1.5
-                        whitespace-nowrap
-                        font-robotoMono
-                        text-[11px]
-                        lg:text-xs
-                        font-medium
-                        uppercase
-                        tracking-[0.13em]
-                        text-slateMuted
-                        transition-colors
+                        absolute
+                        -bottom-2
+                        left-1/2
+                        h-px
+                        w-0
+                        -translate-x-1/2
+                        bg-[#EB5725]
+                        transition-all
                         duration-300
                         ease-out
-                        hover:text-[#EB5725]
-                        focus:outline-none
-                        cursor-pointer
+                        group-hover:w-full
                       "
-                    >
-                      <span className={eventsOpen ? 'text-[#EB5725]' : ''}>Events</span>
-                      <svg
-                        aria-hidden="true"
-                        className={`h-3 w-3 transition-transform duration-200 ease-out ${
-                          eventsOpen ? 'rotate-180 text-[#EB5725]' : 'text-slateMuted group-hover:text-[#EB5725]'
-                        }`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-
-                      {/* Orange hover underline */}
-                      <span
-                        className={`
-                          absolute
-                          -bottom-2
-                          left-1/2
-                          h-px
-                          -translate-x-1/2
-                          bg-[#EB5725]
-                          transition-all
-                          duration-300
-                          ease-out
-                          ${eventsOpen ? 'w-full' : 'w-0 group-hover:w-full'}
-                        `}
-                      />
-                    </button>
-
-                    {/* Minimalist Floating Dropdown */}
-                    <AnimatePresence>
-                      {eventsOpen && (
-                        <motion.div
-                          id="events-dropdown-menu"
-                          role="menu"
-                          aria-orientation="vertical"
-                          initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className="
-                            absolute
-                            left-1/2
-                            top-full
-                            z-50
-                            mt-3.5
-                            w-48
-                            -translate-x-1/2
-                            rounded-[10px]
-                            border
-                            border-[#E4E4E0]
-                            bg-[#FFFFFF]
-                            p-1.5
-                            shadow-[0_8px_30px_rgba(0,0,0,0.06)]
-                          "
-                        >
-                          {EVENTS_DROPDOWN_ITEMS.map((dropdownItem) =>
-                            dropdownItem.external ? (
-                              <a
-                                key={dropdownItem.label}
-                                href={dropdownItem.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                role="menuitem"
-                                onClick={() => setEventsOpen(false)}
-                                className="
-                                  flex
-                                  items-center
-                                  justify-between
-                                  rounded-md
-                                  px-3.5
-                                  py-2.5
-                                  font-robotoMono
-                                  text-[12px]
-                                  font-medium
-                                  text-[#121212]
-                                  transition-colors
-                                  duration-150
-                                  hover:bg-[#FFF2ED]
-                                  hover:text-[#EB5725]
-                                  cursor-pointer
-                                "
-                              >
-                                <span>{dropdownItem.label}</span>
-                                <span className="text-[10px] opacity-60">↗</span>
-                              </a>
-                            ) : (
-                              <Link
-                                key={dropdownItem.label}
-                                href={dropdownItem.href}
-                                role="menuitem"
-                                onClick={() => setEventsOpen(false)}
-                                className="
-                                  block
-                                  rounded-md
-                                  px-3.5
-                                  py-2.5
-                                  font-robotoMono
-                                  text-[12px]
-                                  font-medium
-                                  text-[#121212]
-                                  transition-colors
-                                  duration-150
-                                  hover:bg-[#FFF2ED]
-                                  hover:text-[#EB5725]
-                                  cursor-pointer
-                                "
-                              >
-                                {dropdownItem.label}
-                              </Link>
-                            )
-                          )}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                    />
+                  </a>
                 );
               }
 
@@ -872,12 +755,14 @@ export default function Navbar() {
         <nav className="flex flex-col px-6 py-5">
 
           {ALL_NAV_LINKS.map((item) => {
-            if (item.label === 'Events') {
+            if (item.label === 'Aarohan') {
               return (
-                <div key="Events" className="border-b border-hairline py-2">
-                  <button
-                    type="button"
-                    onClick={() => setMobileEventsOpen((prev) => !prev)}
+                <div key="Aarohan" className="border-b border-hairline py-2">
+                  <a
+                    href="https://aarohan3.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMenuOpen(false)}
                     className="
                       flex
                       w-full
@@ -896,93 +781,9 @@ export default function Navbar() {
                       cursor-pointer
                     "
                   >
-                    <span className={mobileEventsOpen ? 'text-[#EB5725]' : ''}>Events</span>
-                    <svg
-                      aria-hidden="true"
-                      className={`h-3.5 w-3.5 transition-transform duration-200 ${
-                        mobileEventsOpen ? 'rotate-180 text-[#EB5725]' : 'text-slateMuted'
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-
-                  <AnimatePresence>
-                    {mobileEventsOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden pl-3 pt-1 space-y-1"
-                      >
-                        {EVENTS_DROPDOWN_ITEMS.map((dropdownItem) =>
-                          dropdownItem.external ? (
-                            <a
-                              key={dropdownItem.label}
-                              href={dropdownItem.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={() => {
-                                setMobileEventsOpen(false);
-                                setMenuOpen(false);
-                              }}
-                              className="
-                                flex
-                                items-center
-                                justify-between
-                                rounded-md
-                                px-3
-                                py-2
-                                font-robotoMono
-                                text-[11px]
-                                font-medium
-                                text-[#52525B]
-                                transition-colors
-                                duration-150
-                                hover:bg-[#FFF2ED]
-                                hover:text-[#EB5725]
-                                cursor-pointer
-                              "
-                            >
-                              <span>{dropdownItem.label}</span>
-                              <span className="text-[10px] opacity-60">↗</span>
-                            </a>
-                          ) : (
-                            <Link
-                              key={dropdownItem.label}
-                              href={dropdownItem.href}
-                              onClick={() => {
-                                setMobileEventsOpen(false);
-                                setMenuOpen(false);
-                              }}
-                              className="
-                                block
-                                rounded-md
-                                px-3
-                                py-2
-                                font-robotoMono
-                                text-[11px]
-                                font-medium
-                                text-[#52525B]
-                                transition-colors
-                                duration-150
-                                hover:bg-[#FFF2ED]
-                                hover:text-[#EB5725]
-                                cursor-pointer
-                              "
-                            >
-                              {dropdownItem.label}
-                            </Link>
-                          )
-                        )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    <span>Aarohan</span>
+                    <span className="text-xs text-[#EB5725]">↗</span>
+                  </a>
                 </div>
               );
             }

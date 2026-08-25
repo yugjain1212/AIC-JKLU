@@ -3,7 +3,6 @@
 import Navbar from '@/components/Navbar';
 import StakeholderHero from '@/components/stakeholders/StakeholderHero';
 import StakeholderGrid from '@/components/stakeholders/StakeholderGrid';
-import StakeholderCTA from '@/components/stakeholders/StakeholderCTA';
 import { STAKEHOLDERS } from '@/data/stakeholders';
 
 export default function StakeholdersPage() {
@@ -18,9 +17,6 @@ export default function StakeholdersPage() {
 
         {/* Stakeholder 5-Column Grid */}
         <StakeholderGrid stakeholders={STAKEHOLDERS} />
-
-        {/* Orange Partner CTA */}
-        <StakeholderCTA />
       </div>
     </div>
   );
