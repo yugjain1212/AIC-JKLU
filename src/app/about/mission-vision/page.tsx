@@ -208,20 +208,6 @@ export default function MissionVisionPage() {
 
         </main>
       </div>
-
-      {/* ============================================================
-          FOOTER
-      ============================================================= */}
-      <footer className="border-t border-[#E4E4E0] bg-white/60 py-8 px-6">
-        <div className="mx-auto max-w-4xl flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="font-marcellus text-[18px] text-[#121212]">
-            AIC-JKLU
-          </div>
-          <div className="font-robotoMono text-[11px] text-[#52525B]">
-            © 2026 Atal Incubation Centre – JK Lakshmipat University. Supported by NITI Aayog.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

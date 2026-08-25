@@ -613,49 +613,12 @@ export default function AboutPage() {
                   step.
                 </p>
 
-                {/* Final Signature Callout */}
-                <div className="mt-8 rounded-2xl border border-[#E4E4E0] bg-white p-8 sm:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.03)] text-center sm:text-left">
-                  <p className="font-marcellus text-[24px] sm:text-[30px] md:text-[34px] leading-tight text-[#121212] mb-4">
-                    Your idea is the beginning.
-                    <br />
-                    <span className="text-[#EB5725] italic font-normal">
-                      AIC JKLU helps you build what comes next.
-                    </span>
-                  </p>
 
-                  <p className="font-robotoMono text-[14px] text-[#52525B] mb-6">
-                    Join our incubation ecosystem and turn your vision into a scalable venture.
-                  </p>
-
-                  <Link
-                    href="/apply"
-                    className="group inline-flex items-center gap-3 rounded-full bg-[#EB5725] px-8 py-4 font-robotoMono text-[12px] font-bold uppercase tracking-[0.12em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 cursor-pointer"
-                  >
-                    <span>Apply to AIC-JKLU</span>
-                    <span aria-hidden="true" className="text-base transition-transform duration-300 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </Link>
-                </div>
               </section>
 
             </main>
           </div>
         </div>
-
-        {/* =========================================
-            FOOTER
-        ========================================== */}
-        <footer className="bg-surface border-t border-hairline py-8 px-6">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="font-marcellus text-[18px] text-obsidian">
-              AIC-JKLU
-            </div>
-            <div className="font-robotoMono text-[11px] text-slateMuted">
-              © 2026 Atal Incubation Centre – JK Lakshmipat University. Supported by NITI Aayog.
-            </div>
-          </div>
-        </footer>
       </motion.div>
     </div>
   );
