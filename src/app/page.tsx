@@ -31,10 +31,9 @@ function ParallaxSection({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Small stagger via CSS custom property
           el.style.transitionDelay = `${delay}ms`;
           el.dataset.visible = 'true';
-          observer.unobserve(el); // fire once
+          observer.unobserve(el);
         }
       },
       { threshold: 0.08 }
@@ -53,20 +52,27 @@ function ParallaxSection({
 
 // ── Main page ──────────────────────────────────────────────────────────────
 export default function Home() {
-  // null = not yet determined (server/first paint), true = show preloader, false = skip it
-  const [showPreloader, setShowPreloader] = useState<boolean | null>(null);
+  const [showPreloader, setShowPreloader] = useState(false);
 
   useEffect(() => {
+    // Disable automatic browser scroll restoration to prevent landing halfway down on reload
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    // Ensure initial scroll position is strictly 0 on fresh load without anchor hash
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     try {
       const seen = sessionStorage.getItem(SESSION_KEY) === 'true';
       if (!seen) {
         document.body.classList.add('is-loading');
         setShowPreloader(true);
-      } else {
-        setShowPreloader(false);
       }
     } catch {
-      setShowPreloader(true);
+      // sessionStorage unavailable
     }
 
     return () => {
@@ -83,9 +89,6 @@ export default function Home() {
     document.body.classList.remove('is-loading');
     setShowPreloader(false);
   };
-
-  // Still determining — render nothing so there is zero flash of the hero
-  if (showPreloader === null) return null;
 
   return (
     <>

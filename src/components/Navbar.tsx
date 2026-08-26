@@ -22,32 +22,44 @@ const ALL_NAV_LINKS = [
   ...RIGHT_NAV_LINKS,
 ] as const;
 
+const PROGRAMS_DROPDOWN_ITEMS = [
+  { label: 'Accelerator Program', href: '/programs' },
+  { label: 'RISE', href: '/programs/rise' },
+  { label: 'LEAP', href: '/programs/leap' },
+  { label: 'Incubation Program', href: '/programs/incubation' },
+] as const;
+
 const ABOUT_DROPDOWN_ITEMS = [
   { label: 'About AIC-JKLU', href: '/about' },
   { label: 'Vision & Mission', href: '/about/mission-vision' },
   { label: 'Our Portfolio', href: '/#portfolio' },
-  { label: 'Featured Companies', href: '/#showcase' },
-  { label: 'Apply for Incubation', href: '/apply' },
 ] as const;
 
 const STAKEHOLDERS_DROPDOWN_ITEMS = [
   { label: 'Team', href: '/#team' },
   { label: 'Mentors', href: '/stakeholders' },
-  { label: 'Partners', href: '/stakeholders' },
+  { label: 'Partners', href: '/partners' },
 ] as const;
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [programsOpen, setProgramsOpen] = useState(false);
+  const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [stakeholdersOpen, setStakeholdersOpen] = useState(false);
   const [mobileStakeholdersOpen, setMobileStakeholdersOpen] = useState(false);
+  
+  const programsDropdownRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const stakeholdersDropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown on outside click or Escape key
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
+      if (programsDropdownRef.current && !programsDropdownRef.current.contains(event.target as Node)) {
+        setProgramsOpen(false);
+      }
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setAboutOpen(false);
       }
@@ -58,12 +70,13 @@ export default function Navbar() {
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
+        setProgramsOpen(false);
         setAboutOpen(false);
         setStakeholdersOpen(false);
       }
     }
 
-    if (aboutOpen || stakeholdersOpen) {
+    if (programsOpen || aboutOpen || stakeholdersOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleKeyDown);
     }
@@ -72,7 +85,7 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [aboutOpen, stakeholdersOpen]);
+  }, [programsOpen, aboutOpen, stakeholdersOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-hairline bg-surface">
@@ -106,48 +119,177 @@ export default function Navbar() {
               lg:pr-10
             "
           >
-            {LEFT_NAV_LINKS.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="
-                  group
-                  relative
-                  whitespace-nowrap
-                  font-robotoMono
-                  text-[11px]
-                  lg:text-xs
-                  font-medium
-                  uppercase
-                  tracking-[0.13em]
-                  text-slateMuted
-                  transition-colors
-                  duration-300
-                  ease-out
-                  hover:text-[#EB5725]
-                  cursor-pointer
-                "
-              >
-                {item.label}
+            {LEFT_NAV_LINKS.map((item) => {
+              if (item.label === 'Programs') {
+                return (
+                  <div
+                    key="Programs"
+                    ref={programsDropdownRef}
+                    className="relative"
+                    onMouseEnter={() => setProgramsOpen(true)}
+                    onMouseLeave={() => setProgramsOpen(false)}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setProgramsOpen((prev) => !prev)}
+                      aria-expanded={programsOpen}
+                      aria-haspopup="menu"
+                      aria-controls="programs-dropdown-menu"
+                      className="
+                        group
+                        relative
+                        flex
+                        items-center
+                        gap-1.5
+                        whitespace-nowrap
+                        font-robotoMono
+                        text-[11px]
+                        lg:text-xs
+                        font-medium
+                        uppercase
+                        tracking-[0.13em]
+                        text-slateMuted
+                        transition-colors
+                        duration-300
+                        ease-out
+                        hover:text-[#EB5725]
+                        focus:outline-none
+                        cursor-pointer
+                      "
+                    >
+                      <span className={programsOpen ? 'text-[#EB5725]' : ''}>Programs</span>
+                      <svg
+                        aria-hidden="true"
+                        className={`h-3 w-3 transition-transform duration-200 ease-out ${
+                          programsOpen ? 'rotate-180 text-[#EB5725]' : 'text-slateMuted group-hover:text-[#EB5725]'
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
 
-                {/* Orange hover underline */}
-                <span
+                      {/* Orange hover underline */}
+                      <span
+                        className={`
+                          absolute
+                          -bottom-2
+                          left-1/2
+                          h-px
+                          -translate-x-1/2
+                          bg-[#EB5725]
+                          transition-all
+                          duration-300
+                          ease-out
+                          ${programsOpen ? 'w-full' : 'w-0 group-hover:w-full'}
+                        `}
+                      />
+                    </button>
+
+                    {/* Minimalist Floating Dropdown */}
+                    <AnimatePresence>
+                      {programsOpen && (
+                        <motion.div
+                          id="programs-dropdown-menu"
+                          role="menu"
+                          aria-orientation="vertical"
+                          initial={{ opacity: 0, y: 6, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                          className="
+                            absolute
+                            left-1/2
+                            top-full
+                            z-50
+                            mt-3.5
+                            w-56
+                            -translate-x-1/2
+                            rounded-[10px]
+                            border
+                            border-[#E4E4E0]
+                            bg-[#FFFFFF]
+                            p-1.5
+                            shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+                          "
+                        >
+                          {PROGRAMS_DROPDOWN_ITEMS.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.label}
+                              href={dropdownItem.href}
+                              role="menuitem"
+                              onClick={() => setProgramsOpen(false)}
+                              className="
+                                block
+                                rounded-md
+                                px-3.5
+                                py-2.5
+                                font-robotoMono
+                                text-[12px]
+                                font-medium
+                                text-[#121212]
+                                transition-colors
+                                duration-150
+                                hover:bg-[#FFF2ED]
+                                hover:text-[#EB5725]
+                                cursor-pointer
+                              "
+                            >
+                              {dropdownItem.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
                   className="
-                    absolute
-                    -bottom-2
-                    left-1/2
-                    h-px
-                    w-0
-                    -translate-x-1/2
-                    bg-[#EB5725]
-                    transition-all
+                    group
+                    relative
+                    whitespace-nowrap
+                    font-robotoMono
+                    text-[11px]
+                    lg:text-xs
+                    font-medium
+                    uppercase
+                    tracking-[0.13em]
+                    text-slateMuted
+                    transition-colors
                     duration-300
                     ease-out
-                    group-hover:w-full
+                    hover:text-[#EB5725]
+                    cursor-pointer
                   "
-                />
-              </Link>
-            ))}
+                >
+                  {item.label}
+
+                  {/* Orange hover underline */}
+                  <span
+                    className="
+                      absolute
+                      -bottom-2
+                      left-1/2
+                      h-px
+                      w-0
+                      -translate-x-1/2
+                      bg-[#EB5725]
+                      transition-all
+                      duration-300
+                      ease-out
+                      group-hover:w-full
+                    "
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
 
@@ -255,7 +397,13 @@ export default function Navbar() {
 
               if (item.label === 'About') {
                 return (
-                  <div key="About" ref={dropdownRef} className="relative">
+                  <div
+                    key="About"
+                    ref={dropdownRef}
+                    className="relative"
+                    onMouseEnter={() => setAboutOpen(true)}
+                    onMouseLeave={() => setAboutOpen(false)}
+                  >
                     <button
                       type="button"
                       onClick={() => setAboutOpen((prev) => !prev)}
@@ -376,7 +524,13 @@ export default function Navbar() {
 
               if (item.label === 'Stake Holders') {
                 return (
-                  <div key="Stake Holders" ref={stakeholdersDropdownRef} className="relative">
+                  <div
+                    key="Stake Holders"
+                    ref={stakeholdersDropdownRef}
+                    className="relative"
+                    onMouseEnter={() => setStakeholdersOpen(true)}
+                    onMouseLeave={() => setStakeholdersOpen(false)}
+                  >
                     <button
                       type="button"
                       onClick={() => setStakeholdersOpen((prev) => !prev)}
@@ -546,9 +700,6 @@ export default function Navbar() {
 
         {/* =======================================================
             APPLY BUTTON
-
-            Positioned independently so it doesn't disturb
-            the symmetry of the navigation around the logo.
         ======================================================== */}
         <Link
           href="/apply"
@@ -747,7 +898,7 @@ export default function Navbar() {
           ease-in-out
           md:hidden
           ${menuOpen
-            ? 'max-h-[600px] opacity-100'
+            ? 'max-h-[700px] opacity-100'
             : 'max-h-0 opacity-0'
           }
         `}
@@ -755,6 +906,88 @@ export default function Navbar() {
         <nav className="flex flex-col px-6 py-5">
 
           {ALL_NAV_LINKS.map((item) => {
+            if (item.label === 'Programs') {
+              return (
+                <div key="Programs" className="border-b border-hairline py-2">
+                  <button
+                    type="button"
+                    onClick={() => setMobileProgramsOpen((prev) => !prev)}
+                    className="
+                      flex
+                      w-full
+                      items-center
+                      justify-between
+                      py-2
+                      font-robotoMono
+                      text-xs
+                      font-medium
+                      uppercase
+                      tracking-[0.12em]
+                      text-slateMuted
+                      transition-colors
+                      duration-300
+                      hover:text-[#EB5725]
+                      cursor-pointer
+                    "
+                  >
+                    <span className={mobileProgramsOpen ? 'text-[#EB5725]' : ''}>Programs</span>
+                    <svg
+                      aria-hidden="true"
+                      className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                        mobileProgramsOpen ? 'rotate-180 text-[#EB5725]' : 'text-slateMuted'
+                      }`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  <AnimatePresence>
+                    {mobileProgramsOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden pl-3 pt-1 space-y-1"
+                      >
+                        {PROGRAMS_DROPDOWN_ITEMS.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.label}
+                            href={dropdownItem.href}
+                            onClick={() => {
+                              setMobileProgramsOpen(false);
+                              setMenuOpen(false);
+                            }}
+                            className="
+                              block
+                              rounded-md
+                              px-3
+                              py-2
+                              font-robotoMono
+                              text-[11px]
+                              font-medium
+                              text-[#52525B]
+                              transition-colors
+                              duration-150
+                              hover:bg-[#FFF2ED]
+                              hover:text-[#EB5725]
+                              cursor-pointer
+                            "
+                          >
+                            {dropdownItem.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
+
             if (item.label === 'Aarohan') {
               return (
                 <div key="Aarohan" className="border-b border-hairline py-2">
@@ -952,30 +1185,30 @@ export default function Navbar() {
               );
             }
 
+            const fallbackItem = item as { label: string; href: string };
             return (
-              <Link
-                key={item.label}
-                href={item.href}
-                role="menuitem"
-                onClick={() => setMenuOpen(false)}
-                className="
-                  border-b
-                  border-hairline
-                  py-4
-                  font-robotoMono
-                  text-xs
-                  font-medium
-                  uppercase
-                  tracking-[0.12em]
-                  text-slateMuted
-                  transition-colors
-                  duration-300
-                  hover:text-[#EB5725]
-                  cursor-pointer
-                "
-              >
-                {item.label}
-              </Link>
+              <div key={fallbackItem.label} className="border-b border-hairline py-2">
+                <Link
+                  href={fallbackItem.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="
+                    block
+                    py-2
+                    font-robotoMono
+                    text-xs
+                    font-medium
+                    uppercase
+                    tracking-[0.12em]
+                    text-slateMuted
+                    transition-colors
+                    duration-300
+                    hover:text-[#EB5725]
+                    cursor-pointer
+                  "
+                >
+                  {fallbackItem.label}
+                </Link>
+              </div>
             );
           })}
 

@@ -12,23 +12,18 @@ import CompanyInformation from './CompanyInformation';
 export default function CompaniesShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [initialIndex, setInitialIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
-
   // Randomize initial slide client-side only — avoids hydration mismatch
   useEffect(() => {
     const rand = Math.floor(Math.random() * companies.length);
     setInitialIndex(rand);
     setActiveIndex(rand);
-    setMounted(true);
   }, []);
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.realIndex);
   };
 
-  const activeCompany = companies[activeIndex];
-
-  if (!mounted) return null;
+  const activeCompany = companies[activeIndex] || companies[0];
 
   return (
     /*
