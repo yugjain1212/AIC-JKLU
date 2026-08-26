@@ -29,8 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${marcellus.variable} ${robotoMono.variable}`}>
-      <body className="bg-canvas text-obsidian font-robotoMono antialiased">
-        {children}
+      <body className="bg-canvas text-obsidian font-robotoMono antialiased flex flex-col min-h-screen">
+        <div className="flex-1 w-full">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

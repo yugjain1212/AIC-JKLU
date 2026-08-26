@@ -48,13 +48,23 @@ export default function StakeholderHero({
               partners who guide, support and empower startups at every step.
             </p>
 
-            {/* Team Navigation Link */}
-            <div className="pt-6 sm:pt-8">
+            {/* Navigation Links */}
+            <div className="pt-6 sm:pt-8 flex flex-wrap items-center gap-6">
               <Link
                 href="/#team"
                 className="group inline-flex items-center gap-2 font-robotoMono text-[13px] sm:text-[14px] font-bold uppercase tracking-[0.16em] text-[#EB5725] transition-colors duration-200 hover:text-[#C84214] cursor-pointer"
               >
                 <span>OUR TEAM</span>
+                <span className="transition-transform duration-200 ease-out group-hover:translate-x-1.5" aria-hidden="true">
+                  →
+                </span>
+              </Link>
+
+              <Link
+                href="/partners"
+                className="group inline-flex items-center gap-2 font-robotoMono text-[13px] sm:text-[14px] font-bold uppercase tracking-[0.16em] text-[#121212] hover:text-[#EB5725] transition-colors duration-200 cursor-pointer"
+              >
+                <span>PARTNERS</span>
                 <span className="transition-transform duration-200 ease-out group-hover:translate-x-1.5" aria-hidden="true">
                   →
                 </span>
