@@ -35,42 +35,42 @@ const RAW_STAKEHOLDERS: RawStakeholder[] = [
   {
     name: 'Aakarshan (AK) Sethi',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/aakarshan-sethi/',
+    linkedin: 'https://www.linkedin.com/in/aakarshansethi/',
   },
   {
     name: 'Aashish Beergi',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/aashish-beergi/',
+    linkedin: 'https://www.linkedin.com/in/aashishbeergi/',
   },
   {
     name: 'Amit Singal',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/amit-singal/',
+    linkedin: 'https://www.linkedin.com/in/amitsingalca/',
   },
   {
     name: 'Anupam Deb',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/anupam-deb/',
+    linkedin: 'https://www.linkedin.com/in/anupamdeb1985/',
   },
   {
     name: 'Apoorv Bamba',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/apoorv-bamba/',
+    linkedin: 'https://www.linkedin.com/in/apoorv-bamba-19b53214/',
   },
   {
     name: 'Apoorv Sharma',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/apoorv-sharma/',
+    linkedin: 'https://www.linkedin.com/in/aposh/',
   },
   {
     name: 'Ashish Khare',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/ashish-khare/',
+    linkedin: 'https://www.linkedin.com/in/ashish-khare-94161723/',
   },
   {
     name: 'Dhruv Jyoti Chakraborti',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/dhruv-jyoti-chakraborti/',
+    linkedin: 'https://www.linkedin.com/in/dhruvajyoti-chakraborty-66737b2b/',
   },
   {
     name: 'Dr. Hima Trivedi',
@@ -80,52 +80,52 @@ const RAW_STAKEHOLDERS: RawStakeholder[] = [
   {
     name: 'Dr. Kirtika Chetia',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/dr-kirtika-chetia/',
+    linkedin: 'https://www.linkedin.com/in/kirtika-chetia/',
   },
   {
     name: 'Dr. Sheenu Jhavar',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/dr-sheenu-jhavar/',
+    linkedin: 'https://www.linkedin.com/in/dr-sheenu-jhawar-4b18a05/',
   },
   {
     name: 'Garima Pande',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/garima-pande/',
+    linkedin: 'https://www.linkedin.com/in/garimapande/',
   },
   {
     name: 'Gautham Sivaramakrishnan',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/gautham-sivaramakrishnan/',
+    linkedin: 'https://www.linkedin.com/in/sgautham/',
   },
   {
     name: 'Jishnu Changkakoti',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/jishnu-changkakoti/',
+    linkedin: 'https://www.linkedin.com/in/jishnuchangkakoti/',
   },
   {
     name: 'Madhup Bansal',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/madhup-bansal/',
+    linkedin: 'https://www.linkedin.com/in/madhupbansal/',
   },
   {
     name: 'Mahadevan Hariharan',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/mahadevan-hariharan/',
+    linkedin: 'https://www.linkedin.com/in/mahadevanhariharan/',
   },
   {
     name: 'Mahavir Pratap Sharma',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/mahavir-pratap-sharma/',
+    linkedin: 'https://www.linkedin.com/in/mahavir-pratap-sharma-26476915/',
   },
   {
     name: 'Mittu Tigi',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/mittu-tigi/',
+    linkedin: 'https://www.linkedin.com/in/mittutigi/',
   },
   {
     name: 'Mohammad Azhar',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/mohammad-azhar/',
+    linkedin: 'https://www.linkedin.com/in/mohammadazahar/',
   },
   {
     name: 'Pallavi Tak',
@@ -135,17 +135,17 @@ const RAW_STAKEHOLDERS: RawStakeholder[] = [
   {
     name: 'Praveen Arora',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/praveen-arora/',
+    linkedin: 'https://www.linkedin.com/in/praveen-arora-a73602/',
   },
   {
     name: 'Prof. Dr. Saurabh Trivedi',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/saurabh-trivedi/',
+    linkedin: 'https://www.linkedin.com/in/prof-dr-saurabh-trivedi-43161119/',
   },
   {
     name: 'Sharad Bansal',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/sharad-bansal/',
+    linkedin: 'https://www.linkedin.com/in/shrdbnsl/',
   },
   {
     name: 'Shrikant Prabhakar Ghode',
@@ -155,7 +155,7 @@ const RAW_STAKEHOLDERS: RawStakeholder[] = [
   {
     name: 'Tushar V',
     role: 'Mentor',
-    linkedin: 'https://www.linkedin.com/in/tushar-v/',
+    linkedin: 'https://www.linkedin.com/in/tusharvadera/',
   },
 ];
 
