@@ -350,22 +350,6 @@ export const PARTNERS_DATA: Partner[] = [
     description: 'International School of Informatics & Management',
   },
   {
-    id: 'bits-pilani',
-    name: 'BITS Pilani',
-    category: 'ECOSYSTEM',
-    logoType: 'bits',
-    brandColor: '#002B49',
-    description: 'Academic & student innovation partner',
-  },
-  {
-    id: 'iiit-allahabad',
-    name: 'IIIT Allahabad',
-    category: 'ECOSYSTEM',
-    logoType: 'iiit',
-    brandColor: '#0A3977',
-    description: 'Academic and research collaboration',
-  },
-  {
     id: 'tie-rajasthan',
     name: 'TiE Rajasthan',
     category: 'ECOSYSTEM',
