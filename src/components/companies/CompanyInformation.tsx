@@ -72,8 +72,8 @@ export default function CompanyInformation({ company }: CompanyInformationProps)
             {company.founder && (
               <MetaItem label="Founder" value={company.founder} />
             )}
-            <MetaItem label="Industry"    value={company.industry}   />
-            <MetaItem label="Founded"     value={company.founded}    />
+            <MetaItem label="Industry" value={company.industry} />
+            <MetaItem label="Founded" value={company.founded} />
             <MetaItem label="Focus Areas" value={company.focusAreas} />
           </div>
         </motion.div>
