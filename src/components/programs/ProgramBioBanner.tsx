@@ -7,7 +7,7 @@ export default function ProgramBioBanner() {
   return (
     <section className="relative w-full pt-4 pb-20 sm:pb-28 overflow-hidden select-none">
       <div className="mx-auto max-w-[1360px] px-6 sm:px-10 lg:px-14">
-        
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -25,7 +25,7 @@ export default function ProgramBioBanner() {
           "
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            
+
             {/* ── Left Column: Editorial Headline ── */}
             <div className="lg:col-span-5 flex flex-col justify-center">
               <h2 className="font-marcellus text-[36px] sm:text-[46px] lg:text-[52px] leading-[1.04] tracking-[-0.035em] text-white">

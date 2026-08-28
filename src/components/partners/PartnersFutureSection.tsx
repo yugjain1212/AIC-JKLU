@@ -36,7 +36,7 @@ export default function PartnersFutureSection() {
   return (
     <section className="relative w-full pt-6 pb-20 sm:pb-28 overflow-hidden select-none">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-14">
-        
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +55,7 @@ export default function PartnersFutureSection() {
         >
           {/* ── TOP 2-COLUMN SECTION: Editorial Headline & 4-Column Metrics ── */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start pb-10 border-b border-[#E4E4E0]/80">
-            
+
             {/* ── Left Column: Editorial Headline & Link ── */}
             <div className="lg:col-span-5 flex flex-col justify-center items-start">
               <h2 className="font-marcellus text-[34px] sm:text-[44px] lg:text-[48px] leading-[1.05] tracking-[-0.03em] text-[#121212] mb-4 sm:mb-5">

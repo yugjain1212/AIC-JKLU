@@ -65,7 +65,7 @@ export default function LibraryArchiveFooter() {
               priority
             />
           </motion.div>
-    
+
         </div>
       </div>
     </section>
