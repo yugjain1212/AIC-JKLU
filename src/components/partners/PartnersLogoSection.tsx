@@ -1,7 +1,8 @@
 'use client';
 
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
   Users,
@@ -18,19 +19,22 @@ import PartnerCategoryPanel from './PartnerCategoryPanel';
 const STATS_DATA = [
   {
     id: 1,
-    value: '120+',
+    target: 120,
+    suffix: '+',
     label: 'Partners',
     icon: Users,
   },
   {
     id: 2,
-    value: '20+',
+    target: 20,
+    suffix: '+',
     label: 'Countries',
     icon: Globe2,
   },
   {
     id: 3,
-    value: '15+',
+    target: 15,
+    suffix: '+',
     label: 'Ecosystem Enablers',
     icon: Handshake,
   },
@@ -63,15 +67,97 @@ const FEATURES_DATA = [
   },
 ];
 
+/* ── STATS NUMERICAL ANIMATED COUNTER ── */
+function StatCounter({
+  target,
+  suffix,
+}: {
+  target: number;
+  suffix: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!inView) return;
+    if (prefersReducedMotion) {
+      if (ref.current) ref.current.textContent = `${target}${suffix}`;
+      return;
+    }
+
+    const node = ref.current;
+    if (!node) return;
+
+    const start = 0;
+    const end = target;
+    const duration = 1200; // ms
+    const startTime = performance.now();
+
+    const update = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // smooth easeOutExpo curve
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.floor(start + (end - start) * ease);
+
+      if (node) {
+        node.textContent = `${current}${suffix}`;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        if (node) node.textContent = `${end}${suffix}`;
+      }
+    };
+
+    requestAnimationFrame(update);
+  }, [inView, target, suffix, prefersReducedMotion]);
+
+  return (
+    <span
+      ref={ref}
+      className="font-marcellus text-[22px] sm:text-[24px] text-[#121212] font-semibold leading-tight"
+    >
+      {prefersReducedMotion ? `${target}${suffix}` : `0${suffix}`}
+    </span>
+  );
+}
+
 export default function PartnersLogoSection() {
   const prefersReducedMotion = useReducedMotion();
+  const rightGridRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState<{ x: number; y: number; opacity: number }>({
+    x: 0,
+    y: 0,
+    opacity: 0,
+  });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!rightGridRef.current) return;
+    const rect = rightGridRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+      opacity: 1,
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setMousePos((prev) => ({ ...prev, opacity: 0 }));
+  }, []);
 
   return (
     <section className="relative w-full py-12 sm:py-16 lg:py-20 overflow-hidden select-none bg-[#FBF7F0]">
       
       {/* ── BACKGROUND AMBIENT CONCENTRIC ARCS (Bottom Left) ── */}
-      <svg
-        className="absolute -bottom-16 -left-16 w-[380px] h-[380px] pointer-events-none opacity-[0.15] -z-0"
+      <motion.svg
+        initial={{ opacity: 0.05 }}
+        whileInView={{ opacity: 0.16 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className="absolute -bottom-16 -left-16 w-[380px] h-[380px] pointer-events-none -z-0"
         viewBox="0 0 380 380"
         fill="none"
         aria-hidden="true"
@@ -80,18 +166,24 @@ export default function PartnersLogoSection() {
         <circle cx="0" cy="380" r="260" stroke="#121212" strokeWidth="0.8" strokeDasharray="3 4" />
         <circle cx="0" cy="380" r="180" stroke="#EB5725" strokeWidth="1" strokeDasharray="2 4" />
         <circle cx="0" cy="380" r="100" stroke="#121212" strokeWidth="0.8" />
-      </svg>
+      </motion.svg>
 
       <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12 relative z-10">
         
         {/* ── TOP BANNER: POWERED BY PARTNERS. DRIVEN BY IMPACT. ── */}
-        <div className="hidden lg:flex items-center justify-end gap-4 mb-6">
+        <motion.div
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: -12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="hidden lg:flex items-center justify-end gap-4 mb-6"
+        >
           <div className="w-24 h-px bg-[#EB5725]/30" />
           <span className="font-robotoMono text-[11px] font-bold tracking-[0.22em] text-[#EB5725] uppercase">
             POWERED BY PARTNERS. DRIVEN BY IMPACT.
           </span>
           <div className="w-48 h-px bg-[#EB5725]/30" />
-        </div>
+        </motion.div>
 
         {/* ── MAIN 2-COLUMN SECTION GRID ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 xl:gap-12 items-start">
@@ -103,10 +195,10 @@ export default function PartnersLogoSection() {
             
             {/* 1. Eyebrow */}
             <motion.div
-              initial={prefersReducedMotion ? {} : { opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45 }}
+              initial={prefersReducedMotion ? {} : { opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="flex items-center gap-2 mb-3"
             >
               <span className="w-5 h-[1.5px] bg-[#EB5725]" />
@@ -117,10 +209,10 @@ export default function PartnersLogoSection() {
 
             {/* 2. Headline */}
             <motion.h2
-              initial={prefersReducedMotion ? {} : { opacity: 0, y: 18 }}
+              initial={prefersReducedMotion ? {} : { opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="font-marcellus text-[44px] sm:text-[50px] lg:text-[54px] leading-[0.98] tracking-[-0.03em] text-[#121212] mb-4 sm:mb-5"
             >
               Our
@@ -130,21 +222,21 @@ export default function PartnersLogoSection() {
 
             {/* 3. Description */}
             <motion.p
-              initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
+              initial={prefersReducedMotion ? {} : { opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
               className="font-robotoMono text-[12px] sm:text-[12.5px] leading-[1.75] text-[#52525B] max-w-[280px] mb-7 sm:mb-8"
             >
               A diverse network of partners who share our vision of impact, innovation and inclusive growth.
             </motion.p>
 
-            {/* 4. Three Statistics Rows */}
+            {/* 4. Three Statistics Rows with Animated Counters */}
             <motion.div
-              initial={prefersReducedMotion ? {} : { opacity: 0, y: 16 }}
+              initial={prefersReducedMotion ? {} : { opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
               className="w-full space-y-3 mb-8"
             >
               {STATS_DATA.map((stat) => {
@@ -158,9 +250,7 @@ export default function PartnersLogoSection() {
                       <Icon className="w-4.5 h-4.5" strokeWidth={1.8} />
                     </div>
                     <div className="flex flex-col">
-                      <span className="font-marcellus text-[22px] sm:text-[24px] text-[#121212] font-semibold leading-tight">
-                        {stat.value}
-                      </span>
+                      <StatCounter target={stat.target} suffix={stat.suffix} />
                       <span className="font-robotoMono text-[10.5px] text-[#52525B] font-medium tracking-wide uppercase">
                         {stat.label}
                       </span>
@@ -172,10 +262,10 @@ export default function PartnersLogoSection() {
 
             {/* 5. CTA Button: BECOME A PARTNER → */}
             <motion.div
-              initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
+              initial={prefersReducedMotion ? {} : { opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="mb-8"
             >
               <Link
@@ -212,7 +302,24 @@ export default function PartnersLogoSection() {
           {/* ==============================================================
               RIGHT COLUMN: 4 Horizontal Category Blocks
           =============================================================== */}
-          <div className="lg:col-span-9 xl:col-span-9 flex flex-col gap-4 sm:gap-4.5 w-full">
+          <div
+            ref={rightGridRef}
+            onMouseMove={prefersReducedMotion ? undefined : handleMouseMove}
+            onMouseLeave={prefersReducedMotion ? undefined : handleMouseLeave}
+            className="lg:col-span-9 xl:col-span-9 flex flex-col gap-4 sm:gap-4.5 w-full relative"
+          >
+            {/* Subtle Mouse Spotlight Gradient (non-intrusive) */}
+            {!prefersReducedMotion && (
+              <div
+                className="pointer-events-none absolute -inset-2 rounded-2xl transition-opacity duration-300 -z-0 hidden md:block"
+                style={{
+                  opacity: mousePos.opacity,
+                  background: `radial-gradient(450px circle at ${mousePos.x}px ${mousePos.y}px, rgba(235, 87, 37, 0.04), transparent 75%)`,
+                }}
+                aria-hidden="true"
+              />
+            )}
+
             {PARTNER_GROUPS.map((group, index) => (
               <PartnerCategoryPanel
                 key={group.id}
@@ -228,9 +335,9 @@ export default function PartnersLogoSection() {
             BOTTOM 4-PILLAR FEATURES STRIP
         =============================================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="
             mt-12 sm:mt-16
@@ -243,25 +350,33 @@ export default function PartnersLogoSection() {
           "
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-[#121212]/[0.06]">
-            {FEATURES_DATA.map((feat) => {
+            {FEATURES_DATA.map((feat, fIndex) => {
               const Icon = feat.icon;
               return (
-                <div
+                <motion.div
                   key={feat.id}
-                  className="flex items-start gap-4 pt-4 sm:pt-0 sm:px-4 first:pl-0 last:pr-0 group"
+                  initial={prefersReducedMotion ? {} : { opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.45,
+                    delay: prefersReducedMotion ? 0 : 0.1 + fIndex * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="flex items-start gap-4 pt-4 sm:pt-0 sm:px-4 first:pl-0 last:pr-0 group cursor-default"
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#FFF2ED] flex items-center justify-center text-[#EB5725] shrink-0 group-hover:scale-105 transition-transform duration-200">
+                  <div className="w-10 h-10 rounded-full bg-[#FFF2ED] flex items-center justify-center text-[#EB5725] shrink-0 group-hover:scale-105 transition-transform duration-200 border border-[#EB5725]/10">
                     <Icon className="w-5 h-5" strokeWidth={1.8} />
                   </div>
                   <div className="flex flex-col">
-                    <h3 className="font-robotoMono text-[11px] sm:text-[11.5px] font-bold text-[#121212] tracking-wider uppercase mb-1">
+                    <h3 className="font-robotoMono text-[11px] sm:text-[11.5px] font-bold text-[#121212] tracking-wider uppercase mb-1 group-hover:text-[#EB5725] transition-colors duration-200">
                       {feat.title}
                     </h3>
                     <p className="font-robotoMono text-[11px] sm:text-[11.5px] leading-[1.65] text-[#52525B]">
                       {feat.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

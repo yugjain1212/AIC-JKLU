@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { type Partner } from '@/data/partners';
+
 export function PartnerLogoSlot({ partner }: { partner: Partner }) {
   if (partner.image) {
-    const isSvg = partner.image.endsWith('.svg');
     return (
       <div className="relative w-full h-full flex items-center justify-center p-2">
         <Image
@@ -13,7 +13,7 @@ export function PartnerLogoSlot({ partner }: { partner: Partner }) {
           alt={partner.name}
           width={130}
           height={48}
-          unoptimized={isSvg}
+          unoptimized
           className="max-h-[38px] sm:max-h-[42px] max-w-[115px] sm:max-w-[130px] w-auto h-auto object-contain"
         />
       </div>
@@ -45,21 +45,6 @@ export function PartnerLogoSlot({ partner }: { partner: Partner }) {
           </div>
           <span className="font-sans font-bold text-[#121212] text-[8.5px] tracking-[0.14em] uppercase leading-tight">
             SPRINGBOARD
-          </span>
-        </div>
-      );
-
-    case 'bank-of-india':
-      return (
-        <div className="flex flex-col items-center justify-center select-none">
-          <div className="flex items-center gap-1">
-            <span className="font-sans font-black text-[#00539B] text-[14px] leading-none">
-              BOI
-            </span>
-            <span className="text-[#EB5725] text-[13px] leading-none">★</span>
-          </div>
-          <span className="font-sans font-bold text-[#00539B] text-[8.5px] tracking-tight leading-tight mt-0.5">
-            Bank of India
           </span>
         </div>
       );
@@ -181,13 +166,31 @@ export function PartnerLogoSlot({ partner }: { partner: Partner }) {
 
 interface PartnerLogoProps {
   partner: Partner;
+  index?: number;
 }
 
-export default function PartnerLogo({ partner }: PartnerLogoProps) {
+export default function PartnerLogo({ partner, index = 0 }: PartnerLogoProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.div
-      whileHover={{ y: -2, scale: 1.02 }}
-      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      initial={prefersReducedMotion ? {} : { opacity: 0, y: 18, scale: 0.96 }}
+      whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        duration: 0.45,
+        delay: prefersReducedMotion ? 0 : Math.min(index * 0.04, 0.4),
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={
+        prefersReducedMotion
+          ? {}
+          : {
+              y: -3.5,
+              scale: 1.02,
+              transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
+            }
+      }
       className="
         group/tile
         relative
@@ -200,7 +203,7 @@ export default function PartnerLogo({ partner }: PartnerLogoProps) {
         px-2 sm:px-3 py-1.5
         flex items-center justify-center
         shadow-[0_2px_8px_rgba(0,0,0,0.02)]
-        hover:shadow-[0_6px_18px_rgba(235,87,37,0.09)]
+        hover:shadow-[0_8px_20px_rgba(235,87,37,0.09)]
         transition-all duration-200
         cursor-pointer
       "
@@ -209,12 +212,11 @@ export default function PartnerLogo({ partner }: PartnerLogoProps) {
       <div className="
         w-full h-full
         flex items-center justify-center
-        opacity-90 group-hover/tile:opacity-100 group-hover/tile:scale-[1.03]
+        opacity-90 group-hover/tile:opacity-100 group-hover/tile:scale-[1.02]
         transition-all duration-200 ease-out
       ">
         <PartnerLogoSlot partner={partner} />
       </div>
-
     </motion.div>
   );
 }
