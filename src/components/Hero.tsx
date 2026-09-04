@@ -59,7 +59,7 @@ export default function Hero() {
                   style={{ y: subheadY, opacity: subheadOpacity }}
                   className="mt-8 max-w-5xl font-robotoMono text-lg leading-relaxed text-slateMuted sm:text-xl lg:text-1.5xl"
                 >
-                  Welcome to Atal Incubation Centre,
+                  Welcome to Atal Incubation Centre,JK Lakshmipat University
                   <br className="hidden sm:block" />
                   Supported by NITI Aayog
                 </motion.p>
