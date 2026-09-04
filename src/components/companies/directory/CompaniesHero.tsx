@@ -1,210 +1,254 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import CompaniesHeroIllustration from './CompaniesHeroIllustration';
 
-// ── Animated counter hook ──────────────────────────────────────
-function useCounter(target: number, duration = 1200, started = false) {
-  const [value, setValue] = useState(0);
+const E = [0.22, 1, 0.36, 1] as const;
+
+function useCounter(target: number, duration = 1100, started = false) {
+  const [v, setV] = useState(0);
   useEffect(() => {
     if (!started) return;
-    let start: number | null = null;
-    const step = (ts: number) => {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
-      // Ease-out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
+    let t0: number | null = null;
+    const tick = (ts: number) => {
+      if (!t0) t0 = ts;
+      const p = Math.min((ts - t0) / duration, 1);
+      setV(Math.floor((1 - Math.pow(1 - p, 3)) * target));
+      if (p < 1) requestAnimationFrame(tick);
     };
-    requestAnimationFrame(step);
+    requestAnimationFrame(tick);
   }, [started, target, duration]);
-  return value;
+  return v;
 }
 
-// ── Stat item ─────────────────────────────────────────────────
-interface StatProps {
-  value: string;       // e.g. "48+", "12", "2018—26"
+function Stat({
+  numeric,
+  suffix,
+  label,
+  started,
+  delay = 0,
+}: {
+  numeric: number;
+  suffix: string;
   label: string;
-  numeric: number;     // the number part for the counter
-  suffix?: string;     // "+", "—26", etc.
   started: boolean;
   delay?: number;
-}
-
-function AnimatedStat({ value, label, numeric, suffix = '', started, delay = 0 }: StatProps) {
+}) {
   const count = useCounter(numeric, 1100, started);
-  const isRange = value.includes('—');
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={started ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: 0.5, ease: E, delay }}
+      className="flex flex-col gap-1"
     >
-      <div className="font-marcellus text-[32px] sm:text-[40px] text-[#121212] leading-none mb-1.5">
-        {started ? (isRange ? `${count}—26` : `${count}${suffix}`) : value}
-      </div>
-      <div className="font-robotoMono text-[10px] sm:text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#71717A]">
+      <span
+        className="font-marcellus text-[28px] sm:text-[32px] leading-none tracking-[-0.02em] text-[#121212] whitespace-nowrap"
+      >
+        {started ? `${count}${suffix}` : `${numeric}${suffix}`}
+      </span>
+      <span className="font-robotoMono text-[9px] sm:text-[9.5px] font-bold uppercase tracking-[0.2em] text-[#71717A]">
         {label}
-      </div>
+      </span>
     </motion.div>
   );
 }
 
-// ── Main hero ─────────────────────────────────────────────────
 export default function CompaniesHero() {
-  const editorialEase = [0.22, 1, 0.36, 1] as const;
+  const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  const statsInView = useInView(statsRef, { once: true, margin: '-80px' });
+  const statsVisible = useInView(statsRef, { once: true, margin: '-60px' });
+  const prefersReduced = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const illustrationY = useTransform(scrollYProgress, [0, 1], ['0px', '-30px']);
 
   return (
-    <section className="relative w-full pt-8 sm:pt-12 lg:pt-14 pb-12 sm:pb-16 lg:pb-20 border-b border-[#E4E4E0]/80 overflow-hidden select-none bg-[#FBF7F0]">
-
-      {/* ── Subtle dot-grid background texture ── */}
+    <section
+      ref={sectionRef}
+      className="
+        relative w-full overflow-hidden bg-[#FBF7F0]
+        pt-10 sm:pt-12 lg:pt-14
+        pb-14 sm:pb-18 lg:pb-20
+        border-b border-[#E4E4E0]/80
+        min-h-[70vh] lg:min-h-[78vh]
+        flex items-center
+      "
+    >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0"
         style={{
-          backgroundImage: 'radial-gradient(circle, #52525B18 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 100%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 100%)',
+          backgroundImage: 'radial-gradient(circle, #52525B0A 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+          maskImage:
+            'radial-gradient(ellipse 60% 75% at 75% 50%, #000 0%, transparent 85%)',
+          WebkitMaskImage:
+            'radial-gradient(ellipse 60% 75% at 75% 50%, #000 0%, transparent 85%)',
         }}
       />
 
-      {/* ── Left Edge Vertical Brand Tag ── */}
-      <motion.div
-        initial={{ opacity: 0, x: -12 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, ease: editorialEase, delay: 0.6 }}
-        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 hidden xl:flex items-center gap-4 -rotate-90 origin-left select-none pointer-events-none z-20"
-      >
-        <span className="font-robotoMono text-[13px] text-[#EB5725] font-bold">+</span>
-        <span className="font-robotoMono text-[10px] font-bold tracking-[0.32em] text-[#71717A] uppercase whitespace-nowrap">
-          INNOVATION PORTFOLIO
-        </span>
-        <div className="w-1.5 h-1.5 rounded-full bg-[#EB5725]" />
-        <span className="font-marcellus text-[13px] text-[#EB5725] font-bold">48+</span>
-      </motion.div>
+      <div className="relative z-10 w-full mx-auto max-w-[1380px] px-6 sm:px-10 lg:px-14">
+        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-8 lg:gap-0 items-center">
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-12 xl:pl-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center min-h-[540px]">
+          <div className="flex flex-col items-start justify-center lg:pr-12 xl:pr-16 max-w-[540px]">
 
-          {/* ── LEFT COLUMN ── */}
-          <div className="lg:col-span-6 flex flex-col justify-center items-start z-10 py-4">
-
-            {/* Eyebrow */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              className="flex items-center gap-2.5 mb-6 sm:mb-7"
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: editorialEase, delay: 0.05 }}
-              className="flex items-center gap-2.5 mb-5 sm:mb-6"
+              transition={{ duration: 0.45, ease: E, delay: 0 }}
             >
               <motion.span
-                className="w-2 h-2 rounded-full bg-[#121212]"
-                animate={{ scale: [1, 1.4, 1] }}
-                transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="w-[7px] h-[7px] rounded-full bg-[#121212] shrink-0"
+                animate={prefersReduced ? {} : { scale: [1, 1.5, 1] }}
+                transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
               />
-              <span className="font-robotoMono text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.24em] text-[#121212]">
-                COMPANIES
+              <span className="font-robotoMono text-[10.5px] font-bold uppercase tracking-[0.26em] text-[#121212]">
+                Companies
               </span>
             </motion.div>
 
-            {/* Display Headline — word by word stagger */}
-            <h1 className="font-marcellus text-[54px] sm:text-[68px] md:text-[78px] lg:text-[84px] leading-[0.94] tracking-[-0.035em] text-[#121212] mb-6 sm:mb-7 overflow-hidden">
+            <h1
+              className="
+                font-marcellus
+                text-[clamp(64px,6vw,100px)]
+                leading-[0.94] tracking-[-0.035em]
+                text-[#121212]
+                mb-6 sm:mb-7
+                max-w-[540px]
+              "
+            >
               {['Ideas that', 'became'].map((line, i) => (
-                <motion.span
-                  key={i}
-                  className="block"
-                  initial={{ opacity: 0, y: '60%' }}
-                  animate={{ opacity: 1, y: '0%' }}
-                  transition={{ duration: 0.65, ease: editorialEase, delay: 0.12 + i * 0.12 }}
-                >
-                  {line}
-                </motion.span>
+                <span key={i} className="block overflow-hidden">
+                  <motion.span
+                    className="block"
+                    initial={{ y: '105%' }}
+                    animate={{ y: '0%' }}
+                    transition={{ duration: 0.62, ease: E, delay: 0.06 + i * 0.11 }}
+                  >
+                    {line}
+                  </motion.span>
+                </span>
               ))}
-              <motion.span
-                className="block text-[#EB5725]"
-                initial={{ opacity: 0, y: '60%' }}
-                animate={{ opacity: 1, y: '0%' }}
-                transition={{ duration: 0.65, ease: editorialEase, delay: 0.36 }}
-              >
-                companies.
-              </motion.span>
+              <span className="block overflow-hidden">
+                <motion.span
+                  className="block text-[#EB5725]"
+                  initial={{ y: '105%' }}
+                  animate={{ y: '0%' }}
+                  transition={{ duration: 0.62, ease: E, delay: 0.28 }}
+                >
+                  companies.
+                </motion.span>
+              </span>
             </h1>
 
-            {/* Animated divider */}
             <motion.div
-              className="flex items-center gap-3 w-full max-w-sm mb-6 sm:mb-7"
+              className="flex items-center gap-2.5 mb-6 w-full max-w-[420px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.5 }}
+              transition={{ delay: 0.35 }}
             >
-              <span className="font-robotoMono text-[12px] font-bold text-[#EB5725] leading-none">+</span>
+              <span className="font-robotoMono text-[11px] text-[#EB5725] font-bold leading-none shrink-0">+</span>
               <motion.div
-                className="h-[1px] bg-[#E4E4E0]"
-                initial={{ scaleX: 0, originX: 0 }}
+                className="h-px bg-[#E4E4E0] flex-1"
+                initial={{ scaleX: 0, originX: '0%' }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 0.7, ease: editorialEase, delay: 0.52 }}
-                style={{ flex: 1 }}
+                transition={{ duration: 0.65, ease: E, delay: 0.38 }}
               />
             </motion.div>
 
-            {/* Description */}
             <motion.p
-              initial={{ opacity: 0, y: 12 }}
+              className="
+                font-robotoMono text-[12.5px] sm:text-[13px]
+                leading-[1.85] text-[#52525B]
+                max-w-[440px] mb-8 sm:mb-10
+              "
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: editorialEase, delay: 0.42 }}
-              className="font-robotoMono text-[12.5px] sm:text-[13.5px] leading-[1.8] text-[#52525B] max-w-[460px] mb-8 sm:mb-10"
+              transition={{ duration: 0.5, ease: E, delay: 0.15 }}
             >
               Explore startups founded, incubated and supported through the AIC&#8209;JKLU ecosystem.
             </motion.p>
 
-            {/* Stats */}
             <div
               ref={statsRef}
-              className="grid grid-cols-3 gap-6 sm:gap-10 pt-4 border-t border-[#E4E4E0] w-full max-w-[500px]"
+              className="flex items-start gap-0 pt-5 border-t border-[#E4E4E0] w-full max-w-[420px]"
             >
-              <AnimatedStat
-                value="48+"
-                label="COMPANIES"
-                numeric={48}
-                suffix="+"
-                started={statsInView}
-                delay={0}
-              />
-              <AnimatedStat
-                value="12"
-                label="SECTORS"
-                numeric={12}
-                suffix=""
-                started={statsInView}
-                delay={0.1}
-              />
-              <AnimatedStat
-                value="2018—26"
-                label="ECOSYSTEM"
-                numeric={2018}
-                started={statsInView}
-                delay={0.2}
-              />
+              <div className="flex-1 pr-4">
+                <Stat numeric={48} suffix="+" label="Companies" started={statsVisible} delay={0.3} />
+              </div>
+
+              <div className="self-stretch w-px bg-[#E4E4E0] mx-2 shrink-0" />
+
+              <div className="flex-1 px-4">
+                <Stat numeric={12} suffix="" label="Sectors" started={statsVisible} delay={0.38} />
+              </div>
+
+              <div className="self-stretch w-px bg-[#E4E4E0] mx-2 shrink-0" />
+
+              <motion.div
+                className="flex-1 pl-4 flex flex-col gap-1"
+                initial={{ opacity: 0, y: 10 }}
+                animate={statsVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, ease: E, delay: 0.46 }}
+              >
+                <span
+                  className="
+                    font-marcellus text-[28px] sm:text-[32px] leading-none
+                    tracking-[-0.02em] text-[#121212] whitespace-nowrap
+                  "
+                >
+                  2018&#8212;26
+                </span>
+                <span className="font-robotoMono text-[9px] sm:text-[9.5px] font-bold uppercase tracking-[0.2em] text-[#71717A]">
+                  Ecosystem
+                </span>
+              </motion.div>
             </div>
+
           </div>
 
-          {/* ── RIGHT COLUMN: Illustration ── */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: editorialEase, delay: 0.15 }}
-            className="lg:col-span-6 flex items-center justify-center lg:justify-end select-none w-full"
+            className="
+              relative w-full
+              h-[360px] sm:h-[420px] lg:h-[500px] xl:h-[540px]
+              flex items-center justify-center
+            "
+            style={!prefersReduced && typeof window !== 'undefined' && window.innerWidth >= 1024 ? { y: illustrationY } : {}}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: E, delay: 0.2 }}
           >
-            <CompaniesHeroIllustration />
+            <CompaniesHeroIllustration prefersReducedMotion={prefersReduced} />
           </motion.div>
 
         </div>
       </div>
+
+      <motion.div
+        className="
+          absolute bottom-0 inset-x-0
+          flex items-center gap-4
+          px-6 sm:px-10 lg:px-14 pb-4
+          pointer-events-none
+        "
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1.8 }}
+      >
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#EB5725]" />
+          <span className="font-robotoMono text-[9px] font-bold uppercase tracking-[0.22em] text-[#52525B]">
+            Featured Companies
+          </span>
+        </div>
+        <div className="flex-1 max-w-[160px] h-px bg-gradient-to-r from-[#E4E4E0] to-transparent" />
+      </motion.div>
     </section>
   );
 }
