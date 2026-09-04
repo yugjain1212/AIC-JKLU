@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LEFT_NAV_LINKS = [
-  { label: 'Companies', href: '/#portfolio' },
+  { label: 'Companies', href: '/companies' },
   { label: 'Library', href: '/library' },
   { label: 'Programs', href: '/programs' },
 ] as const;
@@ -42,6 +43,7 @@ const STAKEHOLDERS_DROPDOWN_ITEMS = [
 ] as const;
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [programsOpen, setProgramsOpen] = useState(false);
   const [mobileProgramsOpen, setMobileProgramsOpen] = useState(false);
@@ -247,11 +249,16 @@ export default function Navbar() {
                 );
               }
 
+              const isLinkActive =
+                item.href === '/companies'
+                  ? pathname === '/companies' || pathname?.startsWith('/companies')
+                  : pathname === item.href;
+
               return (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="
+                  className={`
                     group
                     relative
                     whitespace-nowrap
@@ -261,31 +268,30 @@ export default function Navbar() {
                     font-medium
                     uppercase
                     tracking-[0.13em]
-                    text-slateMuted
                     transition-colors
                     duration-300
                     ease-out
                     hover:text-[#EB5725]
                     cursor-pointer
-                  "
+                    ${isLinkActive ? 'text-[#EB5725]' : 'text-slateMuted'}
+                  `}
                 >
                   {item.label}
 
-                  {/* Orange hover underline */}
+                  {/* Orange hover/active underline */}
                   <span
-                    className="
+                    className={`
                       absolute
                       -bottom-2
                       left-1/2
                       h-px
-                      w-0
                       -translate-x-1/2
                       bg-[#EB5725]
                       transition-all
                       duration-300
                       ease-out
-                      group-hover:w-full
-                    "
+                      ${isLinkActive ? 'w-full' : 'w-0 group-hover:w-full'}
+                    `}
                   />
                 </Link>
               );

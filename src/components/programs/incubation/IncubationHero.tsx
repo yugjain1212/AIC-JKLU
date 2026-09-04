@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowDown } from 'lucide-react';
-import IncubationSolarSystem from './IncubationSolarSystem';
+import IncubationEcosystem from './IncubationEcosystem';
 
 export default function IncubationHero() {
   return (
@@ -100,14 +100,14 @@ export default function IncubationHero() {
             </div>
           </motion.div>
 
-          {/* ── RIGHT COLUMN: Dynamic Interactive 3D Cosmic Solar System ── */}
+          {/* ── RIGHT COLUMN: Editorial Startup Ecosystem Journey ── */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7 flex items-center justify-center lg:justify-end select-none w-full"
           >
-            <IncubationSolarSystem />
+            <IncubationEcosystem />
           </motion.div>
 
         </div>
