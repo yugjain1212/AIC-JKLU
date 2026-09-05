@@ -65,18 +65,26 @@ export default function FeaturedCompanies() {
           )}
         </div>
 
-        {/* ── 3 Horizontal Cards ── */}
+        {/* ── 3 Horizontal Cards ──
+            Each grid position is a stable slot with its own
+            AnimatePresence (mode="wait", single child keyed by
+            company.id), so entering/exiting cards never overlap
+            and the grid itself never remounts (no layout shift). */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="wait">
-            {visibleCompanies.map((company, index) => (
-              <motion.div
-                key={company.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="h-full"
-              >
+          {[0, 1, 2].map((slotIndex) => {
+            const company = visibleCompanies[slotIndex];
+            return (
+              <div key={slotIndex} className="h-full">
+                <AnimatePresence mode="wait" initial={false}>
+                  {company && (
+                    <motion.div
+                      key={company.id}
+                      initial={{ opacity: 0, y: 12, filter: 'blur(3px)' }}
+                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      exit={{ opacity: 0, y: -12, filter: 'blur(3px)' }}
+                      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1], delay: slotIndex * 0.06 }}
+                      className="h-full"
+                    >
                 <Link
                   href={`/companies/${company.slug}`}
                   className="
@@ -130,9 +138,9 @@ export default function FeaturedCompanies() {
                           {company.name}
                         </h3>
                         <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
-                          {company.industries.slice(0, 2).map((ind) => (
+                          {company.industries.slice(0, 2).map((ind, tagIndex) => (
                             <span
-                              key={ind}
+                              key={`${ind}-${tagIndex}`}
                               className="inline-block px-2 py-0.5 rounded-md bg-[#FAF7F2] text-[#52525B] font-robotoMono text-[10px] font-medium border border-[#E4E4E0]"
                             >
                               {ind}
@@ -159,9 +167,12 @@ export default function FeaturedCompanies() {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
