@@ -511,7 +511,7 @@ export default function CompanyDirectory({ initialIndustry = 'All' }: CompanyDir
                       {/* Relationship Pill */}
                       <span
                         className={`inline-block px-2.5 py-0.5 rounded-full font-robotoMono text-[10.5px] font-bold tracking-wide border ${
-                          badgeColors[company.relationship] || 'bg-gray-100 text-gray-800'
+                          (company.relationship && badgeColors[company.relationship]) || 'bg-gray-100 text-gray-800'
                         }`}
                       >
                         {company.relationship}

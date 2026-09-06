@@ -1,0 +1,766 @@
+{
+  "source": "website startups.pdf",
+  "total_incubated_startups": 95,
+  "startups": [
+    {
+      "id": 1,
+      "name": "CaviSafe",
+      "founder": "Khushi Sinha",
+      "stage": "Ideation",
+      "sector": "Food/Healthcare",
+      "description": "A functional confectionery brand creating sugar-free dental-care candies designed to neutralise acids, inhibit bacteria, and promote enamel health while making oral care convenient and enjoyable."
+    },
+    {
+      "id": 2,
+      "name": "Forestpay",
+      "founder": "Brijesh Yadav",
+      "stage": "Ideation",
+      "sector": "Healthcare Fintech",
+      "description": "A fintech-healthcare startup providing patients with interest-free EMI options for medical treatments through partnerships with hospitals and clinics, making healthcare expenses more flexible and accessible."
+    },
+    {
+      "id": 3,
+      "name": "BIGTYNI",
+      "founder": "Sharad Sinha",
+      "stage": "Ideation",
+      "sector": "Relocatable Precast Habitable Structure",
+      "description": "A design-tech company developing fast-deployable and relocatable modular shelters that can be installed within two days and reused for tourism, events, emergency housing, and construction sites."
+    },
+    {
+      "id": 4,
+      "name": "FastBillingX Private Limited",
+      "founder": "Panchali Sarkar",
+      "stage": "Validation",
+      "sector": "RetailTech / AI/ML / DeepTech / IoT",
+      "description": "An AI-powered smart-checkout ecosystem combining computer vision, edge AI, IoT sensors and sensor fusion to enable app-free and cashier-less retail experiences."
+    },
+    {
+      "id": 5,
+      "name": "BAAS Technologies Private Limited",
+      "founder": "Tanmay Kanmahale",
+      "stage": "Validation",
+      "sector": "Aerospace / SpaceTech",
+      "description": "A launch-as-a-service aerospace startup developing affordable small-satellite launch vehicles and reusable orbital and sub-orbital launch systems."
+    },
+    {
+      "id": 6,
+      "name": "Formetry Labs Pvt. Ltd.",
+      "founder": "Niyaz",
+      "stage": "Validation",
+      "sector": "Media",
+      "description": "In60z is a concise information platform that provides summaries of research, events, and news in precisely 60 words, combining human editorial judgment with AI filtering."
+    },
+    {
+      "id": 7,
+      "name": "SportsThat – Where Fans Connect",
+      "founder": "Sheetal Arora",
+      "stage": "Prototype",
+      "sector": "Sports",
+      "description": "A community platform for sports fans, athletes, leagues and clubs that enhances fan experiences and helps brands, teams and clubs identify relevant audiences and improve revenue."
+    },
+    {
+      "id": 8,
+      "name": "Envinova Smartech Private Limited",
+      "founder": "Ajay Mittal; Arjun Mittal; Ishank Bansal",
+      "stage": "Prototype",
+      "sector": "CleanTech / Solar Infrastructure",
+      "description": "Designs and develops solar-powered infrastructure for public, institutional and private applications."
+    },
+    {
+      "id": 9,
+      "name": "Delta Technovation",
+      "founder": "Nishant Sahay",
+      "stage": "Prototype",
+      "sector": "Renewable Energy",
+      "description": "A renewable-energy startup listed in the graduating startup sheet; the detailed product description requires verification."
+    },
+    {
+      "id": 10,
+      "name": "Telemedon wheels",
+      "founder": "Keerthana P",
+      "stage": "Prototype",
+      "sector": "HealthTech / Telemedicine",
+      "description": "An integrated healthcare ecosystem intended to extend medical services, EMR/EHR access, physicians and healthcare support to underserved areas."
+    },
+    {
+      "id": 11,
+      "name": "Proost Solutions Private Limited – DrPrax",
+      "founder": "Atul Shah",
+      "stage": "Prototype",
+      "sector": "Healthcare / Digital Health / HealthTech",
+      "description": "Develops DrPrax, a digital healthcare-practice platform supporting in-clinic and remote care, teleconsultation, collaborative-care networks, health records and AI-assisted prescriptions."
+    },
+    {
+      "id": 12,
+      "name": "Beliveinn Tech Pvt. Ltd.",
+      "founder": "Sanjay Sharma; Shubham Sharma; Sudin",
+      "stage": "Prototype",
+      "sector": "GreenTech / Renewable Energy",
+      "description": "A green-technology startup working on sustainable renewable-energy products and research. Founder and product details require verification."
+    },
+    {
+      "id": 13,
+      "name": "Bioron Solutions Private Limited",
+      "founder": "Sudip Roy",
+      "stage": "Prototype",
+      "sector": "Waste Management / Sustainable Construction Materials",
+      "description": "Converts industrial, agricultural, construction, livestock and plastic waste into durable and sustainable construction materials using a proprietary mortar-composition mix."
+    },
+    {
+      "id": 14,
+      "name": "Big Guns Nutrition Private Limited",
+      "founder": "Sarvesh Maloo; Shubham Garg",
+      "stage": "Prototype",
+      "sector": "Food & Beverages / Nutrition",
+      "description": "A food-and-beverage startup associated with Protified fruit-infused protein shakes and nutrition products."
+    },
+    {
+      "id": 15,
+      "name": "Roborzoid",
+      "founder": "Ruslan Aiginin; Oleg Iskra; Mansur Suleman",
+      "stage": "Prototype",
+      "sector": "Human–Computer Interaction / Voice & Gesture AI",
+      "description": "A software platform for integrating voice- and gesture-based interaction into devices, services and applications."
+    },
+    {
+      "id": 16,
+      "name": "Dingole",
+      "founder": "Shawn De Freitas",
+      "stage": "Prototype",
+      "sector": "AR/VR / Immersive Design",
+      "description": "An immersive-design studio using augmented reality, virtual reality and creative technology to develop interactive experiences."
+    },
+    {
+      "id": 17,
+      "name": "Electrik Bee Private Limited",
+      "founder": "Aman Sangal; Ankit Kapoor",
+      "stage": "Prototype",
+      "sector": "CleanTech / Solar Solutions",
+      "description": "A clean-technology company focused on solar and sustainable-energy solutions."
+    },
+    {
+      "id": 18,
+      "name": "BluPower – UNG Technologies Private Limited",
+      "founder": "Sutapa Ghosh; Upamanyu Ghosh",
+      "stage": "Prototype",
+      "sector": "CleanTech / Hydropower",
+      "description": "A clean-technology energy-recovery solution based on decentralised small-hydroelectric-power-plant concepts."
+    },
+    {
+      "id": 19,
+      "name": "Dronex Technologies Private Limited",
+      "founder": "Dilpreet Kaur; Jaspreet Singh",
+      "stage": "Prototype",
+      "sector": "DefenceTech / Drones",
+      "description": "A defence-technology startup associated with drone systems and applications."
+    },
+    {
+      "id": 20,
+      "name": "repairkaroabhi",
+      "founder": "Vinay Sharma",
+      "stage": "Prototype",
+      "sector": "Home-Appliance Repair / Services",
+      "description": "A likely home-appliance and air-conditioning repair-service platform; the exact match and detailed offering require verification."
+    },
+    {
+      "id": 21,
+      "name": "Agrozone",
+      "founder": "Amit Shah; Parantap Dave; Shashank Saxena",
+      "stage": "Prototype",
+      "sector": "AgriTech / Rural Marketplace",
+      "description": "An online rural marketplace connecting farmers, sellers and partners to create an efficient and cost-effective agricultural retail experience."
+    },
+    {
+      "id": 22,
+      "name": "Wasmier",
+      "founder": "Ahmed Sahid Makda; Sahid Haroonbhai Makda",
+      "stage": "Prototype",
+      "sector": "EV Logistics / E-Mobility",
+      "description": "An e-mobility and logistics solution using electric vehicles for end-to-end business logistics and transportation support."
+    },
+    {
+      "id": 23,
+      "name": "Dophera",
+      "founder": "Aman Jhajharia; Indrajeet Roy",
+      "stage": "Prototype",
+      "sector": "Logistics",
+      "description": "A logistics-tech platform connecting senders with verified travellers travelling toward the same destination, using existing routes for affordable and sustainable intercity parcel delivery."
+    },
+    {
+      "id": 24,
+      "name": "SpurtGo",
+      "founder": "Siddharth Runwal",
+      "stage": "Prototype",
+      "sector": "Software / Application",
+      "description": "A startup or application listed in the AIC startup list; detailed product information requires verification."
+    },
+    {
+      "id": 25,
+      "name": "Aiotize",
+      "founder": "Shivansh Sethi",
+      "stage": "Prototype",
+      "sector": "AI/ML",
+      "description": "A manufacturer of unmanned aircraft systems and multirotor platforms for surveillance, agricultural surveys, mapping and asset inspection."
+    },
+    {
+      "id": 26,
+      "name": "Filmapia Private Limited",
+      "founder": "Ivy Manohara",
+      "stage": "Prototype",
+      "sector": "Media & Entertainment / FilmTech",
+      "description": "A user-sourced film-location platform helping filmmakers reduce the time and cost required to identify and scout shooting locations."
+    },
+    {
+      "id": 27,
+      "name": "Herd – FIORELLO Technologies Private Limited",
+      "founder": "Shiraz Hasan; Ashima",
+      "stage": "Prototype",
+      "sector": "EdTech",
+      "description": "A digital-campus learning platform combining LMS functionality with social-media-style communication and collaboration to improve student engagement."
+    },
+    {
+      "id": 28,
+      "name": "Navshali Innovations Private Limited – Keraio",
+      "founder": "Naveen Kumar; Vaishali Dayora",
+      "stage": "Prototype",
+      "sector": "FoodTech / Food Safety / Diagnostics / Agri-FoodTech",
+      "description": "Provides rapid meat-testing kits for frozen chicken and mutton, enabling checks for contamination, spoilage and cold-slaughtered meat without laboratory infrastructure."
+    },
+    {
+      "id": 29,
+      "name": "Tidor Technologies Private Limited – Yescom",
+      "founder": "Vedvyas V",
+      "stage": "Prototype",
+      "sector": "Renewable Energy",
+      "description": "An online platform enabling peer-to-peer renewable-energy trading among generators, business consumers and prosumers."
+    },
+    {
+      "id": 30,
+      "name": "The Quench",
+      "founder": "Shwetha Aluwalia",
+      "stage": "Prototype",
+      "sector": "EdTech",
+      "description": "A learning-and-development platform offering online and offline programmes and social initiatives across individual, academic, corporate and nonprofit environments."
+    },
+    {
+      "id": 31,
+      "name": "YO CHAIN",
+      "founder": "Shubhang Gowdac",
+      "stage": "Prototype",
+      "sector": "Agri Supply Chain",
+      "description": "An end-to-end agricultural supply-chain solution addressing input availability, credit, transportation, grading and market inefficiencies using technology and data science."
+    },
+    {
+      "id": 32,
+      "name": "ARNIMA’S",
+      "founder": "Arnim",
+      "stage": "Prototype",
+      "sector": "EdTech / Skill Development",
+      "description": "Provides grooming and skill-development courses for schools and colleges, focusing on social, soft, interpersonal and personality skills."
+    },
+    {
+      "id": 33,
+      "name": "FuLlion Power",
+      "founder": "Kunal Khanna",
+      "stage": "Prototype",
+      "sector": "Renewable Energy",
+      "description": "A renewable-energy startup listed in the graduating startup sheet; detailed product information requires verification."
+    },
+    {
+      "id": 34,
+      "name": "IoTA – Dragunov Technology Private Limited",
+      "founder": "Mohammad Kamran Ahmad; Ashish Arman; Rumana Fatima",
+      "stage": "Prototype",
+      "sector": "Business Services / Technology",
+      "description": "A technology and business-services entity connected with the IoTA name in the cohort information; product details require verification."
+    },
+    {
+      "id": 35,
+      "name": "Infidia Solutions",
+      "founder": "Peeyush Yadav",
+      "stage": "Prototype",
+      "sector": "E-Commerce",
+      "description": "An e-commerce startup listed in the graduating startup sheet; detailed product information requires verification."
+    },
+    {
+      "id": 36,
+      "name": "Sustainability and Adaptation Planning Foundation – SAP",
+      "founder": "Meesha Tandon",
+      "stage": "Prototype",
+      "sector": "EdTech / Climate Entrepreneurship",
+      "description": "A climate-entrepreneurship, resilience-education and adaptation-planning initiative."
+    },
+    {
+      "id": 37,
+      "name": "Neoastra Systems India Pvt. Ltd.",
+      "founder": "Ganesh Banda; Prashanth Venkataswamy; Krishna Kumar P.",
+      "stage": "Prototype",
+      "sector": "IT Services / Application Development / Data Analytics",
+      "description": "A Bengaluru-based company providing application development, consulting and data-analytics services."
+    },
+    {
+      "id": 38,
+      "name": "AICY Technologies Pvt. Ltd.",
+      "founder": "Anjan Choudhary",
+      "stage": "Prototype",
+      "sector": "AgriTech",
+      "description": "Develops FARMAKART, a unified smart-agriculture services and marketplace platform, together with IoT, analytics, website and application services."
+    },
+    {
+      "id": 39,
+      "name": "Reffera",
+      "founder": "Vinayak Nair",
+      "stage": "Prototype",
+      "sector": "IT",
+      "description": "A startup listed in the graduating startup sheet; the detailed description requires verification."
+    },
+    {
+      "id": 40,
+      "name": "Ribian",
+      "founder": "Anoop Vijayan",
+      "stage": "Prototype",
+      "sector": "E-Commerce",
+      "description": "An e-commerce platform for ornamental-fish trading that connects farmers directly with consumers and improves distribution channels."
+    },
+    {
+      "id": 41,
+      "name": "Spadent India Pvt. Ltd.",
+      "founder": "Dr. Nikhil Kaushik",
+      "stage": "Prototype",
+      "sector": "Healthcare",
+      "description": "A dental-service provider offering movable dental setups, clinics, outreach programmes and follow-up or home-visit treatment services."
+    },
+    {
+      "id": 42,
+      "name": "Hospace",
+      "founder": "Kamran Ahmad",
+      "stage": "Prototype",
+      "sector": "Healthcare",
+      "description": "A platform connecting doctors, hospitals, patients, biologists and computer scientists."
+    },
+    {
+      "id": 43,
+      "name": "ZYLM Energy Private Limited",
+      "founder": "Paras Bachhawat",
+      "stage": "Prototype",
+      "sector": "CleanTech / Air Purification",
+      "description": "Develops AIRBIN, a smart outdoor air-purification system with six-stage purification, IoT and AI monitoring and automated air-quality controls."
+    },
+    {
+      "id": 44,
+      "name": "ADJAC India Private Limited",
+      "founder": "Nitin Arora",
+      "stage": "Prototype",
+      "sector": "Biotechnology / Diagnostics",
+      "description": "Develops an automated qPCR-based diagnostic ecosystem for detecting pathogens and disease markers, initially focusing on tuberculosis and antibiotic resistance."
+    },
+    {
+      "id": 45,
+      "name": "SHVAAS Sustainable Solutions Private Limited",
+      "founder": "Harsh Dangayach",
+      "stage": "Prototype",
+      "sector": "Organic Agriculture / Marketplace",
+      "description": "An organic-food and agriculture marketplace addressing fair farmer pricing, rural–urban supply gaps, high prices and consumer trust in certification and authenticity."
+    },
+    {
+      "id": 46,
+      "name": "SunEmison Solar Energy Private Limited",
+      "founder": "Parvati Thakur; Amitabh Sharma; Rupesh Thakur; Prahlad Thakur",
+      "stage": "Prototype",
+      "sector": "CleanTech / Solar Energy",
+      "description": "A solar-energy company involved in solar-power-project planning, design and execution."
+    },
+    {
+      "id": 47,
+      "name": "LogicLens",
+      "founder": "Ajay Kumar Satpathy",
+      "stage": "Prototype",
+      "sector": "Security and Surveillance",
+      "description": "An AI-powered video-analytics platform that identifies events, anomalies and behavioural patterns in live and recorded surveillance footage."
+    },
+    {
+      "id": 48,
+      "name": "EWHEELS HUB LLP",
+      "founder": "Charles Nadar",
+      "stage": "Prototype",
+      "sector": "EV Charging-Station Aggregator",
+      "description": "EVJoints enables EV users to locate, book and use charging stations across multiple networks through one interface while providing analytics and payment integration to station owners."
+    },
+    {
+      "id": 49,
+      "name": "Nuo Logistics Services Pvt. Ltd.",
+      "founder": "Ankur Kumar",
+      "stage": "Prototype",
+      "sector": "Supply Chain",
+      "description": "A digital platform enabling freight forwarders, CHAs and EXIM customers to compare container-train operators and book domestic container movement online."
+    },
+    {
+      "id": 50,
+      "name": "The Infinite Designs",
+      "founder": "Ayush Saini",
+      "stage": "Prototype",
+      "sector": "Renewable Energy / EV",
+      "description": "Developing an electric motorcycle with a manual-gearing transmission intended to reduce battery consumption and improve low-torque motor efficiency."
+    },
+    {
+      "id": 51,
+      "name": "Talspo Private Limited",
+      "founder": "Aditya Porwal",
+      "stage": "Prototype",
+      "sector": "IT / Skills Networking",
+      "description": "A real-time nearby networking and skill-connectivity platform intended to reduce skill mismatch."
+    },
+    {
+      "id": 52,
+      "name": "Achieverz",
+      "founder": "Janvion Rodrigues",
+      "stage": "Prototype",
+      "sector": "SportsTech",
+      "description": "A sports application helping organisers manage competitions and increase registrations while helping players train, join teams and participate in events."
+    },
+    {
+      "id": 53,
+      "name": "Starfire",
+      "founder": "Tanya Agarwal",
+      "stage": "Prototype",
+      "sector": "EdTech / Career Development",
+      "description": "A career-awareness and 21st-century skill-development solution using application- and workshop-based models for students and professionals."
+    },
+    {
+      "id": 54,
+      "name": "WOLOOKA Technologies Private Limited",
+      "founder": "Aakash Jaadon",
+      "stage": "Prototype",
+      "sector": "Education Technology",
+      "description": "Testwin is an AI-based assistive-learning platform that customises competitive-exam schedules, generates syllabi and tests, analyses learning speed and recommends learning resources."
+    },
+    {
+      "id": 55,
+      "name": "Remort Ward",
+      "founder": "Kapil",
+      "stage": "Prototype",
+      "sector": "Smart Wardrobe / Fashion Tech",
+      "description": "RemoteWard Care provides an AI-powered remote-homecare platform for ageing parents, offering integrated healthcare services and support from a distance."
+    },
+    {
+      "id": 56,
+      "name": "Vorac Innovation Labs",
+      "founder": "Aman Jain",
+      "stage": "Prototype",
+      "sector": "E-Commerce / SaaS",
+      "description": "A cloud-based product-listing, digital-marketing and sales platform helping SMEs create catalogues, document sales and increase market reach."
+    },
+    {
+      "id": 57,
+      "name": "DBQP Atomicity Solutions Private Limited",
+      "founder": "Anand Vullakula",
+      "stage": "Prototype",
+      "sector": "AR/VR",
+      "description": "A Bengaluru-based AR and AI startup developing an augmented-reality super application, including AtomFit for AI-supported personal fitness and modules for shopping, gaming and education."
+    },
+    {
+      "id": 58,
+      "name": "Physioplus Healthcare Private Limited",
+      "founder": "Jaswant Singh",
+      "stage": "Market Entry",
+      "sector": "Healthcare Services",
+      "description": "Enables patients to locate physiotherapists and walking-aid products, provides affordable home physiotherapy and rehabilitation and seeks to establish a nationwide physiotherapist network."
+    },
+    {
+      "id": 59,
+      "name": "Solviser",
+      "founder": "B. N. Mishra",
+      "stage": "Market Entry",
+      "sector": "FinTech",
+      "description": "An AI-powered trust and payment-security platform helping MSMEs reduce delayed payments and defaults through risk assessments, verified networks, secure contracts and credit intelligence."
+    },
+    {
+      "id": 60,
+      "name": "Fermentech",
+      "founder": "Siddhart",
+      "stage": "Market Entry",
+      "sector": "Sustainability / Corporate Gifting",
+      "description": "A biotechnology company producing industrial enzymes through solid-state fermentation using agricultural waste for applications in food, biofuel and textiles."
+    },
+    {
+      "id": 61,
+      "name": "Satyukt Analytics Pvt. Ltd.",
+      "founder": "Sat Kumar Tomer",
+      "stage": "Revenue",
+      "sector": "AgriTech",
+      "description": "A space-based agricultural-technology company using optical and microwave satellite data, weather forecasts and water-resource modelling to provide agricultural, insurance and water-management advisories."
+    },
+    {
+      "id": 62,
+      "name": "Sunbird Straw",
+      "founder": "Chirag",
+      "stage": "Revenue",
+      "sector": "Sustainability / Corporate Gifting",
+      "description": "Produces patented multilayer biodegradable straws from fallen coconut leaves, replacing single-use plastics while supporting rural livelihoods."
+    },
+    {
+      "id": 63,
+      "name": "Planet Protector Packaging",
+      "founder": "Joanne Howarth",
+      "stage": "Revenue",
+      "sector": "Sustainability / Corporate Gifting",
+      "description": "Produces WOOLPACK, compostable thermal packaging made from waste sheep wool as an alternative to polystyrene for cold-chain logistics."
+    },
+    {
+      "id": 64,
+      "name": "Malai",
+      "founder": "Zuzana Gombosova",
+      "stage": "Revenue",
+      "sector": "Sustainability / Corporate Gifting",
+      "description": "Creates a vegan and biodegradable leather alternative using waste coconut water, fermentation and natural fibres."
+    },
+    {
+      "id": 65,
+      "name": "Papair GmbH",
+      "founder": "Christopher Feist",
+      "stage": "Revenue",
+      "sector": "Sustainability / Corporate Gifting",
+      "description": "Develops PapairWrap, a recyclable and biodegradable paper-based alternative to plastic bubble wrap."
+    },
+    {
+      "id": 66,
+      "name": "Supaso",
+      "founder": "Fabian Gems",
+      "stage": "Revenue",
+      "sector": "Sustainability / Corporate Gifting",
+      "description": "Produces climate-neutral insulated packaging from recycled paper for temperature-sensitive products in the food, pharmaceutical and pet industries."
+    },
+    {
+      "id": 67,
+      "name": "Maa Mitahara Private Limited",
+      "founder": "Isha Gupta",
+      "stage": "Revenue",
+      "sector": "Maternal & Women’s Wellness / Ayurvedic Nutrition / FemTech Wellness",
+      "description": "An Ayurvedic maternal-wellness brand offering nutritional products, wellness kits, supplements, massage oils and meal plans for pregnancy, postpartum and women’s wellness."
+    },
+    {
+      "id": 68,
+      "name": "Markutting Chai Studios – MCS",
+      "founder": "Vidit Sharma",
+      "stage": "Revenue",
+      "sector": "Marketing",
+      "description": "A storytelling-driven creative agency helping brands grow through authentic content, brand strategy, identity development, social-media campaigns and visual storytelling."
+    },
+    {
+      "id": 69,
+      "name": "Aventura Technologies",
+      "founder": "Hanif S",
+      "stage": "Revenue",
+      "sector": "CleanTech / AgriTech",
+      "description": "Involved in patent-driven business innovations and associated with a fintech product that analyses stock-market data using colours and symbols."
+    },
+    {
+      "id": 70,
+      "name": "Creative Kareegar",
+      "founder": "Burhan",
+      "stage": "Revenue",
+      "sector": "IT / Creative Services",
+      "description": "An aggregator connecting photographers and cinematographers with customers for faster and more affordable creative-media services."
+    },
+    {
+      "id": 71,
+      "name": "Echoing Hues Private Limited – Moose & Quill",
+      "founder": "Nidhi Kumar",
+      "stage": "Growth",
+      "sector": "Chem-Tech / Sustainable Cleaning Solutions / Green Consumer Products",
+      "description": "A chem-tech platform creating configurable and certified plant-based cleaning products using modular chemistry and formulation-simulation technology."
+    },
+    {
+      "id": 72,
+      "name": "Kraft-Obench",
+      "founder": "Divya Sanghvi",
+      "stage": "Growth",
+      "sector": "Manufacturing",
+      "description": "Provides soundproof mini workstations that can be installed at home to address ergonomic and productivity challenges associated with remote work."
+    },
+    {
+      "id": 73,
+      "name": "Earnhance – Mkix",
+      "founder": "Milind Kumar",
+      "stage": "Growth",
+      "sector": "FinTech",
+      "description": "A micro-investing, saving and personal-finance platform helping millennials and Generation Z achieve financial goals."
+    },
+    {
+      "id": 74,
+      "name": "Hello Atithi India Private Limited",
+      "founder": "Prashant Chauhan",
+      "stage": "Growth",
+      "sector": "Travel & Tourism",
+      "description": "A green-tourism aggregator. The detailed description in the source appears shifted and requires verification."
+    },
+    {
+      "id": 75,
+      "name": "Maini Renewables Private Limited",
+      "founder": "Swati Maini",
+      "stage": "Growth",
+      "sector": "Renewable Energy",
+      "description": "Develops decentralised hydrokinetic turbines that generate electricity from rivers, canals and oceans without dams or heavy infrastructure."
+    },
+    {
+      "id": 76,
+      "name": "Klubba Pvt. Ltd.",
+      "founder": "Kamal Kishore Sanghai",
+      "stage": "Growth",
+      "sector": "EdTech / Sports / Wellness",
+      "description": "A platform for self-learning and extracurricular activities supporting communities, content and engagement around education, sports and wellness."
+    },
+    {
+      "id": 77,
+      "name": "AgriVijay – Renewagri Om Ecommerce Pvt. Ltd.",
+      "founder": "Vimal Panjwani",
+      "stage": "Growth",
+      "sector": "Renewable Energy / AgriTech / Climate Action",
+      "description": "A curated renewable-energy marketplace helping farmers and rural households become energy independent through online, offline and franchise channels."
+    },
+    {
+      "id": 78,
+      "name": "Ripple Healthcare Private Limited",
+      "founder": "Kaushal Rajeev Kothari",
+      "stage": "Growth",
+      "sector": "MedTech / Digital Health",
+      "description": "Develops Hip Pro+, a smart wearable device intended to protect elderly users from traumatic hip injuries and support independent living."
+    },
+    {
+      "id": 79,
+      "name": "EduRev Solutions Pvt. Ltd.",
+      "founder": "Kunaal Satija; Hardik Dhamija",
+      "stage": "Growth",
+      "sector": "EdTech / Digital Education",
+      "description": "An e-learning and digital-education platform providing online learning and study resources."
+    },
+    {
+      "id": 80,
+      "name": "MODOBEN ECURA Private Limited – Vyra",
+      "founder": "Vinay Kumar",
+      "stage": "Growth",
+      "sector": "Beverage / Functional Wellness",
+      "description": "A functional-beverage brand combining Ayurveda, neuroscience and fermentation to create drinks supporting mood, focus, energy and immunity."
+    },
+    {
+      "id": 81,
+      "name": "Unnati Adaptive Devices Private Limited",
+      "founder": "Neha Solanki",
+      "stage": "Growth",
+      "sector": "Healthcare and Assistive Technology",
+      "description": "Designs and manufactures affordable adaptive devices for children with special needs, including seating systems, stroller concepts and customised devices."
+    },
+    {
+      "id": 82,
+      "name": "Fansjodo",
+      "founder": "Nikhil Aneja",
+      "stage": "Growth",
+      "sector": "Customised Sports Merchandise",
+      "description": "A sports-commerce and engagement platform connecting fans with teams, players and customised merchandise while helping brands understand fan behaviour."
+    },
+    {
+      "id": 83,
+      "name": "SNAS IoT Laboratories Pvt. Limited",
+      "founder": "Amit Nikum",
+      "stage": "Growth",
+      "sector": "IoT / Power Automation / Advanced Building Management System",
+      "description": "Provides IoT-based products for facility monitoring, energy optimisation, appliance and lighting control, home automation and fire alerts."
+    },
+    {
+      "id": 84,
+      "name": "TalentDecrypt",
+      "founder": "Arushi Agarwal",
+      "stage": "Growth",
+      "sector": "EdTech / HRTech",
+      "description": "Recruitment software designed to support hiring decisions with less bias than manual résumé filtering."
+    },
+    {
+      "id": 85,
+      "name": "Mekvahan – Udyamat Ma Viramasva Pvt. Ltd.",
+      "founder": "Abhijeet Kumar",
+      "stage": "Growth",
+      "sector": "Automotive Services / IT",
+      "description": "An online two- and four-wheeler service aggregator enabling transparent and affordable vehicle servicing through customer, partner and delivery applications."
+    },
+    {
+      "id": 86,
+      "name": "HustlePost Academy – Millennial Living Pvt. Ltd.",
+      "founder": "Saloni Srivastava",
+      "stage": "Growth",
+      "sector": "EdTech",
+      "description": "An e-learning programme helping millennials turn their interests and passions into profitable online businesses using social media."
+    },
+    {
+      "id": 87,
+      "name": "ECOENSO Technologies Private Limited",
+      "founder": "Aman Virmani",
+      "stage": "Growth",
+      "sector": "Green Hygiene / Sustainable Cleaning Solutions",
+      "description": "Provides plant-derived and biodegradable cleaning formulations, concentrated technologies and water-saving retrofit solutions for sustainable business hygiene."
+    },
+    {
+      "id": 88,
+      "name": "Findyourfit Private Limited",
+      "founder": "Ankur Lohani",
+      "stage": "Growth",
+      "sector": "Sports Promotion and Networking",
+      "description": "Helps users identify nearby fitness-accountability partners based on sporting interests, skill levels and fitness analytics."
+    },
+    {
+      "id": 89,
+      "name": "MYRUPAYA ContentEdge Private Limited",
+      "founder": "Abhijeet Saxena",
+      "stage": "Growth",
+      "sector": "Personal Finance",
+      "description": "A financial platform providing reviews and analysis of credit cards, loans, insurance and investment options, along with financial-planning tools and calculators."
+    },
+    {
+      "id": 90,
+      "name": "ZERO2A Learning Innovations Private Limited",
+      "founder": "Heribert Anthony Thomas; Shahbaz Ahmad Abid Khan",
+      "stage": "Growth",
+      "sector": "Learning & Development / Game-Based Learning",
+      "description": "A game-based assessment and learning platform simulating business and financial decisions to evaluate behaviour, risk appetite, negotiation and decision-making."
+    },
+    {
+      "id": 91,
+      "name": "Bhaskara Engineering",
+      "founder": "Indhumaty",
+      "stage": "Growth",
+      "sector": "Energy",
+      "description": "Develops patented vertical-axis wind turbines with high-efficiency aerodynamics for hybrid solar integration and small-scale energy generation."
+    },
+    {
+      "id": 92,
+      "name": "Serenity Biosciences India Private Limited",
+      "founder": "Jatin Jain",
+      "stage": "Growth",
+      "sector": "Healthcare Services / Life Sciences",
+      "description": "Focuses on non-invasive osteoarthritis management using viscosupplements and regenerative techniques as alternatives to surgery or steroid-based treatment."
+    },
+    {
+      "id": 93,
+      "name": "Digify Televentures Private Limited",
+      "founder": "Gautam Malik",
+      "stage": "Growth",
+      "sector": "Manufacturing / Refurbished Electronics / Smartphone Repair",
+      "description": "A mobile-phone buyback, refurbished-handset and repair platform providing doorstep pickup, certified devices and repair services."
+    },
+    {
+      "id": 94,
+      "name": "EF Polymer Private Limited",
+      "founder": "Narayan Lal Gurjar",
+      "stage": "Growth",
+      "sector": "AgriTech / Sustainable Agriculture / Bio-Based Materials",
+      "description": "Produces a natural and biodegradable superabsorbent polymer from crop residue that retains water and fertiliser in soil and reduces agricultural input consumption."
+    },
+    {
+      "id": 95,
+      "name": "Piltover Technologies Private Limited",
+      "founder": "Manan Issar",
+      "stage": "Growth",
+      "sector": "Assistive Technology / Medical Education",
+      "description": "Develops affordable mechanical prosthetic hands for below-elbow amputees and augmented-reality bone-learning tools for medical education."
+    }
+  ]
+}
