@@ -224,7 +224,7 @@ export default function CompaniesHero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, ease: E, delay: 0.2 }}
           >
-            <CompaniesHeroIllustration prefersReducedMotion={prefersReduced} />
+            <CompaniesHeroIllustration />
           </motion.div>
 
         </div>

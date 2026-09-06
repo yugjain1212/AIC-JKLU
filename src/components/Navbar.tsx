@@ -33,7 +33,6 @@ const PROGRAMS_DROPDOWN_ITEMS = [
 const ABOUT_DROPDOWN_ITEMS = [
   { label: 'About AIC-JKLU', href: '/about' },
   { label: 'Vision & Mission', href: '/about/mission-vision' },
-  { label: 'Our Portfolio', href: '/#portfolio' },
 ] as const;
 
 const STAKEHOLDERS_DROPDOWN_ITEMS = [
