@@ -86,6 +86,7 @@ export default function TeamCard({
             src={member.image}
             alt={member.name}
             fill
+            loading="lazy"
             sizes="
               (max-width: 768px) 90vw,
               (max-width: 1024px) 45vw,

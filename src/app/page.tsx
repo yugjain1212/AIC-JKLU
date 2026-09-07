@@ -104,7 +104,8 @@ export default function Home() {
         <Hero />
 
         {/* About section slides over the receding hero with seamless overlap */}
-        <div className="relative z-10 -mt-[15vh]">
+        {/* Overlaps the hero by the established section rhythm without tying spacing to viewport height. */}
+        <div className="relative z-10 -mt-24 sm:-mt-32 lg:-mt-40">
           <About />
         </div>
 

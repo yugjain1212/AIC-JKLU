@@ -12,6 +12,8 @@ export function PartnerLogoSlot({ partner }: { partner: Partner }) {
           src={partner.image}
           alt={partner.name}
           width={130}
+          sizes="130px"
+          loading="lazy"
           height={48}
           unoptimized
           className="max-h-[38px] sm:max-h-[42px] max-w-[115px] sm:max-w-[130px] w-auto h-auto object-contain"

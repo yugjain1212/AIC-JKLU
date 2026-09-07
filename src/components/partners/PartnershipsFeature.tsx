@@ -44,6 +44,7 @@ export default function PartnershipsFeature() {
                     src="/library/transparent-image (1).png"
                     alt="Partnership Collaborative Hands Illustration"
                     width={450}
+                    sizes="(max-width: 768px) 100vw, 450px"
                     height={380}
                     className="w-full h-full object-contain opacity-95"
                     priority

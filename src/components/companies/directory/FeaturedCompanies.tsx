@@ -122,6 +122,8 @@ export default function FeaturedCompanies() {
                               src={company.logo}
                               alt={company.name}
                               fill
+                              sizes="56px"
+                              loading="lazy"
                               className="object-contain"
                             />
                           </div>

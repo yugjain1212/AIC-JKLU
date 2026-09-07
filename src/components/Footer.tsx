@@ -167,7 +167,7 @@ export default function Footer() {
       ref={footerRef}
       id="contact"
       aria-label="Footer & Contact"
-      className="relative z-50 w-full overflow-hidden select-none bg-[#EB5725] text-obsidian rounded-t-[36px] sm:rounded-t-[48px] md:rounded-t-[60px] shadow-[0_-25px_60px_rgba(235,87,37,0.25)] border-t border-black/10 -mt-10 sm:-mt-14"
+      className="relative z-50 w-full overflow-hidden select-none bg-[#EB5725] text-obsidian rounded-t-[32px] sm:rounded-t-[48px] shadow-[0_-25px_60px_rgba(235,87,37,0.25)] border-t border-black/10 -mt-10 sm:-mt-14"
     >
       {/* ── Background Scale/Wrapper ── */}
       <div
@@ -206,10 +206,10 @@ export default function Footer() {
 
                 <div>
                   <a
-                    href="tel:0141-7107-589"
+                    href="tel:+911417107589"
                     className="group/phone inline-flex flex-col font-robotoMono text-[15px] sm:text-[17px] md:text-[18px] text-obsidian/90 tracking-tight transition-transform duration-300 hover:translate-x-1 focus-visible:outline-black"
                   >
-                    <span>0141-7107-589</span>
+                    <span>+91 141-710-7589</span>
                     <span className="h-[1px] w-0 bg-obsidian/60 transition-all duration-300 ease-out group-hover/phone:w-full" />
                   </a>
                 </div>
@@ -251,7 +251,7 @@ export default function Footer() {
               {/* Socials */}
               <div className="flex flex-col md:items-end space-y-3">
                 <span className="font-robotoMono text-[11px] sm:text-[12px] tracking-[0.18em] uppercase text-black/70 font-medium">
-                  Follow me
+                  Follow us
                 </span>
 
                 <nav aria-label="Social media profiles" className="flex items-center gap-4 sm:gap-5">

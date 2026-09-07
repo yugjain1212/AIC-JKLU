@@ -203,6 +203,7 @@ export default function LibraryHero() {
                       src="/library/aic-origami-logo.png"
                       alt="AIC Logo"
                       width={28}
+                      sizes="28px"
                       height={28}
                       className="w-full h-full object-contain drop-shadow-sm"
                     />

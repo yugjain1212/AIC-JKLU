@@ -118,6 +118,7 @@ export default function ProgramTimeline() {
                 src="/library/lrc1.png"
                 alt="JKLU LRC Building Architecture Illustration"
                 width={480}
+                sizes="(max-width: 768px) 100vw, 480px"
                 height={220}
                 className="relative z-10 w-full h-full object-contain object-bottom filter contrast-110 opacity-90"
                 priority

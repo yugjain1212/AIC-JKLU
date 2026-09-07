@@ -21,8 +21,6 @@ export default function ProgramHero() {
             href="/programs"
             className="group inline-flex items-center gap-2 font-robotoMono text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.2em] text-[#EB5725] transition-colors duration-200 hover:text-[#C84214]"
           >
-            <span className="transition-transform duration-200 group-hover:-translate-x-1">←</span>
-            <span>BACK TO PROGRAMS</span>
           </Link>
         </motion.div>
 

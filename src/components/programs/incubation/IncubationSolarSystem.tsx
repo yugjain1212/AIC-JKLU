@@ -319,6 +319,7 @@ export default function IncubationSolarSystem() {
               src="/incubation/sun.png"
               alt="AIC Incubation Central Star Core"
               fill
+              sizes="(max-width: 768px) 45vw, 320px"
               priority
               className="object-contain rounded-full"
             />
@@ -348,6 +349,8 @@ export default function IncubationSolarSystem() {
                   src={planet.image}
                   alt={planet.name}
                   fill
+                  sizes="(max-width: 768px) 30vw, 180px"
+                  loading="lazy"
                   className="object-contain"
                 />
               </div>
@@ -358,4 +361,3 @@ export default function IncubationSolarSystem() {
     </div>
   );
 }
-

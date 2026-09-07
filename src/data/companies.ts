@@ -21,6 +21,30 @@ export const STARTUPS: CompanyItem[] = startupsJson.startups.map((s) => ({
 export const INCUBATED_STARTUPS: CompanyItem[] = STARTUPS;
 export const ALL_COMPANIES: CompanyItem[] = STARTUPS;
 
+// Homepage logo wall. Keeping it beside the full directory data avoids a second company-data source.
+export interface HomepageCompany {
+  name: string;
+  logo: string;
+}
+
+export const HOMEPAGE_COMPANIES: HomepageCompany[] = [
+  { name: 'BAS', logo: '/companies/BAS.svg' },
+  { name: "Bowler's Academy", logo: '/companies/bowlers_acadmey.svg' },
+  { name: 'CaviSafe', logo: '/companies/CaviSafe.svg' },
+  { name: 'FinQuanata', logo: '/companies/FinQuanata.svg' },
+  { name: 'Marketing Chai', logo: '/companies/Marketing_chai.svg' },
+  { name: 'Papair', logo: '/companies/Papair.svg' },
+  { name: 'Plant Protector', logo: '/companies/plant_protector.svg' },
+  { name: 'SunEmission', logo: '/companies/SunEmission.svg' },
+  { name: 'Telemed on Wheels', logo: '/companies/Telemedonwheels.svg' },
+  { name: 'Snas IoT', logo: '/companies/Snas IoT.svg' },
+  { name: 'Starfire', logo: '/companies/Starfiree Logo.svg' },
+  { name: 'Sunbirds', logo: '/companies/Sunbirds.svg' },
+  { name: 'The Infinite Design', logo: '/companies/The Infinite Design.svg' },
+  { name: 'Tidor Tech', logo: '/companies/Tidor Tech.svg' },
+  { name: 'Satyukt', logo: '/companies/satyukt.svg' },
+];
+
 // Dynamic featured companies derived directly from the exact same JSON dataset
 export const FEATURED_COMPANY_IDS = [5, 25, 38, 61, 75, 94];
 export const FEATURED_STARTUPS: CompanyItem[] = STARTUPS.filter((c) =>

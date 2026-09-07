@@ -119,6 +119,7 @@ export default function PartnersFutureSection() {
               src="/library/campus-illustration.svg"
               alt="AIC-JKLU Campus Architecture Illustration"
               width={800}
+              sizes="(max-width: 768px) 100vw, 800px"
               height={260}
               className="w-full h-full object-contain object-bottom select-none drop-shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
               priority
