@@ -52,27 +52,33 @@ function ParallaxSection({
 
 // ── Main page ──────────────────────────────────────────────────────────────
 export default function Home() {
+  // isLoaded starts false so the main content is opacity-0 from the very
+  // first paint — no flash of content before the preloader appears.
+  const [isLoaded, setIsLoaded] = useState(false);
   const [showPreloader, setShowPreloader] = useState(false);
 
   useEffect(() => {
-    // Disable automatic browser scroll restoration to prevent landing halfway down on reload
+    // Disable automatic browser scroll restoration
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-
-    // Ensure initial scroll position is strictly 0 on fresh load without anchor hash
     if (!window.location.hash) {
       window.scrollTo(0, 0);
     }
 
     try {
       const seen = sessionStorage.getItem(SESSION_KEY) === 'true';
-      if (!seen) {
+      if (seen) {
+        // Returning visitor — skip loader, reveal content immediately
+        setIsLoaded(true);
+      } else {
+        // First visit / hard reload — show preloader
         document.body.classList.add('is-loading');
         setShowPreloader(true);
       }
     } catch {
-      // sessionStorage unavailable
+      // sessionStorage unavailable — just reveal content
+      setIsLoaded(true);
     }
 
     return () => {
@@ -88,15 +94,23 @@ export default function Home() {
     }
     document.body.classList.remove('is-loading');
     setShowPreloader(false);
+    setIsLoaded(true);
   };
 
   return (
     <>
-      {/* ── Preloader (only shown once per browser session, client-mounted) ── */}
+      {/* ── Preloader ── */}
       {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
 
-      {/* ── Main site — always rendered consistently on server and client ── */}
-      <main className="min-h-screen bg-canvas">
+      {/* ── Main site ──
+          opacity-0 + pointer-events-none until isLoaded is true.
+          This is enforced from frame zero so the browser never paints
+          the hero before the preloader is on screen. ── */}
+      <main
+        className={`min-h-screen bg-canvas transition-opacity duration-700 ease-in-out ${
+          isLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
         {/* Navbar is outside parallax — it's sticky and appears instantly */}
         <Navbar />
 
