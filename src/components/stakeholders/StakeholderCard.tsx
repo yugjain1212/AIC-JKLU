@@ -78,6 +78,7 @@ export default function StakeholderCard({ stakeholder, index }: StakeholderCardP
               src={stakeholder.image}
               alt={stakeholder.name}
               fill
+              loading="lazy"
               sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 20vw"
               onError={() => setImageError(true)}
               className="
@@ -251,4 +252,3 @@ export default function StakeholderCard({ stakeholder, index }: StakeholderCardP
     </motion.article>
   );
 }
-

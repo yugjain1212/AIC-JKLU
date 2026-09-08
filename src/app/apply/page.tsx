@@ -85,6 +85,7 @@ export default function ApplyPage() {
                             src="/logo.svg"
                             alt="AIC-JKLU"
                             width={85}
+                            sizes="85px"
                             height={40}
                             priority
                             className="h-10 w-auto object-contain"
@@ -176,6 +177,7 @@ export default function ApplyPage() {
                         src="/logo.svg"
                         alt="AIC-JKLU"
                         width={85}
+                        sizes="85px"
                         height={40}
                         priority
                         className="h-10 w-auto object-contain"

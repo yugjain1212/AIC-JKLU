@@ -89,6 +89,7 @@ export default function CompaniesCarousel({
       {/* ── Navigation Buttons ── */}
       <div className="flex items-center justify-center gap-3 mt-2 lg:mt-2.5">
         <button
+          type="button"
           onClick={() => swiperRef.current?.swiper.slidePrev()}
           aria-label="Previous company"
           className="
@@ -107,6 +108,7 @@ export default function CompaniesCarousel({
         </button>
 
         <button
+          type="button"
           onClick={() => swiperRef.current?.swiper.slideNext()}
           aria-label="Next company"
           className="

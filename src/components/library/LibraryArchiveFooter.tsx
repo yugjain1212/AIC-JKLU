@@ -41,6 +41,8 @@ export default function LibraryArchiveFooter() {
                 src="/library/aic-origami-logo.png"
                 alt="AIC Logo"
                 width={20}
+                sizes="20px"
+                loading="lazy"
                 height={20}
                 className="w-5 h-5 object-contain"
               />
@@ -60,6 +62,7 @@ export default function LibraryArchiveFooter() {
               src="/library/campus-illustration.svg"
               alt="AIC-JKLU Campus Architecture Illustration"
               width={700}
+              sizes="(max-width: 768px) 100vw, 700px"
               height={300}
               className="w-full h-full object-contain object-center lg:object-right select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.5)]"
               priority

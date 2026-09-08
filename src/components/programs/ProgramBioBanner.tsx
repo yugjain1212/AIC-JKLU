@@ -52,6 +52,7 @@ export default function ProgramBioBanner() {
                 src="/library/campus-illustration.svg"
                 alt="AIC-JKLU Campus Architecture Illustration"
                 width={650}
+                sizes="(max-width: 768px) 100vw, 650px"
                 height={260}
                 className="w-full h-full object-contain object-center lg:object-right select-none drop-shadow-[0_8px_24px_rgba(0,0,0,0.5)]"
                 priority

@@ -471,6 +471,8 @@ export default function CompanyDirectory({ initialIndustry = 'All' }: CompanyDir
                               src={company.logo}
                               alt={company.name}
                               fill
+                              sizes="48px"
+                              loading="lazy"
                               className="object-contain"
                             />
                           </div>

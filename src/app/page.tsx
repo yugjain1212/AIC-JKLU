@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -12,7 +12,6 @@ import Preloader from '@/components/Preloader';
 const SESSION_KEY = 'aic_intro_shown';
 
 // ── Parallax section wrapper ───────────────────────────────────────────────
-// Each section fades + slides up as it enters the viewport
 function ParallaxSection({
   children,
   delay = 0,
@@ -27,7 +26,6 @@ function ParallaxSection({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -38,7 +36,6 @@ function ParallaxSection({
       },
       { threshold: 0.08 }
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
@@ -50,53 +47,52 @@ function ParallaxSection({
   );
 }
 
+// ── sessionStorage helper (client-only) ───────────────────────────────────
+function hasSeenPreloader(): boolean {
+  try {
+    return sessionStorage.getItem(SESSION_KEY) === 'true';
+  } catch {
+    return false;
+  }
+}
+
 // ── Main page ──────────────────────────────────────────────────────────────
 export default function Home() {
-  const [showPreloader, setShowPreloader] = useState(false);
+  // Render the loader in the initial HTML. Previously, the main site was
+  // rendered transparent while the loader was only mounted in an effect,
+  // which left a visible blank page until JavaScript had started running.
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  // Remove it for a returning visitor before the browser can paint it.
+  useLayoutEffect(() => {
+    if (hasSeenPreloader()) {
+      setShowPreloader(false);
+      return;
+    }
+
+    // First visit: keep the loader already present in the initial HTML.
+    document.body.classList.add('is-loading');
+  }, []);
 
   useEffect(() => {
-    // Disable automatic browser scroll restoration to prevent landing halfway down on reload
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-
-    // Ensure initial scroll position is strictly 0 on fresh load without anchor hash
-    if (!window.location.hash) {
-      window.scrollTo(0, 0);
-    }
-
-    try {
-      const seen = sessionStorage.getItem(SESSION_KEY) === 'true';
-      if (!seen) {
-        document.body.classList.add('is-loading');
-        setShowPreloader(true);
-      }
-    } catch {
-      // sessionStorage unavailable
-    }
-
-    return () => {
-      document.body.classList.remove('is-loading');
-    };
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (!window.location.hash) window.scrollTo(0, 0);
+    return () => document.body.classList.remove('is-loading');
   }, []);
 
   const handlePreloaderComplete = () => {
-    try {
-      sessionStorage.setItem(SESSION_KEY, 'true');
-    } catch {
-      // ignore
-    }
+    try { sessionStorage.setItem(SESSION_KEY, 'true'); } catch { /* ignore */ }
     document.body.classList.remove('is-loading');
     setShowPreloader(false);
   };
 
   return (
     <>
-      {/* ── Preloader (only shown once per browser session, client-mounted) ── */}
       {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
 
-      {/* ── Main site — always rendered consistently on server and client ── */}
-      <main className="min-h-screen bg-canvas">
+      <main
+        className="min-h-screen bg-canvas"
+      >
         {/* Navbar is outside parallax — it's sticky and appears instantly */}
         <Navbar />
 
@@ -104,7 +100,8 @@ export default function Home() {
         <Hero />
 
         {/* About section slides over the receding hero with seamless overlap */}
-        <div className="relative z-10 -mt-[15vh]">
+        {/* Overlaps the hero by the established section rhythm without tying spacing to viewport height. */}
+        <div className="relative z-10 -mt-24 sm:-mt-32 lg:-mt-40">
           <About />
         </div>
 

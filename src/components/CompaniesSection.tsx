@@ -11,38 +11,16 @@ import {
   useReducedMotion,
   type MotionValue,
 } from 'framer-motion';
+import { HOMEPAGE_COMPANIES, type HomepageCompany } from '@/data/companies';
 
 // ── Configurable stat ──────────────────────────────────────────────────────
 const COMBINED_VALUATION = '₹350 Cr+';
 const VALUATION_LABEL = 'Combined Valuation';
 
 // ── Company data ───────────────────────────────────────────────────────────
-interface Company {
-  name: string;
-  logo: string;
-}
-
-const COMPANIES: Company[] = [
-  { name: 'BAS', logo: '/companies/BAS.svg' },
-  { name: "Bowler's Academy", logo: '/companies/bowlers_acadmey.svg' },
-  { name: 'CaviSafe', logo: '/companies/CaviSafe.svg' },
-  { name: 'FinQuanata', logo: '/companies/FinQuanata.svg' },
-  { name: 'Marketing Chai', logo: '/companies/Marketing_chai.svg' },
-  { name: 'Papair', logo: '/companies/Papair.svg' },
-  { name: 'Plant Protector', logo: '/companies/plant_protector.svg' },
-  { name: 'SunEmission', logo: '/companies/SunEmission.svg' },
-  { name: 'Telemed on Wheels', logo: '/companies/Telemedonwheels.svg' },
-  { name: 'Snas IoT', logo: '/companies/Snas IoT.svg' },
-  { name: 'Starfire', logo: '/companies/Starfiree Logo.svg' },
-  { name: 'Sunbirds', logo: '/companies/Sunbirds.svg' },
-  { name: 'The Infinite Design', logo: '/companies/The Infinite Design.svg' },
-  { name: 'Tidor Tech', logo: '/companies/Tidor Tech.svg' },
-  { name: 'Satyukt', logo: '/companies/satyukt.svg' },
-];
-
 // ── Row builder — 4 rows × 6 per side for a rich continuous wall of startups ──
-function buildRows(list: Company[]) {
-  const make = (pool: Company[], rows: number, perRow: number, offset = 0) =>
+function buildRows(list: HomepageCompany[]) {
+  const make = (pool: HomepageCompany[], rows: number, perRow: number, offset = 0) =>
     Array.from({ length: rows }, (_, r) =>
       Array.from({ length: perRow }, (__, c) => pool[(r * 3 + c + offset) % pool.length])
     );
@@ -53,7 +31,7 @@ function buildRows(list: Company[]) {
 }
 
 // ── Logo cell — clean, no border, no background ───────────────────────────
-function LogoCell({ company }: { company: Company }) {
+function LogoCell({ company }: { company: HomepageCompany }) {
   return (
     <div className="flex items-center justify-center w-[140px] xl:w-[160px] h-[54px] shrink-0">
       <Image
@@ -61,6 +39,8 @@ function LogoCell({ company }: { company: Company }) {
         alt={company.name}
         width={150}
         height={54}
+        sizes="(max-width: 768px) 100px, 160px"
+        loading="lazy"
         className="w-full h-full object-contain select-none transition-transform duration-300 hover:scale-105"
         draggable={false}
       />
@@ -103,7 +83,7 @@ export default function CompaniesSection() {
 
   const lxv: MotionValue<string>[] = [lx0, lx1, lx2, lx3];
   const rxv: MotionValue<string>[] = [rx0, rx1, rx2, rx3];
-  const { leftRows, rightRows } = buildRows(COMPANIES);
+  const { leftRows, rightRows } = buildRows(HOMEPAGE_COMPANIES);
 
   return (
     <section
@@ -114,7 +94,7 @@ export default function CompaniesSection() {
         relative overflow-hidden
         h-[150vh] md:h-[160vh] lg:h-[110vh]
         bg-canvas
-        rounded-t-[36px] md:rounded-t-[52px]
+        rounded-t-[32px] md:rounded-t-[48px]
         shadow-[0_-24px_60px_rgba(0,0,0,0.07)]
       "
     >
@@ -268,7 +248,7 @@ export default function CompaniesSection() {
                     >
                       {row.map((c, j) => (
                         <div key={j} className="flex items-center justify-center w-[100px] h-[44px] shrink-0">
-                          <Image src={c.logo} alt={c.name} width={100} height={44} className="w-full h-full object-contain select-none" draggable={false} />
+                          <Image src={c.logo} alt={c.name} width={100} height={44} sizes="100px" loading="lazy" className="w-full h-full object-contain select-none" draggable={false} />
                         </div>
                       ))}
                     </motion.div>

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 const TOTAL_BOXES = 10;
-const LOAD_DURATION_MS = 2800; // total fill time
+const LOAD_DURATION_MS = 1800; // Required visible loading duration; exit animation remains unchanged.
 
 interface PreloaderProps {
   onComplete: () => void;
@@ -117,6 +117,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             width={100}
             height={100}
             priority
+            sizes="100px"
             className="w-full h-full object-contain"
           />
           </motion.div>
