@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -12,7 +12,6 @@ import Preloader from '@/components/Preloader';
 const SESSION_KEY = 'aic_intro_shown';
 
 // ── Parallax section wrapper ───────────────────────────────────────────────
-// Each section fades + slides up as it enters the viewport
 function ParallaxSection({
   children,
   delay = 0,
@@ -27,7 +26,6 @@ function ParallaxSection({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -38,7 +36,6 @@ function ParallaxSection({
       },
       { threshold: 0.08 }
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
@@ -50,66 +47,51 @@ function ParallaxSection({
   );
 }
 
+// ── sessionStorage helper (client-only) ───────────────────────────────────
+function hasSeenPreloader(): boolean {
+  try {
+    return sessionStorage.getItem(SESSION_KEY) === 'true';
+  } catch {
+    return false;
+  }
+}
+
 // ── Main page ──────────────────────────────────────────────────────────────
 export default function Home() {
-  // isLoaded starts false so the main content is opacity-0 from the very
-  // first paint — no flash of content before the preloader appears.
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [showPreloader, setShowPreloader] = useState(false);
+  // Render the loader in the initial HTML. Previously, the main site was
+  // rendered transparent while the loader was only mounted in an effect,
+  // which left a visible blank page until JavaScript had started running.
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  // Remove it for a returning visitor before the browser can paint it.
+  useLayoutEffect(() => {
+    if (hasSeenPreloader()) {
+      setShowPreloader(false);
+      return;
+    }
+
+    // First visit: keep the loader already present in the initial HTML.
+    document.body.classList.add('is-loading');
+  }, []);
 
   useEffect(() => {
-    // Disable automatic browser scroll restoration
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    if (!window.location.hash) {
-      window.scrollTo(0, 0);
-    }
-
-    try {
-      const seen = sessionStorage.getItem(SESSION_KEY) === 'true';
-      if (seen) {
-        // Returning visitor — skip loader, reveal content immediately
-        setIsLoaded(true);
-      } else {
-        // First visit / hard reload — show preloader
-        document.body.classList.add('is-loading');
-        setShowPreloader(true);
-      }
-    } catch {
-      // sessionStorage unavailable — just reveal content
-      setIsLoaded(true);
-    }
-
-    return () => {
-      document.body.classList.remove('is-loading');
-    };
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (!window.location.hash) window.scrollTo(0, 0);
+    return () => document.body.classList.remove('is-loading');
   }, []);
 
   const handlePreloaderComplete = () => {
-    try {
-      sessionStorage.setItem(SESSION_KEY, 'true');
-    } catch {
-      // ignore
-    }
+    try { sessionStorage.setItem(SESSION_KEY, 'true'); } catch { /* ignore */ }
     document.body.classList.remove('is-loading');
     setShowPreloader(false);
-    setIsLoaded(true);
   };
 
   return (
     <>
-      {/* ── Preloader ── */}
       {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
 
-      {/* ── Main site ──
-          opacity-0 + pointer-events-none until isLoaded is true.
-          This is enforced from frame zero so the browser never paints
-          the hero before the preloader is on screen. ── */}
       <main
-        className={`min-h-screen bg-canvas transition-opacity duration-700 ease-in-out ${
-          isLoaded ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className="min-h-screen bg-canvas"
       >
         {/* Navbar is outside parallax — it's sticky and appears instantly */}
         <Navbar />
