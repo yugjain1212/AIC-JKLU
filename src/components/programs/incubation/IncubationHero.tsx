@@ -11,9 +11,6 @@ export default function IncubationHero() {
       {/* ── Left Edge Vertical Brand Tag (Matching Reference Screenshot) ── */}
       <div className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 hidden xl:flex items-center gap-4 -rotate-90 origin-left select-none pointer-events-none z-20">
         <span className="font-robotoMono text-[13px] text-[#EB5725] font-bold">+</span>
-        <span className="font-robotoMono text-[10px] font-bold tracking-[0.32em] text-[#71717A] uppercase whitespace-nowrap">
-          EMPOWERING RURAL INDIA
-        </span>
         <div className="w-1.5 h-1.5 rounded-full bg-[#EB5725]" />
         <span className="font-marcellus text-[13px] text-[#EB5725] font-bold">01</span>
       </div>

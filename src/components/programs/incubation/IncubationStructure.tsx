@@ -39,9 +39,6 @@ export default function IncubationStructure() {
           <div className="w-2.5 h-2.5 rounded-full bg-[#EB5725] absolute" />
           <div className="w-1.5 h-1.5 rounded-full bg-[#71717A] absolute bottom-3" />
         </div>
-        <span className="font-robotoMono text-[10px] font-bold tracking-[0.28em] text-[#71717A] uppercase whitespace-nowrap -rotate-90 origin-center my-4">
-          EMPOWERING RURAL INDIA
-        </span>
         <span className="font-marcellus text-[13px] text-[#EB5725] font-bold">06</span>
       </div>
 
