@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Leaf, IndianRupee, Award } from 'lucide-react';
+import { ArrowRight, Leaf, IndianRupee, Award } from 'lucide-react';
 import ProgramHeroVisual from './ProgramHeroVisual';
 
 export default function ProgramHero() {
@@ -60,7 +60,7 @@ export default function ProgramHero() {
               Join a unique accelerator programme shaping the future of sustainable and bio-based products through innovation, mentorship, and growth opportunities.
             </p>
 
-            {/* Action Buttons: Apply Now & Download Brochure */}
+            {/* Action Button: Apply Now */}
             <div className="flex flex-wrap items-center gap-5 sm:gap-7">
               <Link
                 href="/apply?program=accelerator"

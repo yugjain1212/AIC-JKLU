@@ -1,20 +1,21 @@
 'use client';
 
-import Link from 'next/link';
+import { memo } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 
-export default function PartnershipsFeature() {
+const PartnershipsFeature = memo(function PartnershipsFeature() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section className="relative w-full py-12 sm:py-16 overflow-hidden select-none">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-14">
         
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: '60px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="
             relative
             rounded-[28px]
@@ -31,29 +32,20 @@ export default function PartnershipsFeature() {
             {/* ── LEFT COLUMN: Collaborative Hands Artwork from public/library ── */}
             <div className="lg:col-span-5 flex items-center justify-center">
               <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-[240px] sm:h-[290px] flex items-center justify-center select-none overflow-hidden">
-                
-                {/* Official Transparent Hands Illustration with Smooth Radial Feathering */}
-                <div
-                  className="w-full h-full flex items-center justify-center"
-                  style={{
-                    maskImage: 'radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 20%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0) 72%)',
-                    WebkitMaskImage: 'radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 20%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0) 72%)',
-                  }}
-                >
-                  <Image
-                    src="/library/transparent-image (1).png"
-                    alt="Partnership Collaborative Hands Illustration"
-                    width={450}
-                    sizes="(max-width: 768px) 100vw, 450px"
-                    height={380}
-                    className="w-full h-full object-contain opacity-95"
-                    priority
-                  />
-                </div>
+                <Image
+                  src="/library/transparent-image (1).png"
+                  alt="Partnership Collaborative Hands Illustration"
+                  width={450}
+                  sizes="(max-width: 768px) 100vw, 450px"
+                  height={380}
+                  className="w-full h-full object-contain opacity-95"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
 
-            {/* ── RIGHT COLUMN: Content & CTA ── */}
+            {/* ── RIGHT COLUMN: Content & Details ── */}
             <div className="lg:col-span-7 flex flex-col justify-center items-start lg:pl-6">
               {/* Eyebrow */}
               <p className="font-robotoMono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.24em] text-[#EB5725] mb-3">
@@ -68,25 +60,9 @@ export default function PartnershipsFeature() {
               </h2>
 
               {/* Paragraph */}
-              <p className="font-robotoMono text-[13px] sm:text-[14px] leading-[1.8] text-white/80 max-w-lg mb-8">
+              <p className="font-robotoMono text-[13px] sm:text-[14px] leading-[1.8] text-white/80 max-w-lg">
                 By collaborating with the right partners, we accelerate ideas, scale impact and create lasting change.
               </p>
-
-              {/* Action Button / Link */}
-              <div>
-                <Link
-                  href="/apply?type=partner"
-                  className="
-                    group inline-flex items-center gap-2
-                    font-robotoMono text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.2em]
-                    text-[#EB5725] hover:text-white
-                    transition-colors duration-200
-                  "
-                >
-                  <span>JOIN THE NETWORK</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-              </div>
             </div>
 
           </div>
@@ -95,4 +71,6 @@ export default function PartnershipsFeature() {
       </div>
     </section>
   );
-}
+});
+
+export default PartnershipsFeature;

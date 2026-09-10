@@ -1,8 +1,6 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import PartnersEcosystemVisual from './PartnersEcosystemVisual';
 
 export default function PartnersHero() {
@@ -51,26 +49,9 @@ export default function PartnersHero() {
             </h1>
 
             {/* Narrative Description */}
-            <p className="font-robotoMono text-[13px] sm:text-[14px] leading-[1.8] text-[#52525B] max-w-[420px] mb-8 sm:mb-9">
+            <p className="font-robotoMono text-[13px] sm:text-[14px] leading-[1.8] text-[#52525B] max-w-[420px]">
               AIC-JKLU works with organizations across industry, academia, government and the startup ecosystem to drive innovation and build a sustainable future.
             </p>
-
-            {/* CTA Action Link */}
-            <div>
-              <Link
-                href="/apply?type=partner"
-                className="
-                  group inline-flex items-center gap-2
-                  font-robotoMono text-[11.5px] sm:text-[12.5px] font-bold uppercase tracking-[0.18em]
-                  text-[#EB5725] hover:text-[#C84214]
-                  border-b border-[#EB5725] pb-1
-                  transition-colors duration-200
-                "
-              >
-                <span>BECOME A PARTNER</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-            </div>
           </motion.div>
 
           {/* ── RIGHT COLUMN: Central Ecosystem Network Visual ── */}
