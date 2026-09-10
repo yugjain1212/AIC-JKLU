@@ -19,7 +19,11 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: "AIC-JKLU | Atal Incubation Centre - JK Lakshmipat University",
-  description: "Backing Visionary Founders Building the Future from Jaipur. Supported by NITI Aayog & JK Lakshmipat University.",
+  description:
+    "Backing Visionary Founders Building the Future from Jaipur. Supported by NITI Aayog & JK Lakshmipat University.",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${marcellus.variable} ${robotoMono.variable}`}>
+    <html
+      lang="en"
+      className={`${marcellus.variable} ${robotoMono.variable}`}
+    >
       <body className="bg-canvas text-obsidian font-robotoMono antialiased flex flex-col min-h-screen">
         <div className="flex-1 w-full">
           {children}
