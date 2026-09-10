@@ -466,7 +466,7 @@ export default function LeapAbout() {
           </div>
 
           {/* 3 Centered Editorial Paragraphs */}
-          <div className="space-y-4 max-w-3xl mx-auto font-robotoMono text-[12px] sm:text-[12.8px] leading-[1.8] text-[#52525B]">
+          <div className="space-y-4 max-w-4xl mx-auto font-robotoMono text-[14px] sm:text-[18px] leading-[1.8] text-[#52525B]">
             <p>
               The Unnatify Farmer Accelerator Program (UFAP) is a 6-month incubation initiative designed to support AgriTech and FoodTech startups.
             </p>

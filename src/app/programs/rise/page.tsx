@@ -14,7 +14,7 @@ export default function RiseProgramPage() {
 
       {/* ── RISE Program Page Content ── */}
       <div className="flex-1 flex flex-col w-full">
-        {/* 1. Hero: Empowering Rural India & Transmission Grid Orbital Lens Visual */}
+        {/* 1. Hero */}
         <RiseHero />
 
         {/* 2. Our Pillars: 01 Renewable Energy, 02 Sustainable Growth, 03 Social Inclusion */}

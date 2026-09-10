@@ -209,7 +209,7 @@ export default function Footer() {
                     href="tel:+911417107589"
                     className="group/phone inline-flex flex-col font-robotoMono text-[15px] sm:text-[17px] md:text-[18px] text-obsidian/90 tracking-tight transition-transform duration-300 hover:translate-x-1 focus-visible:outline-black"
                   >
-                    <span>+91 141-710-7589</span>
+                    <span>0141-710-7524</span>
                     <span className="h-[1px] w-0 bg-obsidian/60 transition-all duration-300 ease-out group-hover/phone:w-full" />
                   </a>
                 </div>
@@ -242,7 +242,9 @@ export default function Footer() {
                   Location
                 </span>
                 <p className="font-robotoMono text-[13px] sm:text-[14px] font-medium text-obsidian leading-snug md:text-right">
-                  JK Lakshmipat University, Jaipur, Rajasthan, 302026
+                  JK Lakshmipat University, 
+                  <br />
+                  Jaipur,Rajasthan, 302026
                   <br />
                   India
                 </p>
