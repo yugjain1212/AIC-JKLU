@@ -56,10 +56,7 @@ export default function CompanyInformation({ company }: CompanyInformationProps)
                 cursor-pointer
               "
             >
-              View Company
-              <span className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                ↗
-              </span>
+          
             </a>
           </div>
 

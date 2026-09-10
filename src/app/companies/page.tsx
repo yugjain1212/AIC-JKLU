@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ArrowUpRight, ArrowRight, X, SlidersHorizontal, ChevronDown } from 'lucide-react';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import CompanyModal from '@/components/companies/CompanyModal';
 import {
   STARTUPS,
@@ -349,9 +348,6 @@ export default function CompaniesPage() {
         company={selectedCompany}
         onClose={() => setSelectedCompany(null)}
       />
-
-      {/* ── Global Footer ── */}
-      <Footer />
     </main>
   );
 }

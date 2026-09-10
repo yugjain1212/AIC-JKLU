@@ -418,16 +418,6 @@ export default function LeapHero() {
   return (
     <section className="relative w-full pt-10 sm:pt-14 lg:pt-16 pb-12 sm:pb-16 lg:pb-20 border-b border-[#E4E4E0]/80 overflow-hidden select-none bg-[#FBF7F0]">
       
-      {/* ── Left Edge Vertical Brand Tag ── */}
-      <div className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 hidden xl:flex items-center gap-3 -rotate-90 origin-left select-none pointer-events-none">
-        <div className="w-1.5 h-1.5 rounded-full bg-[#EB5725]" />
-        <span className="font-robotoMono text-[10px] font-bold tracking-[0.28em] text-[#71717A] uppercase whitespace-nowrap">
-          EMPOWERING RURAL INDIA
-        </span>
-        <div className="w-1.5 h-1.5 rounded-full bg-[#121212]" />
-        <span className="font-marcellus text-[13px] text-[#EB5725] font-bold">01</span>
-      </div>
-
       <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-14 xl:pl-20">
         
         {/* =========================================================

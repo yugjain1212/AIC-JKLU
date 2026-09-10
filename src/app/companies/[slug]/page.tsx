@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, ArrowRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import { STARTUPS, type CompanyItem } from '@/data/companies';
 
 interface PageProps {
@@ -126,8 +125,6 @@ export default function CompanyDetailPage({ params }: PageProps) {
           </div>
         </div>
       </div>
-
-      <Footer />
     </main>
   );
 }

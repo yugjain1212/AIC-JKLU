@@ -93,36 +93,6 @@ export default function ProgramHero() {
                 <span>APPLY NOW</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
-
-              <a
-                href="#download"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert('Brochure download will begin shortly.');
-                }}
-                className="
-                  inline-flex
-                  items-center
-                  gap-2
-                  font-robotoMono
-                  text-[11.5px]
-                  sm:text-[12px]
-                  font-bold
-                  tracking-[0.16em]
-                  uppercase
-                  text-[#121212]
-                  hover:text-[#EB5725]
-                  border-b
-                  border-current
-                  pb-0.5
-                  transition-colors
-                  duration-200
-                  group
-                "
-              >
-                <span>DOWNLOAD BROCHURE</span>
-                <Download className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5 text-[#EB5725]" />
-              </a>
             </div>
           </motion.div>
 
