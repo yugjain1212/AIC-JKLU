@@ -192,6 +192,8 @@ AIC-JKLU/
 │   │   ├── about/                # About AIC-JKLU & Mission/Vision routes
 │   │   │   ├── mission-vision/   # Institutional charter & governance
 │   │   │   └── page.tsx
+│   │   ├── api/                  # Backend API routes & server proxies
+│   │   │   └── apply/route.ts    # Google Form backend integration endpoint
 │   │   ├── apply/                # Interactive cohort application portal
 │   │   │   └── page.tsx
 │   │   ├── companies/            # 95+ Startup Directory & Dynamic Profile Pages
