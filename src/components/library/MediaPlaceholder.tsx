@@ -43,7 +43,7 @@ export default function MediaPlaceholder({
           fill
           priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover/media:scale-105"
+          className="object-cover"
         />
       ) : (
         /* Editorial Placeholder with Clean Minimalist Grid Texture */

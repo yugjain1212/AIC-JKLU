@@ -128,7 +128,6 @@ export default function LibraryHero() {
               initial={{ opacity: 0, scale: 0.9, rotate: -12 }}
               animate={{ opacity: 1, scale: 1, rotate: -6 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-              whileHover={{ rotate: -3, scale: 1.03 }}
               className="
                 absolute left-0 sm:left-4 top-14 sm:top-16 z-10
                 w-[160px] sm:w-[200px] h-[190px] sm:h-[230px]
@@ -167,7 +166,6 @@ export default function LibraryHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-              whileHover={{ scale: 1.02 }}
               className="
                 relative z-20
                 w-[240px] sm:w-[320px] lg:w-[360px] h-[170px] sm:h-[220px] lg:h-[240px]
@@ -220,7 +218,6 @@ export default function LibraryHero() {
               initial={{ opacity: 0, scale: 0.9, rotate: 10 }}
               animate={{ opacity: 1, scale: 1, rotate: 5 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
-              whileHover={{ rotate: 2, scale: 1.03 }}
               className="
                 absolute right-2 sm:right-6 bottom-0 sm:bottom-4 z-25
                 w-[180px] sm:w-[240px] h-[135px] sm:h-[180px]

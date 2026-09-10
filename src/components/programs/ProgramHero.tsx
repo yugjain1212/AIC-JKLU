@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Leaf, IndianRupee, Award } from 'lucide-react';
+import { ArrowRight, Leaf, IndianRupee, Award } from 'lucide-react';
 import ProgramHeroVisual from './ProgramHeroVisual';
 
 export default function ProgramHero() {
@@ -60,7 +60,7 @@ export default function ProgramHero() {
               Join a unique accelerator programme shaping the future of sustainable and bio-based products through innovation, mentorship, and growth opportunities.
             </p>
 
-            {/* Action Buttons: Apply Now & Download Brochure */}
+            {/* Action Button: Apply Now */}
             <div className="flex flex-wrap items-center gap-5 sm:gap-7">
               <Link
                 href="/apply?program=accelerator"
@@ -93,36 +93,6 @@ export default function ProgramHero() {
                 <span>APPLY NOW</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
-
-              <a
-                href="#download"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert('Brochure download will begin shortly.');
-                }}
-                className="
-                  inline-flex
-                  items-center
-                  gap-2
-                  font-robotoMono
-                  text-[11.5px]
-                  sm:text-[12px]
-                  font-bold
-                  tracking-[0.16em]
-                  uppercase
-                  text-[#121212]
-                  hover:text-[#EB5725]
-                  border-b
-                  border-current
-                  pb-0.5
-                  transition-colors
-                  duration-200
-                  group
-                "
-              >
-                <span>DOWNLOAD BROCHURE</span>
-                <Download className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5 text-[#EB5725]" />
-              </a>
             </div>
           </motion.div>
 

@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
+import { memo } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ArrowRight, Handshake, Globe, Building2, Infinity as InfinityIcon } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Handshake, Globe, Building2, Infinity as InfinityIcon } from 'lucide-react';
 
 const PARTNER_METRICS = [
   {
@@ -32,16 +32,18 @@ const PARTNER_METRICS = [
   },
 ];
 
-export default function PartnersFutureSection() {
+const PartnersFutureSection = memo(function PartnersFutureSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section className="relative w-full pt-6 pb-20 sm:pb-28 overflow-hidden select-none">
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-14">
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: '60px' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="
             relative
             rounded-[28px]
@@ -56,7 +58,7 @@ export default function PartnersFutureSection() {
           {/* ── TOP 2-COLUMN SECTION: Editorial Headline & 4-Column Metrics ── */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start pb-10 border-b border-[#E4E4E0]/80">
 
-            {/* ── Left Column: Editorial Headline & Link ── */}
+            {/* ── Left Column: Editorial Headline & Text ── */}
             <div className="lg:col-span-5 flex flex-col justify-center items-start">
               <h2 className="font-marcellus text-[34px] sm:text-[44px] lg:text-[48px] leading-[1.05] tracking-[-0.03em] text-[#121212] mb-4 sm:mb-5">
                 Building the future,
@@ -64,23 +66,9 @@ export default function PartnersFutureSection() {
                 <span className="text-[#EB5725]">together.</span>
               </h2>
 
-              <p className="font-robotoMono text-[12.5px] sm:text-[13.5px] leading-[1.8] text-[#52525B] max-w-sm mb-7 sm:mb-8">
+              <p className="font-robotoMono text-[12.5px] sm:text-[13.5px] leading-[1.8] text-[#52525B] max-w-sm">
                 Our partners are at the heart of everything we do. Thank you for being a part of our journey.
               </p>
-
-              <Link
-                href="/apply?type=partner"
-                className="
-                  group inline-flex items-center gap-2
-                  font-robotoMono text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.18em]
-                  text-[#EB5725] hover:text-[#C84214]
-                  border-b border-[#EB5725] pb-0.5
-                  transition-colors duration-200
-                "
-              >
-                <span>VIEW PARTNERSHIP OPPORTUNITIES</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
             </div>
 
             {/* ── Right Column: 4 Stat Metrics with Hairline Dividers ── */}
@@ -122,7 +110,8 @@ export default function PartnersFutureSection() {
               sizes="(max-width: 768px) 100vw, 800px"
               height={260}
               className="w-full h-full object-contain object-bottom select-none drop-shadow-[0_4px_16px_rgba(0,0,0,0.06)]"
-              priority
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -131,4 +120,6 @@ export default function PartnersFutureSection() {
       </div>
     </section>
   );
-}
+});
+
+export default PartnersFutureSection;

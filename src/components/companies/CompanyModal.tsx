@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight } from 'lucide-react';
+import { X } from 'lucide-react';
 import type { CompanyItem } from '@/data/companies';
 
 interface CompanyModalProps {
@@ -117,30 +117,13 @@ export default function CompanyModal({ company, onClose }: CompanyModalProps) {
           </div>
 
           {/* About / Description */}
-          <div className="mb-8">
+          <div>
             <span className="block font-robotoMono text-[10px] uppercase tracking-widest text-[#888888] mb-2">
               About
             </span>
             <p className="font-robotoMono text-xs leading-relaxed text-[#333333]">
               {company.description}
             </p>
-          </div>
-
-          {/* Footer Actions */}
-          <div className="pt-4 border-t border-[#E4DFD5] flex items-center justify-between">
-            <span className="font-robotoMono text-[10px] uppercase tracking-wider text-[#888888]">
-              Atal Incubation Centre — JKLU
-            </span>
-            <a
-              href={`mailto:aic@jklu.edu.in?subject=Inquiry regarding ${encodeURIComponent(company.name)}`}
-              className="
-                inline-flex items-center gap-1.5 font-robotoMono text-[11px] font-medium
-                text-[#EB5725] hover:text-[#121212] transition-colors cursor-pointer
-              "
-            >
-              <span>Connect</span>
-              <ArrowRight size={13} />
-            </a>
           </div>
         </motion.div>
       </div>

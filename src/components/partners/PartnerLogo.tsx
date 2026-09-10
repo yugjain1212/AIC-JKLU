@@ -1,10 +1,10 @@
 'use client';
 
+import React, { memo } from 'react';
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
 import { type Partner } from '@/data/partners';
 
-export function PartnerLogoSlot({ partner }: { partner: Partner }) {
+export const PartnerLogoSlot = memo(function PartnerLogoSlot({ partner }: { partner: Partner }) {
   if (partner.image) {
     return (
       <div className="relative w-full h-full flex items-center justify-center p-2">
@@ -14,6 +14,7 @@ export function PartnerLogoSlot({ partner }: { partner: Partner }) {
           width={130}
           sizes="130px"
           loading="lazy"
+          decoding="async"
           height={48}
           unoptimized
           className="max-h-[38px] sm:max-h-[42px] max-w-[115px] sm:max-w-[130px] w-auto h-auto object-contain"
@@ -164,35 +165,16 @@ export function PartnerLogoSlot({ partner }: { partner: Partner }) {
         </span>
       );
   }
-}
+});
 
 interface PartnerLogoProps {
   partner: Partner;
   index?: number;
 }
 
-export default function PartnerLogo({ partner, index = 0 }: PartnerLogoProps) {
-  const prefersReducedMotion = useReducedMotion();
-
+const PartnerLogo = memo(function PartnerLogo({ partner }: PartnerLogoProps) {
   return (
-    <motion.div
-      initial={prefersReducedMotion ? {} : { opacity: 0, y: 18, scale: 0.96 }}
-      whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{
-        duration: 0.45,
-        delay: prefersReducedMotion ? 0 : Math.min(index * 0.04, 0.4),
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      whileHover={
-        prefersReducedMotion
-          ? {}
-          : {
-              y: -3.5,
-              scale: 1.02,
-              transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
-            }
-      }
+    <div
       className="
         group/tile
         relative
@@ -206,7 +188,10 @@ export default function PartnerLogo({ partner, index = 0 }: PartnerLogoProps) {
         flex items-center justify-center
         shadow-[0_2px_8px_rgba(0,0,0,0.02)]
         hover:shadow-[0_8px_20px_rgba(235,87,37,0.09)]
-        transition-all duration-200
+        transition-all duration-200 ease-out
+        hover:-translate-y-1 hover:scale-[1.02]
+        active:scale-[0.98]
+        will-change-transform
         cursor-pointer
       "
     >
@@ -219,6 +204,8 @@ export default function PartnerLogo({ partner, index = 0 }: PartnerLogoProps) {
       ">
         <PartnerLogoSlot partner={partner} />
       </div>
-    </motion.div>
+    </div>
   );
-}
+});
+
+export default PartnerLogo;

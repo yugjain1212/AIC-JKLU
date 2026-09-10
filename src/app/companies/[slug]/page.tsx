@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import { STARTUPS, type CompanyItem } from '@/data/companies';
 
@@ -97,30 +97,13 @@ export default function CompanyDetailPage({ params }: PageProps) {
             </div>
 
             {/* Description */}
-            <div className="mb-8">
+            <div>
               <span className="block font-robotoMono text-[10px] uppercase tracking-widest text-[#888888] mb-2">
                 About
               </span>
               <p className="font-robotoMono text-xs sm:text-sm leading-relaxed text-[#333333]">
                 {startup.description}
               </p>
-            </div>
-
-            {/* Footer */}
-            <div className="pt-6 border-t border-[#E4DFD5] flex items-center justify-between">
-              <span className="font-robotoMono text-[10px] uppercase tracking-wider text-[#888888]">
-                Atal Incubation Centre — JKLU
-              </span>
-              <a
-                href={`mailto:aic@jklu.edu.in?subject=Inquiry regarding ${encodeURIComponent(startup.name)}`}
-                className="
-                  inline-flex items-center gap-1.5 font-robotoMono text-xs font-medium
-                  text-[#EB5725] hover:text-[#121212] transition-colors cursor-pointer
-                "
-              >
-                <span>Connect</span>
-                <ArrowRight size={13} />
-              </a>
             </div>
           </div>
         </div>
