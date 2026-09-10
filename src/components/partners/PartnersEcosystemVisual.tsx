@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Briefcase,
@@ -9,283 +10,452 @@ import {
   Rocket,
 } from 'lucide-react';
 
-// ─────────────────────────────────────────────────────────────
-//  LAYOUT: Architectural grid / blueprint diagram
-//
-//  SVG canvas: 600 × 560   Centre: (300, 280)
-//
-//  Hub at centre.
-//  4 corner nodes at equal diagonal distance.
-//  1 node centred at top.
-//
-//  Visual language: thin construction lines, tick marks,
-//  right-angle elbows, measurement annotations, grid crosses.
-// ─────────────────────────────────────────────────────────────
+const CX = 260;
+const CY = 260;
 
-const CX = 300;
-const CY = 280;
+// Distance from center of AIC to center of each node
+const ORBIT_R = 178;
 
-// Node positions — perfectly symmetric cross + top
+function getPoint(angleDeg: number) {
+  const angle = (angleDeg * Math.PI) / 180;
+
+  return {
+    x: CX + ORBIT_R * Math.cos(angle),
+    y: CY + ORBIT_R * Math.sin(angle),
+  };
+}
+
 const NODES = [
   {
     id: 'industry',
     label: 'INDUSTRY',
-    sublabel: 'Corporate Partners',
+    sub: 'Corporate Partners',
     icon: Briefcase,
-    nx: 300, ny: 80,       // top-centre
+    angle: -90,
   },
   {
     id: 'govt',
     label: 'GOVERNMENT',
-    sublabel: 'Policy & Grants',
+    sub: 'Policy & Grants',
     icon: Landmark,
-    nx: 510, ny: 160,      // upper-right
+    angle: -18,
   },
   {
     id: 'enablers',
     label: 'ECOSYSTEM',
-    sublabel: 'Enablers & VCs',
+    sub: 'Enablers & VCs',
     icon: Rocket,
-    nx: 510, ny: 400,      // lower-right
+    angle: 54,
   },
   {
     id: 'investors',
     label: 'INVESTORS',
-    sublabel: 'Seed & Growth',
+    sub: 'Seed & Growth',
     icon: UserCheck,
-    nx: 90,  ny: 400,      // lower-left
+    angle: 126,
   },
   {
     id: 'academia',
     label: 'ACADEMIA',
-    sublabel: 'Research & Labs',
+    sub: 'Research & Labs',
     icon: GraduationCap,
-    nx: 90,  ny: 160,      // upper-left
+    angle: 198,
   },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function PartnersEcosystemVisual() {
+  const [hovered, setHovered] = useState<string | null>(null);
+
   return (
-    <div className="relative w-full max-w-[500px] sm:max-w-[540px] aspect-square mx-auto flex items-center justify-center select-none overflow-visible">
-      
-      {/* ── UNIFIED SVG ORBITAL SYSTEM (Centered at 300, 280) ── */}
+    <div
+      className="
+        relative
+        w-full
+        max-w-[520px]
+        xl:max-w-[560px]
+        mx-auto
+        select-none
+      "
+      style={{ aspectRatio: '1 / 1' }}
+    >
+      {/* =====================================================
+          ORBIT + CENTRAL HUB
+      ====================================================== */}
+
       <svg
-        viewBox="0 0 600 560"
+        viewBox="0 0 520 520"
+        className="absolute inset-0 w-full h-full pointer-events-none"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
         aria-hidden="true"
       >
         <defs>
-          {/* Subtle Drop Shadow for Central Badge */}
-          <filter id="aicGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="8" stdDeviation="12" floodColor="#EB5725" floodOpacity="0.32" />
-          </filter>
-          <filter id="nodeShadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000000" floodOpacity="0.06" />
+          <filter
+            id="aic-glow"
+            x="-100%"
+            y="-100%"
+            width="300%"
+            height="300%"
+          >
+            <feDropShadow
+              dx="0"
+              dy="10"
+              stdDeviation="15"
+              floodColor="#EB5725"
+              floodOpacity="0.18"
+            />
           </filter>
         </defs>
 
-        {/* ── 1. BACKGROUND AXIS & TRAJECTORY GUIDELINES ── */}
-        <g opacity="0.25" stroke="#D8D2C6" strokeWidth="0.8" strokeDasharray="3 3">
-          <line x1="20" y1="280" x2="580" y2="280" />
-          <line x1="300" y1="20" x2="300" y2="540" />
-        </g>
+        {/* Outer orbit */}
 
-        {/* Diagonal Guidelines */}
-        <line x1="90" y1="160" x2="510" y2="400" stroke="#EB5725" strokeWidth="0.8" strokeDasharray="2 4" opacity="0.3" />
-        <line x1="510" y1="160" x2="90" y2="400" stroke="#EB5725" strokeWidth="0.8" strokeDasharray="2 4" opacity="0.3" />
-
-        {/* ── 2. CONCENTRIC ORBITAL RINGS ── */}
-        {/* Ring 1: Inner Orbit (r=90) */}
         <circle
           cx={CX}
           cy={CY}
-          r="90"
-          stroke="#EB5725"
+          r={ORBIT_R}
+          stroke="#D9D3CA"
           strokeWidth="1"
-          strokeDasharray="3 4"
-          opacity="0.5"
         />
 
-        {/* ── Hub outer decorative square ── */}
-        <motion.rect
-          x={CX - 68}
-          y={CY - 68}
-          width="136"
-          height="136"
+        {/* Inner subtle orbit */}
+
+        <circle
+          cx={CX}
+          cy={CY}
+          r="112"
           stroke="#EB5725"
           strokeWidth="0.8"
-          strokeDasharray="3 5"
-          opacity="0.3"
+          strokeDasharray="2 8"
+          opacity="0.18"
         />
 
-        {/* Ring 3: Outer Orbit (r=200) */}
+        {/* Small orange orbit markers */}
+
+        {NODES.map((node) => {
+          const point = getPoint(node.angle);
+
+          return (
+            <circle
+              key={node.id}
+              cx={point.x}
+              cy={point.y}
+              r="3.2"
+              fill="#EB5725"
+            />
+          );
+        })}
+
+        {/* =================================================
+            CENTRAL AIC
+        ================================================== */}
+
         <circle
           cx={CX}
           cy={CY}
-          r="200"
-          stroke="#D8D2C6"
-          strokeWidth="0.9"
-          strokeDasharray="4 6"
-          opacity="0.75"
+          r="68"
+          fill="#EB5725"
+          filter="url(#aic-glow)"
         />
 
-        {/* ── 3. RADIAL CONNECTION LINES (From center to satellite centers) ── */}
-        <g stroke="#EB5725" strokeWidth="1" strokeDasharray="3 3" opacity="0.45">
-          <line x1={CX} y1={CY} x2="300" y2="80" />
-          <line x1={CX} y1={CY} x2="510" y2="160" />
-          <line x1={CX} y1={CY} x2="510" y2="400" />
-          <line x1={CX} y1={CY} x2="90" y2="400" />
-          <line x1={CX} y1={CY} x2="90" y2="160" />
-        </g>
+        <circle
+          cx={CX}
+          cy={CY}
+          r="68"
+          stroke="#F8E9E2"
+          strokeWidth="1"
+          opacity="0.8"
+        />
 
-        {/* ── 4. ORBITAL CONNECTOR NODES ── */}
-        <circle cx="300" cy="190" r="3" fill="#EB5725" />
-        <circle cx="390" cy="280" r="3" fill="#EB5725" />
-        <circle cx="300" cy="370" r="3" fill="#EB5725" />
-        <circle cx="210" cy="280" r="3" fill="#EB5725" />
+        {/* AIC */}
 
-        <circle cx="90" cy="160" r="2.5" fill="#121212" />
-        <circle cx="510" cy="160" r="2.5" fill="#121212" />
-        <circle cx="90" cy="400" r="2.5" fill="#121212" />
-        <circle cx="510" cy="400" r="2.5" fill="#121212" />
+        <text
+          x={CX}
+          y={CY - 10}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="white"
+          style={{
+            fontSize: '28px',
+            fontWeight: '500',
+            letterSpacing: '-0.03em',
+            fontFamily:
+              'var(--font-marcellus, Georgia, serif)',
+          }}
+        >
+          AIC
+        </text>
 
-        {/* Top-Right Technical Dot Matrix */}
-        <g opacity="0.4" fill="#EB5725">
-          <circle cx="450" cy="45" r="1.2" />
-          <circle cx="465" cy="45" r="1.2" />
-          <circle cx="480" cy="45" r="1.2" />
-          <circle cx="450" cy="60" r="1.2" />
-          <circle cx="465" cy="60" r="1.2" />
-          <circle cx="480" cy="60" r="1.2" />
-          <circle cx="450" cy="75" r="1.2" />
-          <circle cx="465" cy="75" r="1.2" />
-          <circle cx="480" cy="75" r="1.2" />
-        </g>
+        {/* Divider */}
 
-        {/* Left Side Dot Matrix */}
-        <g opacity="0.35" fill="#71717A">
-          <circle cx="60" cy="260" r="1.2" />
-          <circle cx="75" cy="260" r="1.2" />
-          <circle cx="90" cy="260" r="1.2" />
-          <circle cx="60" cy="275" r="1.2" />
-          <circle cx="75" cy="275" r="1.2" />
-          <circle cx="90" cy="275" r="1.2" />
-        </g>
+        <line
+          x1={CX - 21}
+          y1={CY + 11}
+          x2={CX + 21}
+          y2={CY + 11}
+          stroke="white"
+          strokeWidth="0.7"
+          opacity="0.45"
+        />
 
-        {/* ── 5. CENTRAL AIC JKLU CORE BADGE ── */}
-        <g transform={`translate(${CX}, ${CY})`}>
-          {/* Outer Breathing Pulse Ring */}
-          <circle cx="0" cy="0" r="62" fill="none" stroke="#EB5725" strokeWidth="1" strokeDasharray="2 3" opacity="0.4">
-            <animate attributeName="r" values="58;66;58" dur="3s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.4;0.15;0.4" dur="3s" repeatCount="indefinite" />
-          </circle>
+        {/* JKLU */}
 
-          {/* Solid AIC Orange Circle */}
-          <circle cx="0" cy="0" r="54" fill="#EB5725" stroke="#FFFFFF" strokeWidth="2.5" filter="url(#aicGlow)" />
-
-          {/* AIC Heading */}
-          <text
-            x="0"
-            y="-4"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fill="#FFFFFF"
-            className="font-marcellus"
-            style={{ fontSize: '26px', fontWeight: 'bold', letterSpacing: '-0.02em' }}
-          >
-            AIC
-          </text>
-
-          {/* JKLU Subtitle */}
-          <text
-            x="0"
-            y="19"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fill="#FFFFFF"
-            className="font-robotoMono"
-            style={{ fontSize: '10.5px', fontWeight: '700', letterSpacing: '0.22em' }}
-          >
-            JKLU
-          </text>
-        </g>
+        <text
+          x={CX}
+          y={CY + 27}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="white"
+          style={{
+            fontSize: '9px',
+            fontWeight: '700',
+            letterSpacing: '0.3em',
+            fontFamily:
+              'var(--font-roboto-mono, monospace)',
+          }}
+        >
+          JKLU
+        </text>
       </svg>
 
-      {/* ── 5 SATELLITE NODES OVERLAY (Pinned using exact percentages from 600x560 grid) ── */}
-      {NODES.map((node, idx) => {
+      {/* =====================================================
+          NODES
+      ====================================================== */}
+
+      {NODES.map((node, index) => {
         const Icon = node.icon;
-        const leftPct = (node.nx / 600) * 100;
-        const topPct = (node.ny / 560) * 100;
+        const point = getPoint(node.angle);
+
+        const left = `${(point.x / 520) * 100}%`;
+        const top = `${(point.y / 520) * 100}%`;
+
+        const isHovered = hovered === node.id;
 
         return (
-          <motion.div
+          /*
+           * IMPORTANT:
+           * This wrapper handles POSITIONING.
+           *
+           * The inner motion.div handles ANIMATION.
+           *
+           * This prevents Framer Motion from overwriting
+           * translate(-50%, -50%).
+           */
+          <div
             key={node.id}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.5,
-              delay: 0.1 + idx * 0.06,
-              ease: EASE,
-            }}
+            className="
+              absolute
+              z-20
+              -translate-x-1/2
+              -translate-y-1/2
+            "
             style={{
-              position: 'absolute',
-              left: `${leftPct}%`,
-              top: `${topPct}%`,
-              transform: 'translate(-50%, -50%)',
+              left,
+              top,
             }}
-            className="flex flex-col items-center text-center z-20 cursor-pointer group"
           >
-            {/* Square badge — architectural */}
-            <div className="
-              w-[52px] h-[52px] sm:w-[58px] sm:h-[58px]
-              rounded-xl
-              bg-white
-              border border-[#E4E4E0]
-              shadow-[0_4px_16px_rgba(0,0,0,0.06)]
-              flex items-center justify-center
-              text-[#121212]
-              group-hover:border-[#EB5725]
-              group-hover:text-[#EB5725]
-              group-hover:scale-110
-              group-hover:shadow-[0_8px_24px_rgba(235,87,37,0.2)]
-              transition-all duration-300
-              mb-2
-            ">
-              <Icon className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:scale-110" />
-            </div>
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.82,
+              }}
+              animate={{
+                opacity: 1,
+                scale: isHovered ? 1.06 : 1,
+              }}
+              transition={{
+                duration: 0.55,
+                delay: 0.1 + index * 0.08,
+                ease: EASE,
+              }}
+              onMouseEnter={() => setHovered(node.id)}
+              onMouseLeave={() => setHovered(null)}
+              className="
+                w-[110px]
+                sm:w-[120px]
+                flex
+                flex-col
+                items-center
+                text-center
+                cursor-pointer
+              "
+            >
+              {/* =================================================
+                  ICON
+              ================================================== */}
 
-            {/* Label */}
-            <span className="
-              font-robotoMono
-              text-[9px] sm:text-[10px]
-              font-bold
-              tracking-[0.16em]
-              uppercase
-              text-[#121212]
-              group-hover:text-[#EB5725]
-              transition-colors duration-200
-              max-w-[110px]
-              leading-tight
-            ">
-              {node.label}
-            </span>
-          </motion.div>
+              <div
+                className={`
+                  relative
+
+                  w-[66px]
+                  h-[66px]
+
+                  sm:w-[72px]
+                  sm:h-[72px]
+
+                  rounded-full
+
+                  flex
+                  items-center
+                  justify-center
+
+                  border
+
+                  transition-all
+                  duration-300
+
+                  ${
+                    isHovered
+                      ? `
+                        bg-[#FFF8F4]
+                        border-[#EB5725]
+                        text-[#EB5725]
+                        shadow-[0_8px_30px_rgba(235,87,37,0.15)]
+                      `
+                      : `
+                        bg-white
+                        border-[#E2DDD6]
+                        text-[#151515]
+                        shadow-[0_6px_25px_rgba(25,20,15,0.06)]
+                      `
+                  }
+                `}
+              >
+                <Icon
+                  className="
+                    w-[24px]
+                    h-[24px]
+                    sm:w-[26px]
+                    sm:h-[26px]
+                  "
+                  strokeWidth={1.7}
+                />
+
+                {/* Hover dot */}
+
+                {isHovered && (
+                  <motion.span
+                    initial={{
+                      scale: 0,
+                      opacity: 0,
+                    }}
+                    animate={{
+                      scale: 1,
+                      opacity: 1,
+                    }}
+                    className="
+                      absolute
+                      top-[5px]
+                      right-[5px]
+                      w-[6px]
+                      h-[6px]
+                      rounded-full
+                      bg-[#EB5725]
+                    "
+                  />
+                )}
+              </div>
+
+              {/* =================================================
+                  LABEL
+              ================================================== */}
+
+              <div className="mt-3 flex flex-col items-center">
+                <span
+                  className={`
+                    font-robotoMono
+
+                    text-[9px]
+                    sm:text-[10px]
+
+                    font-bold
+                    uppercase
+
+                    tracking-[0.17em]
+
+                    leading-none
+
+                    whitespace-nowrap
+
+                    transition-colors
+                    duration-300
+
+                    ${
+                      isHovered
+                        ? 'text-[#EB5725]'
+                        : 'text-[#171717]'
+                    }
+                  `}
+                >
+                  {node.label}
+                </span>
+
+                <span
+                  className="
+                    mt-[6px]
+
+                    font-robotoMono
+
+                    text-[7.5px]
+                    sm:text-[8px]
+
+                    tracking-[0.04em]
+
+                    leading-none
+
+                    text-[#A09890]
+
+                    whitespace-nowrap
+                  "
+                >
+                  {node.sub}
+                </span>
+              </div>
+            </motion.div>
+          </div>
         );
       })}
 
-      {/* ── TECHNICAL GEOGRAPHIC COORDINATES (Jaipur) ── */}
-      <div className="
-        hidden xl:block
-        absolute bottom-3 right-0
-        font-robotoMono text-[8.5px] font-medium tracking-[0.2em]
-        text-[#121212]/30 pointer-events-none select-none
-      ">
-        26.8470° N · 75.8082° E
-      </div>
+      {/* =====================================================
+          BOTTOM EDITORIAL LABEL
+      ====================================================== */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: 0.75,
+        }}
+        className="
+          absolute
+          left-1/2
+          bottom-[7%]
+          -translate-x-1/2
+          pointer-events-none
+          text-center
+        "
+      >
+        <span
+          className="
+            font-robotoMono
+            text-[6px]
+            sm:text-[7px]
+            tracking-[0.25em]
+            uppercase
+            text-[#ADA69D]
+            whitespace-nowrap
+          "
+        >
+          INNOVATION · COLLABORATION · IMPACT
+        </span>
+      </motion.div>
     </div>
   );
 }
+
