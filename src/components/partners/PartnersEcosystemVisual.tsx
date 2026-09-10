@@ -10,58 +10,56 @@ import {
   Rocket,
 } from 'lucide-react';
 
-// ─────────────────────────────────────────────────────────────
-//  LAYOUT: Architectural grid / blueprint diagram
-//
-//  SVG canvas: 600 × 560   Centre: (300, 280)
-//
-//  Hub at centre.
-//  4 corner nodes at equal diagonal distance.
-//  1 node centred at top.
-//
-//  Visual language: thin construction lines, tick marks,
-//  right-angle elbows, measurement annotations, grid crosses.
-// ─────────────────────────────────────────────────────────────
+const CX = 260;
+const CY = 260;
 
-const CX = 300;
-const CY = 280;
+// Distance from center of AIC to center of each node
+const ORBIT_R = 178;
 
-// Node positions — perfectly symmetric cross + top
+function getPoint(angleDeg: number) {
+  const angle = (angleDeg * Math.PI) / 180;
+
+  return {
+    x: CX + ORBIT_R * Math.cos(angle),
+    y: CY + ORBIT_R * Math.sin(angle),
+  };
+}
+
 const NODES = [
   {
     id: 'industry',
     label: 'INDUSTRY',
-    sublabel: 'Corporate Partners',
+    sub: 'Corporate Partners',
     icon: Briefcase,
-    nx: 300, ny: 80,       // top-centre
+    angle: -90,
   },
   {
     id: 'govt',
     label: 'GOVERNMENT',
-    sublabel: 'Policy & Grants',
+    sub: 'Policy & Grants',
     icon: Landmark,
-    nx: 510, ny: 160,      // upper-right
+    angle: -18,
   },
   {
     id: 'enablers',
     label: 'ECOSYSTEM',
-    sublabel: 'Enablers & VCs',
+    sub: 'Enablers & VCs',
     icon: Rocket,
-    nx: 510, ny: 400,      // lower-right
+    angle: 54,
   },
   {
     id: 'investors',
     label: 'INVESTORS',
-    sublabel: 'Seed & Growth',
+    sub: 'Seed & Growth',
     icon: UserCheck,
-    nx: 90,  ny: 400,      // lower-left
+    angle: 126,
   },
   {
     id: 'academia',
     label: 'ACADEMIA',
-    sublabel: 'Research & Labs',
+    sub: 'Research & Labs',
     icon: GraduationCap,
-    nx: 90,  ny: 160,      // upper-left
+    angle: 198,
   },
 ];
 
@@ -72,201 +70,391 @@ export default function PartnersEcosystemVisual() {
 
   return (
     <div
-      className="relative w-full max-w-[580px] xl:max-w-[620px] mx-auto select-none"
-      style={{ aspectRatio: '600 / 560' }}
+      className="
+        relative
+        w-full
+        max-w-[520px]
+        xl:max-w-[560px]
+        mx-auto
+        select-none
+      "
+      style={{ aspectRatio: '1 / 1' }}
     >
+      {/* =====================================================
+          ORBIT + CENTRAL HUB
+      ====================================================== */}
+
       <svg
-        viewBox="0 0 600 560"
+        viewBox="0 0 520 520"
+        className="absolute inset-0 w-full h-full pointer-events-none"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute inset-0 w-full h-full overflow-visible pointer-events-none"
         aria-hidden="true"
       >
         <defs>
-          <filter id="hubGlow" x="-40%" y="-40%" width="180%" height="180%">
-            <feDropShadow dx="0" dy="0" stdDeviation="18" floodColor="#EB5725" floodOpacity="0.30" />
+          <filter
+            id="aic-glow"
+            x="-100%"
+            y="-100%"
+            width="300%"
+            height="300%"
+          >
+            <feDropShadow
+              dx="0"
+              dy="10"
+              stdDeviation="15"
+              floodColor="#EB5725"
+              floodOpacity="0.18"
+            />
           </filter>
-          <filter id="nodeGlow" x="-40%" y="-40%" width="180%" height="180%">
-            <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#EB5725" floodOpacity="0.22" />
-          </filter>
-
-          {/* Subtle background grid */}
-          <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#E4DDD5" strokeWidth="0.4" />
-          </pattern>
         </defs>
 
-        {/* ── Background grid ── */}
-        <rect width="600" height="560" fill="url(#grid)" opacity="0.5" />
+        {/* Outer orbit */}
 
-        {/* ── Corner crosshair marks ── */}
-        {[[30,30],[570,30],[30,530],[570,530]].map(([x,y],i) => (
-          <g key={i} opacity="0.35">
-            <line x1={x-8} y1={y} x2={x+8} y2={y} stroke="#EB5725" strokeWidth="0.9" />
-            <line x1={x} y1={y-8} x2={x} y2={y+8} stroke="#EB5725" strokeWidth="0.9" />
-          </g>
-        ))}
-
-        {/* ── Architectural outer frame ── */}
-        <rect
-          x="50" y="50" width="500" height="460"
-          stroke="#E4DDD5" strokeWidth="0.8" strokeDasharray="4 6"
-          opacity="0.6"
+        <circle
+          cx={CX}
+          cy={CY}
+          r={ORBIT_R}
+          stroke="#D9D3CA"
+          strokeWidth="1"
         />
 
-        {/* ── Measurement annotation lines (decorative) ── */}
-        {/* Horizontal ruler top */}
-        <g opacity="0.3">
-          <line x1="90" y1="32" x2="510" y2="32" stroke="#A09890" strokeWidth="0.7" />
-          <line x1="90" y1="28" x2="90"  y2="36" stroke="#A09890" strokeWidth="0.7" />
-          <line x1="510" y1="28" x2="510" y2="36" stroke="#A09890" strokeWidth="0.7" />
-          <text x="300" y="28" textAnchor="middle" fill="#A09890" fontSize="8" fontFamily="monospace" letterSpacing="0.1em">
-            ECOSYSTEM WIDTH
-          </text>
-        </g>
-        {/* Vertical ruler right */}
-        <g opacity="0.3">
-          <line x1="568" y1="160" x2="568" y2="400" stroke="#A09890" strokeWidth="0.7" />
-          <line x1="563" y1="160" x2="573" y2="160" stroke="#A09890" strokeWidth="0.7" />
-          <line x1="563" y1="400" x2="573" y2="400" stroke="#A09890" strokeWidth="0.7" />
-          <text
-            x="581" y="282"
-            textAnchor="middle" fill="#A09890"
-            fontSize="8" fontFamily="monospace" letterSpacing="0.1em"
-            transform="rotate(90, 581, 282)"
-          >
-            IMPACT DEPTH
-          </text>
-        </g>
+        {/* Inner subtle orbit */}
 
-        {/* ── Hub outer decorative square ── */}
-        <motion.rect
-          x={CX - 68} y={CY - 68}
-          width="136" height="136"
-          stroke="#EB5725" strokeWidth="0.8"
-          strokeDasharray="3 5"
-          opacity="0.3"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.3, scale: 1 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          style={{ transformOrigin: `${CX}px ${CY}px` }}
-        />
-        {/* Rotated 45° square */}
-        <motion.rect
-          x={CX - 48} y={CY - 48}
-          width="96" height="96"
-          stroke="#EB5725" strokeWidth="0.7"
-          strokeDasharray="2 4"
-          opacity="0.2"
-          initial={{ opacity: 0, rotate: 0 }}
-          animate={{ opacity: 0.2, rotate: 45 }}
-          transition={{ duration: 1, ease: EASE }}
-          style={{ transformOrigin: `${CX}px ${CY}px` }}
+        <circle
+          cx={CX}
+          cy={CY}
+          r="112"
+          stroke="#EB5725"
+          strokeWidth="0.8"
+          strokeDasharray="2 8"
+          opacity="0.18"
         />
 
-        {/* ── Central hub circle ── */}
-        {/* Outer pulse ring */}
-        <circle cx={CX} cy={CY} r="74" fill="none" stroke="#EB5725" strokeWidth="0.8" opacity="0.2">
-          <animate attributeName="r"       values="70;78;70" dur="3.5s" repeatCount="indefinite" />
-          <animate attributeName="opacity" values="0.2;0.06;0.2" dur="3.5s" repeatCount="indefinite" />
-        </circle>
-        {/* Main hub fill */}
-        <circle cx={CX} cy={CY} r="62" fill="#EB5725" filter="url(#hubGlow)" />
-        <circle cx={CX} cy={CY} r="62" fill="none" stroke="white" strokeWidth="2" opacity="0.35" />
+        {/* Small orange orbit markers */}
 
-        {/* AIC text */}
+        {NODES.map((node) => {
+          const point = getPoint(node.angle);
+
+          return (
+            <circle
+              key={node.id}
+              cx={point.x}
+              cy={point.y}
+              r="3.2"
+              fill="#EB5725"
+            />
+          );
+        })}
+
+        {/* =================================================
+            CENTRAL AIC
+        ================================================== */}
+
+        <circle
+          cx={CX}
+          cy={CY}
+          r="68"
+          fill="#EB5725"
+          filter="url(#aic-glow)"
+        />
+
+        <circle
+          cx={CX}
+          cy={CY}
+          r="68"
+          stroke="#F8E9E2"
+          strokeWidth="1"
+          opacity="0.8"
+        />
+
+        {/* AIC */}
+
         <text
-          x={CX} y={CY - 8}
-          textAnchor="middle" dominantBaseline="middle"
+          x={CX}
+          y={CY - 10}
+          textAnchor="middle"
+          dominantBaseline="middle"
           fill="white"
-          style={{ fontSize: '28px', fontWeight: '700', letterSpacing: '-0.02em', fontFamily: 'var(--font-marcellus, serif)' }}
+          style={{
+            fontSize: '28px',
+            fontWeight: '500',
+            letterSpacing: '-0.03em',
+            fontFamily:
+              'var(--font-marcellus, Georgia, serif)',
+          }}
         >
           AIC
         </text>
-        {/* Thin divider */}
-        <line x1={CX - 22} y1={CY + 8} x2={CX + 22} y2={CY + 8} stroke="white" strokeWidth="0.7" opacity="0.5" />
-        {/* JKLU text */}
+
+        {/* Divider */}
+
+        <line
+          x1={CX - 21}
+          y1={CY + 11}
+          x2={CX + 21}
+          y2={CY + 11}
+          stroke="white"
+          strokeWidth="0.7"
+          opacity="0.45"
+        />
+
+        {/* JKLU */}
+
         <text
-          x={CX} y={CY + 22}
-          textAnchor="middle" dominantBaseline="middle"
+          x={CX}
+          y={CY + 27}
+          textAnchor="middle"
+          dominantBaseline="middle"
           fill="white"
-          style={{ fontSize: '10px', fontWeight: '700', letterSpacing: '0.26em', fontFamily: 'var(--font-roboto-mono, monospace)' }}
+          style={{
+            fontSize: '9px',
+            fontWeight: '700',
+            letterSpacing: '0.3em',
+            fontFamily:
+              'var(--font-roboto-mono, monospace)',
+          }}
         >
           JKLU
         </text>
-
       </svg>
 
-      {/* ── Node badges (HTML for crisp icon rendering) ── */}
-      {NODES.map((node, idx) => {
+      {/* =====================================================
+          NODES
+      ====================================================== */}
+
+      {NODES.map((node, index) => {
         const Icon = node.icon;
-        const isHov = hovered === node.id;
-        const leftPct = (node.nx / 600) * 100;
-        const topPct  = (node.ny / 560) * 100;
+        const point = getPoint(node.angle);
+
+        const left = `${(point.x / 520) * 100}%`;
+        const top = `${(point.y / 520) * 100}%`;
+
+        const isHovered = hovered === node.id;
 
         return (
-          <motion.div
+          /*
+           * IMPORTANT:
+           * This wrapper handles POSITIONING.
+           *
+           * The inner motion.div handles ANIMATION.
+           *
+           * This prevents Framer Motion from overwriting
+           * translate(-50%, -50%).
+           */
+          <div
             key={node.id}
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.1 + idx * 0.08, ease: EASE }}
-            onMouseEnter={() => setHovered(node.id)}
-            onMouseLeave={() => setHovered(null)}
+            className="
+              absolute
+              z-20
+              -translate-x-1/2
+              -translate-y-1/2
+            "
             style={{
-              position: 'absolute',
-              left: `${leftPct}%`,
-              top:  `${topPct}%`,
-              transform: 'translate(-50%, -50%)',
+              left,
+              top,
             }}
-            className="flex flex-col items-center text-center z-20 cursor-pointer group"
           >
-            {/* Square badge — architectural, not circular */}
-            <div className={`
-              w-[52px] h-[52px] sm:w-[58px] sm:h-[58px]
-              rounded-xl
-              flex items-center justify-center
-              border transition-all duration-250
-              shadow-[0_4px_18px_rgba(0,0,0,0.07)]
-              ${isHov
-                ? 'bg-[#EB5725] border-[#EB5725] text-white shadow-[0_6px_24px_rgba(235,87,37,0.28)]'
-                : 'bg-white border-[#E4E0DB] text-[#121212]'
-              }
-            `}>
-              <Icon className={`w-5 h-5 sm:w-[22px] sm:h-[22px] transition-transform duration-250 ${isHov ? 'scale-110' : ''}`} />
-            </div>
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.82,
+              }}
+              animate={{
+                opacity: 1,
+                scale: isHovered ? 1.06 : 1,
+              }}
+              transition={{
+                duration: 0.55,
+                delay: 0.1 + index * 0.08,
+                ease: EASE,
+              }}
+              onMouseEnter={() => setHovered(node.id)}
+              onMouseLeave={() => setHovered(null)}
+              className="
+                w-[110px]
+                sm:w-[120px]
+                flex
+                flex-col
+                items-center
+                text-center
+                cursor-pointer
+              "
+            >
+              {/* =================================================
+                  ICON
+              ================================================== */}
 
-            {/* Label */}
-            <div className="mt-2 flex flex-col items-center gap-0.5">
-              <span className={`
-                font-robotoMono text-[9px] sm:text-[9.5px] font-bold
-                tracking-[0.16em] uppercase leading-none
-                transition-colors duration-200
-                ${isHov ? 'text-[#EB5725]' : 'text-[#121212]'}
-              `}>
-                {node.label}
-              </span>
-              <span className={`
-                font-robotoMono text-[7.5px] sm:text-[8px]
-                tracking-[0.1em] leading-none
-                transition-colors duration-200
-                ${isHov ? 'text-[#EB5725]/70' : 'text-[#A09890]'}
-              `}>
-                {node.sublabel}
-              </span>
-            </div>
-          </motion.div>
+              <div
+                className={`
+                  relative
+
+                  w-[66px]
+                  h-[66px]
+
+                  sm:w-[72px]
+                  sm:h-[72px]
+
+                  rounded-full
+
+                  flex
+                  items-center
+                  justify-center
+
+                  border
+
+                  transition-all
+                  duration-300
+
+                  ${
+                    isHovered
+                      ? `
+                        bg-[#FFF8F4]
+                        border-[#EB5725]
+                        text-[#EB5725]
+                        shadow-[0_8px_30px_rgba(235,87,37,0.15)]
+                      `
+                      : `
+                        bg-white
+                        border-[#E2DDD6]
+                        text-[#151515]
+                        shadow-[0_6px_25px_rgba(25,20,15,0.06)]
+                      `
+                  }
+                `}
+              >
+                <Icon
+                  className="
+                    w-[24px]
+                    h-[24px]
+                    sm:w-[26px]
+                    sm:h-[26px]
+                  "
+                  strokeWidth={1.7}
+                />
+
+                {/* Hover dot */}
+
+                {isHovered && (
+                  <motion.span
+                    initial={{
+                      scale: 0,
+                      opacity: 0,
+                    }}
+                    animate={{
+                      scale: 1,
+                      opacity: 1,
+                    }}
+                    className="
+                      absolute
+                      top-[5px]
+                      right-[5px]
+                      w-[6px]
+                      h-[6px]
+                      rounded-full
+                      bg-[#EB5725]
+                    "
+                  />
+                )}
+              </div>
+
+              {/* =================================================
+                  LABEL
+              ================================================== */}
+
+              <div className="mt-3 flex flex-col items-center">
+                <span
+                  className={`
+                    font-robotoMono
+
+                    text-[9px]
+                    sm:text-[10px]
+
+                    font-bold
+                    uppercase
+
+                    tracking-[0.17em]
+
+                    leading-none
+
+                    whitespace-nowrap
+
+                    transition-colors
+                    duration-300
+
+                    ${
+                      isHovered
+                        ? 'text-[#EB5725]'
+                        : 'text-[#171717]'
+                    }
+                  `}
+                >
+                  {node.label}
+                </span>
+
+                <span
+                  className="
+                    mt-[6px]
+
+                    font-robotoMono
+
+                    text-[7.5px]
+                    sm:text-[8px]
+
+                    tracking-[0.04em]
+
+                    leading-none
+
+                    text-[#A09890]
+
+                    whitespace-nowrap
+                  "
+                >
+                  {node.sub}
+                </span>
+              </div>
+            </motion.div>
+          </div>
         );
       })}
 
-      {/* ── Coordinates label ── */}
-      <div className="
-        hidden xl:block
-        absolute bottom-3 right-0
-        font-robotoMono text-[8.5px] font-medium tracking-[0.2em]
-        text-[#121212]/30 pointer-events-none select-none
-      ">
-        26.8470° N · 75.8082° E
-      </div>
+      {/* =====================================================
+          BOTTOM EDITORIAL LABEL
+      ====================================================== */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.7,
+          delay: 0.75,
+        }}
+        className="
+          absolute
+          left-1/2
+          bottom-[7%]
+          -translate-x-1/2
+          pointer-events-none
+          text-center
+        "
+      >
+        <span
+          className="
+            font-robotoMono
+            text-[6px]
+            sm:text-[7px]
+            tracking-[0.25em]
+            uppercase
+            text-[#ADA69D]
+            whitespace-nowrap
+          "
+        >
+          INNOVATION · COLLABORATION · IMPACT
+        </span>
+      </motion.div>
     </div>
   );
 }
