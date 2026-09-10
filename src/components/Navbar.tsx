@@ -13,7 +13,7 @@ const LEFT_NAV_LINKS: NavItem[] = [
   { label: 'Companies', href: '/companies' }, { label: 'Library', href: '/library' }, { label: 'Programs', href: '/programs' },
 ];
 const RIGHT_NAV_LINKS: NavItem[] = [
-  { label: 'Aarohan', href: 'https://aarohan3.vercel.app/', external: true }, { label: 'About', href: '#about' }, { label: 'Stakeholders', href: '/#portfolio' },
+  { label: 'Aarohan', href: 'https://aarohan3.vercel.app/', external: true }, { label: 'About', href: '/about' }, { label: 'Stakeholders', href: '/stakeholders' },
 ];
 const PROGRAMS_DROPDOWN_ITEMS: DropdownItem[] = [
   { label: 'Accelerator Program', href: '/programs' }, { label: 'RISE', href: '/programs/rise' }, { label: 'LEAP', href: '/programs/leap' }, { label: 'Incubation Program', href: '/programs/incubation' },
@@ -53,10 +53,10 @@ function DesktopDropdown({ label, items, open, setOpen, width = 'w-56' }: { labe
     if (event.key === 'Home') { event.preventDefault(); itemRefs.current[0]?.focus(); }
     if (event.key === 'End') { event.preventDefault(); itemRefs.current[items.length - 1]?.focus(); }
   };
-  return <div ref={rootRef} className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+  return <div ref={rootRef} className="relative">
     <button type="button" onClick={() => setOpen(!open)} onKeyDown={onTriggerKeyDown} aria-expanded={open} aria-haspopup="menu" aria-controls={`${label.toLowerCase()}-dropdown-menu`} className={`${navLinkClass} flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand`}><span className={open ? 'text-[#EB5725]' : ''}>{label}</span><Chevron open={open} /><span className={`absolute -bottom-2 left-1/2 h-px -translate-x-1/2 bg-[#EB5725] transition-all duration-300 ease-out ${open ? 'w-full' : 'w-0 group-hover:w-full'}`} /></button>
     <AnimatePresence>{open && <motion.div id={`${label.toLowerCase()}-dropdown-menu`} role="menu" aria-orientation="vertical" onKeyDown={onMenuKeyDown} initial={{ opacity: 0, y: 6, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 4, scale: 0.98 }} transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }} className={`absolute left-1/2 top-full z-50 mt-3.5 ${width} -translate-x-1/2 rounded-[10px] border border-[#E4E4E0] bg-[#FFFFFF] p-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.06)]`}>
-      {items.map((item, index) => <Link key={item.label} href={item.href} role="menuitem" ref={(element) => { itemRefs.current[index] = element; }} onClick={() => setOpen(false)} className="block rounded-md px-3.5 py-2.5 font-robotoMono text-[12px] font-medium text-[#121212] transition-colors duration-150 hover:bg-[#FFF2ED] hover:text-[#EB5725] focus-visible:bg-[#FFF2ED] focus-visible:text-[#EB5725] focus-visible:outline-none cursor-pointer">{item.label}</Link>)}
+      {items.map((item, index) => <Link key={item.label} href={item.href} role="menuitem" ref={(element) => { itemRefs.current[index] = element; }} onClick={() => { setOpen(false); }} className="block rounded-md px-3.5 py-2.5 font-robotoMono text-[12px] font-medium text-[#121212] transition-colors duration-150 hover:bg-[#FFF2ED] hover:text-[#EB5725] focus-visible:bg-[#FFF2ED] focus-visible:text-[#EB5725] focus-visible:outline-none cursor-pointer">{item.label}</Link>)}
     </motion.div>}</AnimatePresence>
   </div>;
 }
@@ -80,6 +80,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   useEffect(() => { const closeOnEscape = (event: globalThis.KeyboardEvent) => { if (event.key === 'Escape') setOpenDropdown(null); }; document.addEventListener('keydown', closeOnEscape); return () => document.removeEventListener('keydown', closeOnEscape); }, []);
+  // Close dropdown whenever the route changes
+  useEffect(() => { setOpenDropdown(null); setMenuOpen(false); }, [pathname]);
   const dropdown = (label: string, items: DropdownItem[], width?: string) => <DesktopDropdown label={label} items={items} open={openDropdown === label} setOpen={(open) => setOpenDropdown(open ? label : null)} width={width} />;
   const plainLink = (item: NavItem) => item.external ? <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className={navLinkClass}>{item.label}<span className="absolute -bottom-2 left-1/2 h-px w-0 -translate-x-1/2 bg-[#EB5725] transition-all duration-300 ease-out group-hover:w-full" /></a> : <Link key={item.label} href={item.href} className={`${navLinkClass} ${pathname === item.href ? 'text-[#EB5725]' : ''}`}>{item.label}<span className={`absolute -bottom-2 left-1/2 h-px -translate-x-1/2 bg-[#EB5725] transition-all duration-300 ease-out ${pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'}`} /></Link>;
   return <header className="sticky top-0 z-50 w-full border-b border-hairline bg-surface"><div className="relative mx-auto h-[82px] w-full max-w-[1600px] px-6 lg:px-12"><div className="hidden md:grid h-full grid-cols-[1fr_auto_1fr] items-center">
