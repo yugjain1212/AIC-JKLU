@@ -11,6 +11,10 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+/* ============================================================
+   SOCIAL ICONS
+============================================================ */
+
 function F6sIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -46,10 +50,14 @@ function TwitterIcon({ className = 'w-5 h-5' }: { className?: string }) {
 function InstagramIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.771-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.204.013-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.79 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
     </svg>
   );
 }
+
+/* ============================================================
+   FOOTER
+============================================================ */
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null);
@@ -57,10 +65,14 @@ export default function Footer() {
   const circleRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const giantTextRef = useRef<HTMLDivElement>(null);
+
   const prefersReduced = useReducedMotion();
   const pathname = usePathname();
 
-  // ── GSAP ScrollTrigger Transition Choreography ─────────────────────────────
+  /* ============================================================
+     MAIN FOOTER GSAP ANIMATION
+  ============================================================ */
+
   useLayoutEffect(() => {
     if (prefersReduced) return;
 
@@ -71,9 +83,10 @@ export default function Footer() {
       const contentEl = contentRef.current;
       const giantTextEl = giantTextRef.current;
 
-      if (!footerEl || !bgEl || !contentEl || !giantTextEl) return;
+      if (!footerEl || !bgEl || !contentEl || !giantTextEl) {
+        return;
+      }
 
-      // Master Timeline scrubbed from Team section bottom into Footer
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerEl,
@@ -84,44 +97,91 @@ export default function Footer() {
         },
       });
 
-      // 1. Team Section subtle elevation & scale
+      /* ========================================================
+         1. TEAM SECTION
+      ======================================================== */
+
       const teamSection = document.getElementById('team');
+
       if (teamSection) {
         tl.fromTo(
           teamSection,
-          { y: 0, scale: 1, opacity: 1 },
-          { y: -35, scale: 0.975, opacity: 0.85, ease: 'power1.out' },
+          {
+            y: 0,
+            scale: 1,
+            opacity: 1,
+          },
+          {
+            y: -35,
+            scale: 0.975,
+            opacity: 0.85,
+            ease: 'power1.out',
+          },
           0
         );
       }
 
-      // 2. Footer background expand and rise
+      /* ========================================================
+         2. FOOTER BACKGROUND
+      ======================================================== */
+
       tl.fromTo(
         bgEl,
-        { opacity: 0.5, scaleY: 0.9, transformOrigin: 'top center' },
-        { opacity: 1, scaleY: 1, ease: 'none' },
+        {
+          opacity: 0.5,
+          scaleY: 0.9,
+          transformOrigin: 'top center',
+        },
+        {
+          opacity: 1,
+          scaleY: 1,
+          ease: 'none',
+        },
         0
       );
 
-      // 3. Central Ambient Decorative Circle expansion
+      /* ========================================================
+         3. DECORATIVE CIRCLE
+      ======================================================== */
+
       if (circleEl) {
         tl.fromTo(
           circleEl,
-          { scale: 0.65, opacity: 0.2 },
-          { scale: 1.15, opacity: 0.85, ease: 'power2.out' },
+          {
+            scale: 0.65,
+            opacity: 0.2,
+          },
+          {
+            scale: 1.15,
+            opacity: 0.85,
+            ease: 'power2.out',
+          },
           0
         );
       }
 
-      // 4. Footer 3-column content & CTA rise
+      /* ========================================================
+         4. FOOTER CONTENT
+      ======================================================== */
+
       tl.fromTo(
         contentEl,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, ease: 'power2.out' },
+        {
+          y: 50,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          ease: 'power2.out',
+        },
         0.08
       );
 
-      // 5. Giant Editorial "LET'S BUILD THE FUTURE" rise with clip-path
+      /* ========================================================
+         5. GIANT FOOTER TYPOGRAPHY
+      ======================================================== */
+
       tl.fromTo(
         giantTextEl,
         {
@@ -141,19 +201,84 @@ export default function Footer() {
       );
     }, footerRef);
 
-    return () => ctx.revert();
-  }, [prefersReduced]);
+    return () => {
+      ctx.revert();
+    };
+  }, [prefersReduced, pathname]);
 
-  // Refresh ScrollTrigger when the route changes
+  /* ============================================================
+     REFRESH SCROLLTRIGGER AFTER ROUTE / LAYOUT CHANGES
+  ============================================================ */
+
   useLayoutEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Small delay to allow new page layout to render and push footer down
-      const timeoutId = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 100);
-      return () => clearTimeout(timeoutId);
-    }
+    if (typeof window === 'undefined') return;
+
+    const refreshScrollTrigger = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
+      });
+    };
+
+    refreshScrollTrigger();
+
+    const timeout1 = window.setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+    const timeout2 = window.setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      window.clearTimeout(timeout1);
+      window.clearTimeout(timeout2);
+    };
   }, [pathname]);
+
+  /* ============================================================
+     WATCH FOR PAGE SIZE CHANGES
+     
+     This is the important fix for:
+     
+     /apply
+       ↓
+     User submits form
+       ↓
+     Form screen replaced by success screen
+       ↓
+     Page height changes
+       ↓
+     Footer position changes
+     
+     ResizeObserver detects that change and refreshes GSAP.
+  ============================================================ */
+
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let refreshTimer: number | undefined;
+
+    const observer = new ResizeObserver(() => {
+      window.clearTimeout(refreshTimer);
+
+      refreshTimer = window.setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 80);
+    });
+
+    observer.observe(document.body);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(refreshTimer);
+    };
+  }, []);
+
+  /* ============================================================
+     BACK TO TOP
+  ============================================================ */
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -162,6 +287,37 @@ export default function Footer() {
     });
   };
 
+  /* ============================================================
+     SOCIAL LINKS
+  ============================================================ */
+
+  const socials = [
+    {
+      name: 'F6s',
+      icon: F6sIcon,
+      url: 'https://www.f6s.com/atalincubation-jklu',
+    },
+    {
+      name: 'LinkedIn',
+      icon: LinkedinIcon,
+      url: 'https://www.linkedin.com/company/aic-jklu/',
+    },
+    {
+      name: 'Youtube',
+      icon: YoutubeIcon,
+      url: 'https://www.youtube.com/@aic-jklufoundation4581',
+    },
+    {
+      name: 'Instagram',
+      icon: InstagramIcon,
+      url: 'https://www.instagram.com/aicjklu_/',
+    },
+  ];
+
+  /* ============================================================
+     RENDER
+  ============================================================ */
+
   return (
     <footer
       ref={footerRef}
@@ -169,25 +325,37 @@ export default function Footer() {
       aria-label="Footer & Contact"
       className="relative z-50 w-full overflow-hidden select-none bg-[#EB5725] text-obsidian rounded-t-[32px] sm:rounded-t-[48px] shadow-[0_-25px_60px_rgba(235,87,37,0.25)] border-t border-black/10 -mt-10 sm:-mt-14"
     >
-      {/* ── Background Scale/Wrapper ── */}
+      {/* ========================================================
+          BACKGROUND WRAPPER
+      ======================================================== */}
+
       <div
         ref={bgWrapperRef}
         className="relative w-full h-full pt-14 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-14 flex flex-col justify-between"
       >
-        {/* ── Decorative Subtle Ambient Circle behind CTA ── */}
+        {/* ======================================================
+            DECORATIVE CIRCLE
+        ====================================================== */}
+
         <div
           ref={circleRef}
           aria-hidden="true"
           className="absolute top-[-10%] sm:top-[-15%] left-1/2 -translate-x-1/2 w-[340px] h-[340px] sm:w-[540px] sm:h-[540px] md:w-[680px] md:h-[680px] rounded-full bg-gradient-to-b from-black/[0.07] to-transparent pointer-events-none blur-[1px] mix-blend-multiply will-change-transform"
         />
 
-        {/* ── Top Footer Content: Contact, CTA, Location & Socials ── */}
+        {/* ======================================================
+            TOP FOOTER CONTENT
+        ====================================================== */}
+
         <div
           ref={contentRef}
           className="relative z-10 max-w-[1360px] mx-auto w-full px-6 sm:px-10 lg:px-14 will-change-transform"
         >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 items-start justify-between">
-            {/* ── Left Column: Contact info ── */}
+            {/* ==================================================
+                LEFT COLUMN
+            ================================================== */}
+
             <div className="md:col-span-4 flex flex-col items-start space-y-4">
               <span className="font-robotoMono text-[11px] sm:text-[12px] tracking-[0.18em] uppercase text-black/70 font-medium">
                 Contact
@@ -200,6 +368,7 @@ export default function Footer() {
                     className="group/link inline-flex flex-col font-robotoMono text-[17px] sm:text-[19px] md:text-[21px] font-medium text-obsidian tracking-tight transition-transform duration-300 hover:translate-x-1 focus-visible:outline-black"
                   >
                     <span>info@aicjklu.in</span>
+
                     <span className="h-[1.5px] w-0 bg-obsidian transition-all duration-300 ease-out group-hover/link:w-full" />
                   </a>
                 </div>
@@ -210,13 +379,17 @@ export default function Footer() {
                     className="group/phone inline-flex flex-col font-robotoMono text-[15px] sm:text-[17px] md:text-[18px] text-obsidian/90 tracking-tight transition-transform duration-300 hover:translate-x-1 focus-visible:outline-black"
                   >
                     <span>0141-710-7524</span>
+
                     <span className="h-[1px] w-0 bg-obsidian/60 transition-all duration-300 ease-out group-hover/phone:w-full" />
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* ── Center Column: Editorial CTA & Pill Button ── */}
+            {/* ==================================================
+                CENTER COLUMN
+            ================================================== */}
+
             <div className="md:col-span-4 flex flex-col items-center text-center space-y-5 md:space-y-6">
               <h2 className="font-marcellus text-[24px] sm:text-[28px] md:text-[32px] lg:text-[34px] font-bold leading-[1.16] tracking-[-0.02em] text-[#121212] max-w-[420px]">
                 Have a project? Let’s build something amazing.
@@ -226,60 +399,54 @@ export default function Footer() {
                 href="mailto:info@aicjklu.in"
                 whileHover={{ scale: 1.035 }}
                 whileTap={{ scale: 0.97 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 400,
+                  damping: 20,
+                }}
                 className="group/btn inline-flex items-center gap-2.5 px-7 py-3 sm:px-8 sm:py-3.5 rounded-full bg-[#121212] text-[#FBF7F0] font-robotoMono text-[13px] sm:text-[14px] font-medium tracking-wide shadow-[0_8px_20px_rgba(0,0,0,0.22)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.32)] transition-all duration-300"
               >
                 <span>Let’s collaborate</span>
+
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 ease-out group-hover/btn:translate-x-1.5" />
               </motion.a>
             </div>
 
-            {/* ── Right Column: Location & Social Links ── */}
+            {/* ==================================================
+                RIGHT COLUMN
+            ================================================== */}
+
             <div className="md:col-span-4 flex flex-col md:items-end space-y-7">
-              {/* Location */}
+              {/* LOCATION */}
+
               <div className="flex flex-col md:items-end space-y-2">
                 <span className="font-robotoMono text-[11px] sm:text-[12px] tracking-[0.18em] uppercase text-black/70 font-medium">
                   Location
                 </span>
+
                 <p className="font-robotoMono text-[13px] sm:text-[14px] font-medium text-obsidian leading-snug md:text-right">
-                  JK Lakshmipat University, 
+                  JK Lakshmipat University,
                   <br />
-                  Jaipur,Rajasthan, 302026
+                  Jaipur, Rajasthan, 302026
                   <br />
                   India
                 </p>
               </div>
 
-              {/* Socials */}
+              {/* SOCIALS */}
+
               <div className="flex flex-col md:items-end space-y-3">
                 <span className="font-robotoMono text-[11px] sm:text-[12px] tracking-[0.18em] uppercase text-black/70 font-medium">
                   Follow us
                 </span>
 
-                <nav aria-label="Social media profiles" className="flex items-center gap-4 sm:gap-5">
-                  {[
-                    {
-                      name: 'F6s',
-                      icon: F6sIcon,
-                      url: 'https://www.f6s.com/atalincubation-jklu',
-                    },
-                    {
-                      name: 'LinkedIn',
-                      icon: LinkedinIcon,
-                      url: 'https://www.linkedin.com/company/aic-jklu/',
-                    },
-                    {
-                      name: 'Youtube',
-                      icon: YoutubeIcon,
-                      url: 'https://www.youtube.com/@aic-jklufoundation4581',
-                    },
-                    {
-                      name: 'Instagram',
-                      icon: InstagramIcon,
-                      url: 'https://www.instagram.com/aicjklu_/',
-                    },
-                  ].map((social) => {
+                <nav
+                  aria-label="Social media profiles"
+                  className="flex items-center gap-4 sm:gap-5"
+                >
+                  {socials.map((social) => {
                     const Icon = social.icon;
+
                     return (
                       <a
                         key={social.name}
@@ -298,21 +465,30 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* ── Metadata Row: Copyright, Purpose, Back to top ── */}
+          {/* ====================================================
+              BOTTOM METADATA
+          ==================================================== */}
+
           <div className="mt-14 sm:mt-20 pt-6 sm:pt-7 border-t border-black/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            {/* COPYRIGHT */}
+
             <div className="font-robotoMono text-[11px] sm:text-[12px] text-black/75 tracking-tight">
               © Copyright 2026 AIC-JKLU. All rights reserved.
             </div>
 
+            {/* KAYKREAT LINK */}
+
             <a
-            href="https://www.linkedin.com/company/kaaykreat/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit KaayKreat on LinkedIn"
-            className="font-robotoMono text-[11px] sm:text-[12px] text-black/75 tracking-tight font-normal hover:text-black transition-colors duration-200"
+              href="https://www.linkedin.com/company/kaaykreat/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit KaayKreat on LinkedIn"
+              className="font-robotoMono text-[11px] sm:text-[12px] text-black/75 tracking-tight font-normal hover:text-black transition-colors duration-200"
             >
-            Built By KaayKreat
+              Built By KaayKreat
             </a>
+
+            {/* BACK TO TOP */}
 
             <button
               onClick={scrollToTop}
@@ -320,12 +496,16 @@ export default function Footer() {
               className="group/top inline-flex items-center gap-1.5 font-robotoMono text-[11px] sm:text-[12px] text-black/80 font-medium tracking-tight transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-black cursor-pointer"
             >
               <span>Back to top</span>
+
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/top:-translate-y-0.5 group-hover/top:translate-x-0.5" />
             </button>
           </div>
         </div>
 
-        {/* ── Giant Editorial Centerpiece Typography (Full Viewport Fit) ── */}
+        {/* ======================================================
+            GIANT EDITORIAL TYPOGRAPHY
+        ====================================================== */}
+
         <div
           ref={giantTextRef}
           aria-hidden="true"
