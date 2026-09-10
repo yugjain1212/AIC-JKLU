@@ -304,9 +304,15 @@ export default function Footer() {
               © Copyright 2026 AIC-JKLU. All rights reserved.
             </div>
 
-            <div className="font-robotoMono text-[11px] sm:text-[12px] text-black/75 tracking-tight font-normal">
-              Built with passion & purpose.
-            </div>
+            <a
+            href="https://www.linkedin.com/company/kaaykreat/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit KaayKreat on LinkedIn"
+            className="font-robotoMono text-[11px] sm:text-[12px] text-black/75 tracking-tight font-normal hover:text-black transition-colors duration-200"
+            >
+            Built By KaayKreat
+            </a>
 
             <button
               onClick={scrollToTop}
