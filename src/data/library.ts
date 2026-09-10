@@ -110,14 +110,6 @@ export const MEDIA_GRID_ITEMS: MediaItem[] = [
     date: '05 JUN 2026',
     image: '/library/meetings.png',
   },
-  {
-    id: 'submit-moment-card',
-    title: 'Have a moment to share?',
-    isSubmitCard: true,
-    description: 'Share your pictures with us and be a part of the archive.',
-    ctaText: 'SUBMIT HERE',
-    ctaLink: '/apply',
-  },
 ];
 
 export const IN_MOTION_ITEMS: InMotionItem[] = [
