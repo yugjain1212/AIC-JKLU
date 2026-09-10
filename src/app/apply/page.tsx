@@ -5,8 +5,35 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+/*
+ * ============================================================
+ * GOOGLE FORM CONFIGURATION
+ * ============================================================
+ *
+ * IMPORTANT:
+ * Do NOT use the forms.gle URL here.
+ *
+ * forms.gle / viewform = opens/displays the Google Form
+ *
+ * formResponse = receives submitted form data
+ *
+ * This is the formResponse endpoint for your Google Form.
+ */
 const GOOGLE_FORM_ACTION =
-    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSfTW5CndtgVpJ78AVM0VjSPmurPqihz8-2hS4M7pj-PnPvygw/formResponse";
+    "https://docs.google.com/forms/d/e/1FAIpQLSc_ays-tYzkVYyVDodSbNc-QZywKF7ps0KIs_y9bemJUlJsjg/formResponse";
+
+/*
+ * Google Form field IDs
+ *
+ * These IDs came from your Google Form.
+ */
+const GOOGLE_FORM_FIELDS = {
+    email: "entry.62629543",
+    name: "entry.1654618535",
+    startupName: "entry.360114461",
+    alternateEmail: "entry.572865494",
+    describe: "entry.146631457",
+};
 
 export default function ApplyPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,6 +47,11 @@ export default function ApplyPage() {
         describe: "",
     });
 
+    /*
+     * ============================================================
+     * HANDLE INPUT CHANGES
+     * ============================================================
+     */
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
@@ -31,32 +63,104 @@ export default function ApplyPage() {
         }));
     };
 
+    /*
+     * ============================================================
+     * SUBMIT FORM TO GOOGLE FORMS
+     * ============================================================
+     */
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (isSubmitting) return;
 
         setIsSubmitting(true);
 
         try {
+            /*
+             * URLSearchParams creates the exact form body
+             * Google Forms expects.
+             */
             const googleFormData = new URLSearchParams();
 
-            googleFormData.append("emailAddress", formData.email);
-            googleFormData.append("entry.300749602", formData.name);
-            googleFormData.append("entry.708642801", formData.startupName);
-            googleFormData.append("entry.381024055", formData.alternateEmail);
-            googleFormData.append("entry.1139577184", formData.describe);
+            /*
+             * EMAIL
+             *
+             * entry.62629543 = your actual "Email" question.
+             *
+             * emailAddress is also included because your screenshot
+             * indicates that Google Forms is collecting email addresses.
+             */
+            googleFormData.append(
+                GOOGLE_FORM_FIELDS.email,
+                formData.email
+            );
 
+            googleFormData.append(
+                "emailAddress",
+                formData.email
+            );
+
+            /*
+             * YOUR NAME
+             */
+            googleFormData.append(
+                GOOGLE_FORM_FIELDS.name,
+                formData.name
+            );
+
+            /*
+             * STARTUP NAME
+             */
+            googleFormData.append(
+                GOOGLE_FORM_FIELDS.startupName,
+                formData.startupName
+            );
+
+            /*
+             * ALTERNATE EMAIL
+             */
+            googleFormData.append(
+                GOOGLE_FORM_FIELDS.alternateEmail,
+                formData.alternateEmail
+            );
+
+            /*
+             * DESCRIBE
+             */
+            googleFormData.append(
+                GOOGLE_FORM_FIELDS.describe,
+                formData.describe
+            );
+
+            /*
+             * Send the data to Google Forms.
+             *
+             * no-cors is required because Google Forms does not
+             * provide normal CORS access to browser JavaScript.
+             */
             await fetch(GOOGLE_FORM_ACTION, {
                 method: "POST",
                 mode: "no-cors",
                 headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8",
                 },
                 body: googleFormData.toString(),
             });
 
+            /*
+             * Google Forms accepts the request.
+             *
+             * Because no-cors is used, the browser cannot read
+             * Google's response. Therefore we show the success
+             * screen after the request completes.
+             */
             setSubmitted(true);
         } catch (error) {
-            console.error("Google Form submission error:", error);
+            console.error(
+                "Google Form submission error:",
+                error
+            );
 
             alert(
                 "Something went wrong while submitting the application. Please try again."
@@ -67,7 +171,9 @@ export default function ApplyPage() {
     };
 
     /*
+     * ============================================================
      * SUCCESS SCREEN
+     * ============================================================
      */
     if (submitted) {
         return (
@@ -77,10 +183,16 @@ export default function ApplyPage() {
                 <motion.header
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{
+                        duration: 0.45,
+                        ease: [0.22, 1, 0.36, 1],
+                    }}
                     className="mx-auto flex h-[72px] max-w-6xl items-center justify-between border-b border-[#E4E4E0]"
                 >
-                    <Link href="/" className="flex items-center cursor-pointer">
+                    <Link
+                        href="/"
+                        className="flex cursor-pointer items-center"
+                    >
                         <Image
                             src="/logo.svg"
                             alt="AIC-JKLU"
@@ -94,23 +206,43 @@ export default function ApplyPage() {
 
                     <Link
                         href="/"
-                        className="group flex items-center gap-2 font-robotoMono text-xs font-semibold uppercase tracking-[0.12em] text-[#52525B] transition-colors duration-200 hover:text-[#EB5725] cursor-pointer"
+                        className="group flex cursor-pointer items-center gap-2 font-robotoMono text-xs font-semibold uppercase tracking-[0.12em] text-[#52525B] transition-colors duration-200 hover:text-[#EB5725]"
                     >
-                        <span aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-x-1">
+                        <span
+                            aria-hidden="true"
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
+                        >
                             ←
                         </span>
+
                         Back to Home
                     </Link>
                 </motion.header>
 
+                {/* SUCCESS CONTENT */}
                 <div className="mx-auto flex min-h-[calc(100vh-72px)] max-w-5xl items-center justify-center py-12">
                     <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="w-full max-w-lg rounded-[24px] border border-[#E4E4E0] bg-[#FFFFFF] p-8 sm:p-12 text-center shadow-[0_8px_30px_rgba(0,0,0,0.03)]"
+                        initial={{
+                            opacity: 0,
+                            y: 20,
+                            scale: 0.98,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                        }}
+                        transition={{
+                            duration: 0.5,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="w-full max-w-lg rounded-[24px] border border-[#E4E4E0] bg-[#FFFFFF] p-8 text-center shadow-[0_8px_30px_rgba(0,0,0,0.03)] sm:p-12"
                     >
-                        <div aria-hidden="true" className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#EB5725] text-2xl text-white shadow-md shadow-[#EB5725]/20">
+                        {/* SUCCESS ICON */}
+                        <div
+                            aria-hidden="true"
+                            className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#EB5725] text-2xl text-white shadow-md shadow-[#EB5725]/20"
+                        >
                             ✓
                         </div>
 
@@ -118,7 +250,7 @@ export default function ApplyPage() {
                             AIC — JKLU
                         </p>
 
-                        <h1 className="font-marcellus text-4xl sm:text-5xl leading-[1.05] tracking-[-0.03em] text-[#121212] text-balance">
+                        <h1 className="font-marcellus text-4xl leading-[1.05] tracking-[-0.03em] text-[#121212] sm:text-5xl">
                             Application
                             <br />
                             <em className="font-normal italic">
@@ -126,15 +258,18 @@ export default function ApplyPage() {
                             </em>
                         </h1>
 
-                        <p className="mx-auto mt-4 max-w-md font-robotoMono text-[14px] sm:text-[15px] leading-relaxed text-[#52525B]">
-                            Thank you for applying to AIC-JKLU. Your application has been
-                            received and will be reviewed by our team.
+                        <p className="mx-auto mt-4 max-w-md font-robotoMono text-[14px] leading-relaxed text-[#52525B] sm:text-[15px]">
+                            Thank you for applying to AIC-JKLU.
+                            Your application has been received
+                            and will be reviewed by our team.
                         </p>
 
+                        {/* SUBMIT ANOTHER */}
                         <button
                             type="button"
                             onClick={() => {
                                 setSubmitted(false);
+
                                 setFormData({
                                     email: "",
                                     name: "",
@@ -143,7 +278,7 @@ export default function ApplyPage() {
                                     describe: "",
                                 });
                             }}
-                            className="mt-8 rounded-full bg-[#EB5725] px-8 py-3.5 font-robotoMono text-[14px] sm:text-[15px] font-semibold uppercase tracking-[0.1em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 cursor-pointer"
+                            className="mt-8 cursor-pointer rounded-full bg-[#EB5725] px-8 py-3.5 font-robotoMono text-[14px] font-semibold uppercase tracking-[0.1em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 sm:text-[15px]"
                         >
                             Submit Another Application
                         </button>
@@ -154,24 +289,35 @@ export default function ApplyPage() {
     }
 
     /*
+     * ============================================================
      * MAIN APPLY PAGE
+     * ============================================================
      */
     return (
         <main className="min-h-screen bg-[#FBF7F0] px-4 text-[#121212] sm:px-6 md:px-8">
 
-            {/* =========================================
+            {/* ==================================================
                 TOP NAVIGATION
-            ========================================== */}
+            ================================================== */}
             <motion.header
-                initial={{ opacity: 0, y: -12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                initial={{
+                    opacity: 0,
+                    y: -12,
+                }}
+                animate={{
+                    opacity: 1,
+                    y: 0,
+                }}
+                transition={{
+                    duration: 0.45,
+                    ease: [0.22, 1, 0.36, 1],
+                }}
                 className="mx-auto flex h-[72px] max-w-6xl items-center justify-between border-b border-[#E4E4E0]"
             >
                 {/* AIC LOGO */}
                 <Link
                     href="/"
-                    className="flex items-center cursor-pointer"
+                    className="flex cursor-pointer items-center"
                 >
                     <Image
                         src="/logo.svg"
@@ -187,63 +333,97 @@ export default function ApplyPage() {
                 {/* BACK BUTTON */}
                 <Link
                     href="/"
-                    className="group flex items-center gap-2 font-robotoMono text-xs sm:text-[13px] font-semibold uppercase tracking-[0.12em] text-[#52525B] transition-colors duration-200 hover:text-[#EB5725] cursor-pointer"
+                    className="group flex cursor-pointer items-center gap-2 font-robotoMono text-xs font-semibold uppercase tracking-[0.12em] text-[#52525B] transition-colors duration-200 hover:text-[#EB5725] sm:text-[13px]"
                 >
-                    <span aria-hidden="true" className="transition-transform duration-200 group-hover:-translate-x-1">
+                    <span
+                        aria-hidden="true"
+                        className="transition-transform duration-200 group-hover:-translate-x-1"
+                    >
                         ←
                     </span>
+
                     Back to Home
                 </Link>
             </motion.header>
 
-            {/* =========================================
-                COMPACT HERO
-            ========================================== */}
+            {/* ==================================================
+                HERO
+            ================================================== */}
             <motion.section
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+                initial={{
+                    opacity: 0,
+                    y: 16,
+                }}
+                animate={{
+                    opacity: 1,
+                    y: 0,
+                }}
+                transition={{
+                    duration: 0.5,
+                    delay: 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                }}
                 className="mx-auto max-w-4xl px-2 pb-7 pt-10 text-center sm:pt-14"
             >
                 <p className="mb-3 font-robotoMono text-xs font-semibold uppercase tracking-[0.25em] text-[#52525B]">
                     Apply Now
                 </p>
 
-                <h1 className="font-marcellus text-[42px] leading-[0.95] tracking-[-0.04em] sm:text-[52px] md:text-[60px] text-[#121212] text-balance">
+                <h1 className="font-marcellus text-[42px] leading-[0.95] tracking-[-0.04em] text-[#121212] sm:text-[52px] md:text-[60px]">
                     Ready to
                     <br />
-                    <em className="font-marcellus not-italic text-[#EB5725] text-5xl sm:text-6xl">
+
+                    <em className="font-marcellus text-5xl not-italic text-[#EB5725] sm:text-6xl">
                         Innovate?
                     </em>
                 </h1>
 
-                <p className="mx-auto mt-4 max-w-lg font-robotoMono text-[14px] sm:text-[15px] leading-relaxed text-[#52525B]">
+                <p className="mx-auto mt-4 max-w-lg font-robotoMono text-[14px] leading-relaxed text-[#52525B] sm:text-[15px]">
                     Tell us about yourself and what you are building.
                 </p>
             </motion.section>
 
-            {/* =========================================
-                FORM
-            ========================================== */}
+            {/* ==================================================
+                FORM CARD
+            ================================================== */}
             <motion.section
-                initial={{ opacity: 0, y: 22, scale: 0.985 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                initial={{
+                    opacity: 0,
+                    y: 22,
+                    scale: 0.985,
+                }}
+                animate={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                }}
+                transition={{
+                    duration: 0.55,
+                    delay: 0.15,
+                    ease: [0.22, 1, 0.36, 1],
+                }}
                 className="mx-auto w-full max-w-[620px] pb-16"
             >
                 <div className="w-full rounded-[24px] border border-[#E4E4E0] bg-[#FFFFFF] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] sm:p-8 md:p-10">
+
                     <form
                         onSubmit={handleSubmit}
                         className="space-y-6"
                     >
-                        {/* EMAIL */}
+
+                        {/* ==================================================
+                            EMAIL
+                        ================================================== */}
                         <div>
                             <label
                                 htmlFor="email"
                                 className="mb-2 block font-robotoMono text-[13px] font-semibold uppercase tracking-[0.08em] text-[#121212]"
                             >
                                 Email
-                                <span className="ml-1 text-[#EB5725]">*</span>
+
+                                <span className="ml-1 text-[#EB5725]">
+                                    *
+                                </span>
                             </label>
 
                             <input
@@ -256,11 +436,13 @@ export default function ApplyPage() {
                                 required
                                 autoComplete="email"
                                 spellCheck={false}
-                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] outline-none transition-all duration-200 placeholder:text-[#52525B]/40 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
-                        {/* NAME */}
+                        {/* ==================================================
+                            YOUR NAME
+                        ================================================== */}
                         <div>
                             <label
                                 htmlFor="name"
@@ -277,11 +459,13 @@ export default function ApplyPage() {
                                 onChange={handleChange}
                                 placeholder="Enter your full name"
                                 autoComplete="name"
-                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] outline-none transition-all duration-200 placeholder:text-[#52525B]/40 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
-                        {/* STARTUP NAME */}
+                        {/* ==================================================
+                            STARTUP NAME
+                        ================================================== */}
                         <div>
                             <label
                                 htmlFor="startupName"
@@ -298,11 +482,13 @@ export default function ApplyPage() {
                                 onChange={handleChange}
                                 placeholder="Enter your startup name"
                                 autoComplete="organization"
-                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] outline-none transition-all duration-200 placeholder:text-[#52525B]/40 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
-                        {/* SECOND EMAIL */}
+                        {/* ==================================================
+                            ALTERNATE EMAIL
+                        ================================================== */}
                         <div>
                             <label
                                 htmlFor="alternateEmail"
@@ -320,11 +506,13 @@ export default function ApplyPage() {
                                 placeholder="Additional email address"
                                 autoComplete="email"
                                 spellCheck={false}
-                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                className="w-full rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] text-[#121212] outline-none transition-all duration-200 placeholder:text-[#52525B]/40 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
-                        {/* DESCRIBE */}
+                        {/* ==================================================
+                            DESCRIBE
+                        ================================================== */}
                         <div>
                             <label
                                 htmlFor="describe"
@@ -340,16 +528,18 @@ export default function ApplyPage() {
                                 onChange={handleChange}
                                 rows={4}
                                 placeholder="Tell us about your startup, idea, or what you are building..."
-                                className="w-full resize-none rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] leading-relaxed text-[#121212] placeholder:text-[#52525B]/40 outline-none transition-all duration-200 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
+                                className="w-full resize-none rounded-xl border border-[#E4E4E0] bg-[#FBF7F0]/60 px-4 py-3.5 font-robotoMono text-[15px] leading-relaxed text-[#121212] outline-none transition-all duration-200 placeholder:text-[#52525B]/40 focus:border-[#EB5725] focus:bg-[#FFFFFF] focus:ring-4 focus:ring-[#EB5725]/10"
                             />
                         </div>
 
-                        {/* SUBMIT */}
+                        {/* ==================================================
+                            SUBMIT BUTTON
+                        ================================================== */}
                         <div className="pt-2">
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="group flex w-full items-center justify-center gap-3 rounded-full bg-[#EB5725] px-8 py-4 font-robotoMono text-[15px] font-bold uppercase tracking-[0.1em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
+                                className="group flex w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-[#EB5725] px-8 py-4 font-robotoMono text-[15px] font-bold uppercase tracking-[0.1em] text-white shadow-md shadow-[#EB5725]/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C84214] hover:shadow-lg hover:shadow-[#EB5725]/25 disabled:cursor-not-allowed disabled:opacity-60"
                             >
                                 <span>
                                     {isSubmitting
@@ -358,16 +548,20 @@ export default function ApplyPage() {
                                 </span>
 
                                 {!isSubmitting && (
-                                    <span aria-hidden="true" className="text-base transition-transform duration-300 group-hover:translate-x-1">
+                                    <span
+                                        aria-hidden="true"
+                                        className="text-base transition-transform duration-300 group-hover:translate-x-1"
+                                    >
                                         →
                                     </span>
                                 )}
                             </button>
                         </div>
 
+                        {/* DISCLAIMER */}
                         <p className="pt-1 text-center font-robotoMono text-[12px] leading-relaxed text-[#52525B]">
-                            By submitting this application, you confirm that the information
-                            provided is accurate.
+                            By submitting this application, you confirm
+                            that the information provided is accurate.
                         </p>
                     </form>
                 </div>
