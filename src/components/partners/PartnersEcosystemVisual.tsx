@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   Briefcase,
@@ -71,7 +70,7 @@ export default function PartnersEcosystemVisual() {
   return (
     <div className="relative w-full max-w-[500px] sm:max-w-[540px] aspect-square mx-auto flex items-center justify-center select-none overflow-visible">
       
-      {/* ── UNIFIED SVG ORBITAL SYSTEM (Centered at 270, 270) ── */}
+      {/* ── UNIFIED SVG ORBITAL SYSTEM (Centered at 300, 280) ── */}
       <svg
         viewBox="0 0 600 560"
         fill="none"
@@ -91,19 +90,19 @@ export default function PartnersEcosystemVisual() {
 
         {/* ── 1. BACKGROUND AXIS & TRAJECTORY GUIDELINES ── */}
         <g opacity="0.25" stroke="#D8D2C6" strokeWidth="0.8" strokeDasharray="3 3">
-          <line x1="20" y1="270" x2="520" y2="270" />
-          <line x1="270" y1="20" x2="270" y2="520" />
+          <line x1="20" y1="280" x2="580" y2="280" />
+          <line x1="300" y1="20" x2="300" y2="540" />
         </g>
 
         {/* Diagonal Guidelines */}
-        <line x1="110" y1="110" x2="430" y2="430" stroke="#EB5725" strokeWidth="0.8" strokeDasharray="2 4" opacity="0.3" />
-        <line x1="430" y1="110" x2="110" y2="430" stroke="#EB5725" strokeWidth="0.8" strokeDasharray="2 4" opacity="0.3" />
+        <line x1="90" y1="160" x2="510" y2="400" stroke="#EB5725" strokeWidth="0.8" strokeDasharray="2 4" opacity="0.3" />
+        <line x1="510" y1="160" x2="90" y2="400" stroke="#EB5725" strokeWidth="0.8" strokeDasharray="2 4" opacity="0.3" />
 
         {/* ── 2. CONCENTRIC ORBITAL RINGS ── */}
         {/* Ring 1: Inner Orbit (r=90) */}
         <circle
-          cx="270"
-          cy="270"
+          cx={CX}
+          cy={CY}
           r="90"
           stroke="#EB5725"
           strokeWidth="1"
@@ -113,17 +112,20 @@ export default function PartnersEcosystemVisual() {
 
         {/* ── Hub outer decorative square ── */}
         <motion.rect
-          x={CX - 68} y={CY - 68}
-          width="136" height="136"
-          stroke="#EB5725" strokeWidth="0.8"
+          x={CX - 68}
+          y={CY - 68}
+          width="136"
+          height="136"
+          stroke="#EB5725"
+          strokeWidth="0.8"
           strokeDasharray="3 5"
           opacity="0.3"
         />
 
         {/* Ring 3: Outer Orbit (r=200) */}
         <circle
-          cx="270"
-          cy="270"
+          cx={CX}
+          cy={CY}
           r="200"
           stroke="#D8D2C6"
           strokeWidth="0.9"
@@ -131,25 +133,25 @@ export default function PartnersEcosystemVisual() {
           opacity="0.75"
         />
 
-        {/* ── 3. RADIAL CONNECTION LINES (From exact center to satellite centers) ── */}
+        {/* ── 3. RADIAL CONNECTION LINES (From center to satellite centers) ── */}
         <g stroke="#EB5725" strokeWidth="1" strokeDasharray="3 3" opacity="0.45">
-          <line x1="270" y1="270" x2="270" y2="75" />
-          <line x1="270" y1="270" x2="110" y2="195" />
-          <line x1="270" y1="270" x2="430" y2="195" />
-          <line x1="270" y1="270" x2="160" y2="405" />
-          <line x1="270" y1="270" x2="380" y2="405" />
+          <line x1={CX} y1={CY} x2="300" y2="80" />
+          <line x1={CX} y1={CY} x2="510" y2="160" />
+          <line x1={CX} y1={CY} x2="510" y2="400" />
+          <line x1={CX} y1={CY} x2="90" y2="400" />
+          <line x1={CX} y1={CY} x2="90" y2="160" />
         </g>
 
         {/* ── 4. ORBITAL CONNECTOR NODES ── */}
-        <circle cx="270" cy="180" r="3" fill="#EB5725" />
-        <circle cx="360" cy="270" r="3" fill="#EB5725" />
-        <circle cx="270" cy="360" r="3" fill="#EB5725" />
-        <circle cx="180" cy="270" r="3" fill="#EB5725" />
+        <circle cx="300" cy="190" r="3" fill="#EB5725" />
+        <circle cx="390" cy="280" r="3" fill="#EB5725" />
+        <circle cx="300" cy="370" r="3" fill="#EB5725" />
+        <circle cx="210" cy="280" r="3" fill="#EB5725" />
 
-        <circle cx="110" cy="195" r="2.5" fill="#121212" />
-        <circle cx="430" cy="195" r="2.5" fill="#121212" />
-        <circle cx="160" cy="405" r="2.5" fill="#121212" />
-        <circle cx="380" cy="405" r="2.5" fill="#121212" />
+        <circle cx="90" cy="160" r="2.5" fill="#121212" />
+        <circle cx="510" cy="160" r="2.5" fill="#121212" />
+        <circle cx="90" cy="400" r="2.5" fill="#121212" />
+        <circle cx="510" cy="400" r="2.5" fill="#121212" />
 
         {/* Top-Right Technical Dot Matrix */}
         <g opacity="0.4" fill="#EB5725">
@@ -174,8 +176,8 @@ export default function PartnersEcosystemVisual() {
           <circle cx="90" cy="275" r="1.2" />
         </g>
 
-        {/* ── 5. CENTRAL AIC JKLU CORE BADGE (Rendered directly in SVG at 270, 270) ── */}
-        <g transform="translate(270, 270)">
+        {/* ── 5. CENTRAL AIC JKLU CORE BADGE ── */}
+        <g transform={`translate(${CX}, ${CY})`}>
           {/* Outer Breathing Pulse Ring */}
           <circle cx="0" cy="0" r="62" fill="none" stroke="#EB5725" strokeWidth="1" strokeDasharray="2 3" opacity="0.4">
             <animate attributeName="r" values="58;66;58" dur="3s" repeatCount="indefinite" />
@@ -213,35 +215,37 @@ export default function PartnersEcosystemVisual() {
         </g>
       </svg>
 
-      {/* ── 5 SATELLITE NODES OVERLAY (Pinned using exact percentages from 540 grid) ── */}
-      {SATELLITE_NODES.map((node, idx) => {
+      {/* ── 5 SATELLITE NODES OVERLAY (Pinned using exact percentages from 600x560 grid) ── */}
+      {NODES.map((node, idx) => {
         const Icon = node.icon;
-        const isHov = hovered === node.id;
         const leftPct = (node.nx / 600) * 100;
-        const topPct  = (node.ny / 560) * 100;
+        const topPct = (node.ny / 560) * 100;
 
         return (
-          <div
+          <motion.div
             key={node.id}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
               duration: 0.5,
               delay: 0.1 + idx * 0.06,
-              ease: [0.22, 1, 0.36, 1],
+              ease: EASE,
             }}
             style={{
               position: 'absolute',
               left: `${leftPct}%`,
-              top:  `${topPct}%`,
+              top: `${topPct}%`,
               transform: 'translate(-50%, -50%)',
             }}
             className="flex flex-col items-center text-center z-20 cursor-pointer group"
           >
-            {/* Square badge — architectural, not circular */}
-            <div className={`
+            {/* Square badge — architectural */}
+            <div className="
               w-[52px] h-[52px] sm:w-[58px] sm:h-[58px]
               rounded-xl
+              bg-white
+              border border-[#E4E4E0]
+              shadow-[0_4px_16px_rgba(0,0,0,0.06)]
               flex items-center justify-center
               text-[#121212]
               group-hover:border-[#EB5725]
@@ -273,9 +277,7 @@ export default function PartnersEcosystemVisual() {
         );
       })}
 
-
-
-      {/* ── TOP RIGHT TECHNICAL GEOGRAPHIC COORDINATES (Jaipur) ── */}
+      {/* ── TECHNICAL GEOGRAPHIC COORDINATES (Jaipur) ── */}
       <div className="
         hidden xl:block
         absolute bottom-3 right-0
@@ -286,6 +288,4 @@ export default function PartnersEcosystemVisual() {
       </div>
     </div>
   );
-});
-
-export default PartnersEcosystemVisual;
+}
