@@ -103,11 +103,6 @@ function ExpertMentoringIcon() {
 
 const OFFERINGS_DATA = [
   {
-    icon: SeedFundingIcon,
-    title: 'SEED FUNDING',
-    description: 'Access to government funds, initial capital, and VC networks for scaling rural operations.',
-  },
-  {
     icon: LabAccessIcon,
     title: 'LAB ACCESS',
     description: 'Prototyping facilities and hardware labs provided in partnership with JKLU.',
@@ -121,6 +116,11 @@ const OFFERINGS_DATA = [
     icon: ExpertMentoringIcon,
     title: 'EXPERT MENTORING',
     description: 'Guidance from industry leaders operating in the renewable and clean tech space.',
+  },
+    {
+    icon: SeedFundingIcon,
+    title: 'SEED FUNDING',
+    description: 'Access to government funds, initial capital, and VC networks for scaling rural operations.',
   },
 ];
 

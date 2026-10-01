@@ -292,13 +292,13 @@ export default function RiseImpactBanner() {
             <h2 className="font-marcellus text-[36px] sm:text-[46px] lg:text-[50px] leading-[1.04] tracking-[-0.035em] text-[#121212] mb-6">
               Building sustainable
               <br />
-              futures. <span className="text-[#EB5725]">Powering</span>
+              future. <span className="text-[#EB5725]">Empowering</span>
               <br />
               <span className="text-[#EB5725]">rural transformation.</span>
             </h2>
 
             <p className="font-robotoMono text-[13px] sm:text-[13.5px] text-[#52525B] mb-6">
-              Be a part of the movement.
+              Be a part of the journey.
             </p>
 
             <div>

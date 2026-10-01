@@ -304,10 +304,7 @@ function TransmissionGridOrbitalVisual() {
       {/* ── Bottom Right Technical Coordinate Badge ── */}
       <div className="absolute -bottom-2 right-4 sm:right-6 flex items-start gap-2 select-none z-20">
         <span className="font-mono text-[#EB5725] text-xs leading-none font-bold">+</span>
-        <div className="font-robotoMono text-[10px] sm:text-[10.5px] tracking-[0.14em] text-[#71717A] leading-tight">
-          <p>26.9124° N</p>
-          <p>75.7873° E</p>
-        </div>
+  
       </div>
 
     </div>
