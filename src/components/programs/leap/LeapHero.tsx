@@ -433,12 +433,6 @@ export default function LeapHero() {
             className="lg:col-span-5 flex flex-col justify-center items-start z-10"
           >
             {/* Eyebrow Tag */}
-            <div className="flex items-center gap-3 mb-5 sm:mb-6">
-              <span className="font-robotoMono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.24em] text-[#EB5725]">
-                AIC PROGRAM
-              </span>
-              <div className="w-8 h-[1.5px] bg-[#EB5725]" />
-            </div>
 
             {/* Main Headline */}
             <h1 className="font-marcellus text-[54px] sm:text-[68px] md:text-[76px] lg:text-[84px] leading-[0.92] tracking-[-0.035em] text-[#121212] mb-6 sm:mb-7">
@@ -446,7 +440,9 @@ export default function LeapHero() {
               <br />
               <span className="text-[#EB5725]">Economy</span>
               <br />
-              Accelerator<span className="text-[#EB5725]">.</span>
+              Accelerator<span className="text-[#EB5725]"></span>
+              <br />
+              Program<span className="text-[#EB5725]">.</span>
             </h1>
 
             {/* Sub-tagline */}

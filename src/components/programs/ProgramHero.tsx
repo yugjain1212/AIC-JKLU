@@ -34,11 +34,6 @@ export default function ProgramHero() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-6 flex flex-col justify-center"
           >
-            {/* Program Number Indicator */}
-            <span className="font-marcellus text-[32px] sm:text-[40px] text-[#EB5725] leading-none mb-3 sm:mb-4">
-              01
-            </span>
-
             {/* Main Editorial Serif Heading */}
             <h1 className="font-marcellus text-[44px] sm:text-[56px] md:text-[66px] lg:text-[72px] xl:text-[78px] leading-[0.98] tracking-[-0.035em] text-[#121212] mb-4 sm:mb-5">
               Accelerator

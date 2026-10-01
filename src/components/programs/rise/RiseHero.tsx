@@ -325,16 +325,15 @@ export default function RiseHero() {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-6 flex flex-col justify-center items-start"
           >
-            {/* Program Tag / Eyebrow */}
-            <p className="font-robotoMono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.24em] text-[#EB5725] mb-5 sm:mb-6">
-              RISE — RURAL INDIA SOLUTION FOR ENERGY
-            </p>
-
             {/* Serif Heading */}
             <h1 className="font-marcellus text-[54px] sm:text-[68px] md:text-[76px] lg:text-[84px] leading-[0.95] tracking-[-0.035em] text-[#121212] mb-6 sm:mb-8">
-              Empowering
+              RURAL
               <br />
-              <span className="text-[#EB5725]">Rural India.</span>
+              <span className="text-[#EB5725]">INDIA</span>
+              <br />
+              <span className="text-[#121212]">SOLUTION</span>
+              <br />
+              <span className="text-[#121212]">FOR ENERGY</span>
             </h1>
 
             {/* Horizontal Technical Guideline with Orange Crosshair */}
