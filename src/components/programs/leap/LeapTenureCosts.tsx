@@ -104,7 +104,7 @@ export default function LeapTenureCosts() {
               Affordable
             </p>
             <p className="font-robotoMono text-[11px] text-[#71717A]">
-              For Rural Innovators
+              For Innovators
             </p>
           </motion.div>
 

@@ -228,7 +228,7 @@ const OFFERING_CARDS = [
     plusColor: '#EB5725',
     dashColor: '#EB5725',
     title: 'AWS Credits',
-    body: 'Up to $10K in AWS credits to build, deploy and scale.',
+    body: 'Up to $500 in AWS credits to build, deploy and scale.',
     vignette: AwsCreditsVignette,
   },
   {
@@ -372,7 +372,7 @@ export default function LeapOfferings() {
 
             {/* Description Paragraph */}
             <p className="font-robotoMono text-[12.5px] sm:text-[13px] leading-[1.8] text-[#52525B] max-w-xs mb-8 sm:mb-10">
-              Resources, access and support designed to help AgriTech & RuralTech startups grow faster and go further.
+              Resources, access and support designed to help AgeTech & ElderlCare startups grow faster and go further.
             </p>
 
             {/* CTA Buttons Row */}

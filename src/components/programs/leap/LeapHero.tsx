@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ArrowDown } from 'lucide-react';
 
 // =========================================================================
 // REALISTIC FLYING BIRDS WITH FLAPPING WING ANIMATION
@@ -457,45 +456,10 @@ export default function LeapHero() {
 
             {/* Description Paragraph */}
             <p className="font-robotoMono text-[12.5px] sm:text-[13px] leading-[1.8] text-[#52525B] max-w-sm mb-8 sm:mb-10">
-              A 6-month incubation journey designed to empower AgriTech and RuralTech startups with the right mentorship, resources and market validation.
+             A 6-month incubation journey designed to empower Agetech and Eldercare startups with investment opportunities, scalability pathways, and market validation support.
             </p>
 
-            {/* CTA Buttons Row */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-              {/* Solid Orange Apply Button */}
-              <a
-                href="https://www.f6s.com/leap-2026/apply"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group inline-flex items-center gap-2
-                  bg-[#EB5725] hover:bg-[#C84214] text-white
-                  px-6 py-3.5 rounded-lg
-                  font-robotoMono text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[0.16em]
-                  shadow-[0_4px_16px_rgba(235,87,37,0.25)] hover:shadow-[0_6px_22px_rgba(235,87,37,0.35)]
-                  transition-all duration-200
-                "
-              >
-                <span>APPLY NOW</span>
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-
-              {/* Scroll to Explore Link */}
-              <a
-                href="#about"
-                className="
-                  group inline-flex items-center gap-2.5
-                  font-robotoMono text-[10.5px] sm:text-[11px] font-bold uppercase tracking-[0.18em]
-                  text-[#121212] hover:text-[#EB5725]
-                  transition-colors duration-200
-                "
-              >
-                <span>SCROLL TO EXPLORE</span>
-                <div className="w-7 h-7 rounded-full border border-[#EB5725] flex items-center justify-center text-[#EB5725] group-hover:bg-[#EB5725] group-hover:text-white transition-colors duration-200">
-                  <ArrowDown className="w-3.5 h-3.5" />
-                </div>
-              </a>
-            </div>
+            {/* CTA Buttons Row removed */}
           </motion.div>
 
           {/* ── RIGHT COLUMN: Clean Topographic Contour Landscape Artwork ── */}

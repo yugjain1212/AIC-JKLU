@@ -6,9 +6,9 @@ import { ArrowRight } from 'lucide-react';
 const ELIGIBILITY_CRITERIA = [
   'Startups at minimum MVP stage',
   'Working on innovative products, services, or processes',
-  'Creating sustainable solutions for rural ecosystems',
+  'Creating sustainable solutions for  elderly population',
   'Registered entity (Pvt. Ltd., LLP, etc.)',
-  'Solving critical rural or agri challenges innovatively',
+  'Solving critical national/social problems innovatively',
 ];
 
 const SELECTION_STEPS = [

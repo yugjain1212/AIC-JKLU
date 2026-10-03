@@ -408,7 +408,7 @@ const PROGRAM_STEPS = [
   {
     number: '01',
     title: 'IDEATE',
-    description: 'We help farmers turn ideas into solutions that matter.',
+    description: 'We help entrepreneur turn ideas into solutions that matter.',
     illustration: IdeateIllustration,
   },
   {
@@ -426,7 +426,7 @@ const PROGRAM_STEPS = [
   {
     number: '04',
     title: 'IMPACT',
-    description: 'Build sustainable enterprises that transform rural India.',
+    description: 'Build sustainable enterprises that transform India.',
     illustration: ImpactIllustration,
   },
 ];
@@ -468,13 +468,13 @@ export default function LeapAbout() {
           {/* 3 Centered Editorial Paragraphs */}
           <div className="space-y-4 max-w-4xl mx-auto font-robotoMono text-[14px] sm:text-[18px] leading-[1.8] text-[#52525B]">
             <p>
-              The Unnatify Farmer Accelerator Program (UFAP) is a 6-month incubation initiative designed to support AgriTech and FoodTech startups.
+             The Longevity Economy Accelerator Program (LEAP) is a comprehensive 6-month incubation initiative designed to support Agetech and Eldercare startups.
             </p>
             <p>
-              We provide investment opportunities, expand your customer base, validate your ideas, and help you enter the market with confidence.
+             Our program focuses on providing investment opportunities, expanding customer bases, validating proof of concepts, and facilitating entry into new markets.
             </p>
             <p>
-              Our mission is to nurture innovative solutions that tackle real challenges in the rural economy and create sustainable impact at scale.
+              We believe in nurturing innovative solutions that address the unique challenges and opportunities in the eldercare sector, helping startups scale their impact while building sustainable business models.
             </p>
           </div>
         </motion.div>
