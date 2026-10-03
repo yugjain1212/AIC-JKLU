@@ -33,7 +33,7 @@ export default function CompaniesCarousel({
   const swiperRef = useRef<SwiperRef>(null);
 
   return (
-    <div className="relative w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6">
+    <div className="relative w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <Swiper
         ref={swiperRef}
         modules={[EffectCoverflow, Navigation, Autoplay]}
@@ -42,7 +42,7 @@ export default function CompaniesCarousel({
         grabCursor
         loop
         initialSlide={initialIndex}
-        slidesPerView={1.25}
+        slidesPerView={1.08}
         spaceBetween={14}
         speed={850}
         autoplay={{
@@ -59,18 +59,23 @@ export default function CompaniesCarousel({
         }}
         breakpoints={{
           640: {
-            slidesPerView: 1.5,
+            slidesPerView: 1.45,
             spaceBetween: 18,
             coverflowEffect: { rotate: 0, stretch: 0, depth: 115, modifier: 1.25, slideShadows: false },
           },
           1024: {
-            slidesPerView: 1.85,
-            spaceBetween: 24,
+            slidesPerView: 2.05,
+            spaceBetween: 22,
             coverflowEffect: { rotate: 0, stretch: 0, depth: 120, modifier: 1.3, slideShadows: false },
           },
           1280: {
-            slidesPerView: 1.95,
-            spaceBetween: 28,
+            slidesPerView: 2.55,
+            spaceBetween: 22,
+            coverflowEffect: { rotate: 0, stretch: 0, depth: 125, modifier: 1.35, slideShadows: false },
+          },
+          1536: {
+            slidesPerView: 2.8,
+            spaceBetween: 22,
             coverflowEffect: { rotate: 0, stretch: 0, depth: 125, modifier: 1.35, slideShadows: false },
           },
         }}
