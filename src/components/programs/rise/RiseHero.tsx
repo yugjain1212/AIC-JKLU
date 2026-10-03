@@ -348,23 +348,6 @@ export default function RiseHero() {
             </p>
 
             {/* Apply Now Action CTA */}
-            <div>
-              <a
-                href="https://www.f6s.com/rise-2026/apply"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group inline-flex items-center gap-2.5
-                  font-robotoMono text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[0.2em]
-                  text-[#EB5725] hover:text-[#C84214]
-                  border-b border-[#EB5725]/40 hover:border-[#C84214] pb-1
-                  transition-all duration-200
-                "
-              >
-                <span>APPLY NOW</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1.5" />
-              </a>
-            </div>
           </motion.div>
 
           {/* ── RIGHT COLUMN: Circular Power Grid Orbital Lens Visual ── */}

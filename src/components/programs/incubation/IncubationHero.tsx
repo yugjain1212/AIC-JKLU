@@ -25,14 +25,6 @@ export default function IncubationHero() {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-5 flex flex-col justify-center items-start z-10 py-4"
           >
-            {/* Eyebrow: AIC PROGRAM ── */}
-            <div className="flex items-center gap-3.5 mb-6 sm:mb-8">
-              <span className="font-robotoMono text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.26em] text-[#EB5725]">
-                AIC PROGRAM
-              </span>
-              <div className="w-9 h-[1.5px] bg-[#EB5725]" />
-            </div>
-
             {/* Headline: Incubation Program. */}
             <h1 className="font-marcellus text-[56px] sm:text-[72px] md:text-[80px] lg:text-[88px] leading-[0.92] tracking-[-0.035em] text-[#121212] mb-6 sm:mb-7">
               Incubation
@@ -59,42 +51,6 @@ export default function IncubationHero() {
             <p className="font-robotoMono text-[12.5px] sm:text-[13px] leading-[1.8] text-[#52525B] max-w-[420px] mb-8 sm:mb-10">
               Sector-agnostic incubation providing state-of-the-art infrastructure, funding opportunities, technical mentorship, and market connections.
             </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-5 sm:gap-7">
-              <a
-                href="https://www.f6s.com/saip-2026/apply"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group inline-flex items-center gap-2.5
-                  bg-[#EB5725] hover:bg-[#C84214] text-white
-                  px-6 sm:px-7 py-3.5 rounded-lg
-                  font-robotoMono text-[11.5px] sm:text-[12px] font-bold uppercase tracking-[0.16em]
-                  shadow-[0_6px_20px_rgba(235,87,37,0.28)] hover:shadow-[0_8px_26px_rgba(235,87,37,0.4)]
-                  hover:-translate-y-0.5
-                  transition-all duration-200
-                "
-              >
-                <span>APPLY NOW</span>
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-
-              <a
-                href="#benefits"
-                className="
-                  group inline-flex items-center gap-3
-                  font-robotoMono text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.18em]
-                  text-[#121212] hover:text-[#EB5725]
-                  transition-colors duration-200
-                "
-              >
-                <span>EXPLORE BENEFITS</span>
-                <div className="w-8 h-8 rounded-full border border-[#EB5725] flex items-center justify-center text-[#EB5725] group-hover:bg-[#EB5725] group-hover:text-white transition-all duration-200">
-                  <ArrowDown className="w-3.5 h-3.5" />
-                </div>
-              </a>
-            </div>
           </motion.div>
 
           {/* ── RIGHT COLUMN: Editorial Startup Ecosystem Journey ── */}

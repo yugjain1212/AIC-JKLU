@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Leaf, IndianRupee, Award } from 'lucide-react';
+import { Leaf, IndianRupee, Award } from 'lucide-react';
 import ProgramHeroVisual from './ProgramHeroVisual';
 
 export default function ProgramHero() {
@@ -55,40 +55,6 @@ export default function ProgramHero() {
               Join a unique accelerator programme shaping the future of sustainable and bio-based products through innovation, mentorship, and growth opportunities.
             </p>
 
-            {/* Action Buttons: Apply Now & Download Brochure */}
-            <div className="flex flex-wrap items-center gap-5 sm:gap-7">
-              <Link
-                href="/apply?program=accelerator"
-                className="
-                  inline-flex
-                  items-center
-                  justify-center
-                  gap-2.5
-                  px-7
-                  py-3.5
-                  rounded-full
-                  bg-[#EB5725]
-                  text-white
-                  font-robotoMono
-                  text-[11.5px]
-                  sm:text-[12px]
-                  font-bold
-                  tracking-[0.18em]
-                  uppercase
-                  shadow-[0_4px_16px_rgba(235,87,37,0.25)]
-                  hover:bg-[#C84214]
-                  hover:shadow-[0_6px_22px_rgba(235,87,37,0.35)]
-                  hover:scale-[1.02]
-                  active:scale-[0.98]
-                  transition-all
-                  duration-200
-                  group
-                "
-              >
-                <span>APPLY NOW</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-            </div>
           </motion.div>
 
           {/* ── RIGHT COLUMN: Architectural Rocket Illustration & Guide Art ── */}

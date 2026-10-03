@@ -241,7 +241,7 @@ export default function IncubationFinancialSupport() {
           <p className="font-robotoMono text-[12px] sm:text-[13px] tracking-wide text-[#52525B] max-w-2xl">
             <span className="text-[#EB5725] text-base font-serif font-bold mr-2">“</span>
             We don&apos;t just incubate startups, we build the{' '}
-            <span className="text-[#EB5725] font-semibold">future</span> of rural innovation.
+            <span className="text-[#EB5725] font-semibold">future</span> of entrepreneur.
             <span className="text-[#EB5725] text-base font-serif font-bold ml-2">”</span>
           </p>
         </motion.div>
