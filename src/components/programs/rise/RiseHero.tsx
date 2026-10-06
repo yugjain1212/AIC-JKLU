@@ -74,7 +74,7 @@ function FlyingBird({
 function TransmissionGridOrbitalVisual() {
   return (
     <div className="relative w-full max-w-[480px] sm:max-w-[540px] aspect-square mx-auto flex items-center justify-center select-none">
-      
+
       {/* ── Background Technical Crosshair & Slowly Rotating Orbital Coordinate Grid ── */}
       <svg
         viewBox="0 0 500 500"
@@ -94,7 +94,7 @@ function TransmissionGridOrbitalVisual() {
         >
           <circle cx="250" cy="250" r="215" stroke="#D8D2C6" strokeWidth="0.8" strokeDasharray="4 6" opacity="0.6" />
           <circle cx="250" cy="250" r="235" stroke="#EB5725" strokeWidth="0.6" strokeDasharray="2 8" opacity="0.4" />
-          
+
           {/* Orbital Tracking Node Markers */}
           <circle cx="85" cy="115" r="2.5" fill="#121212" opacity="0.7" />
           <circle cx="415" cy="385" r="3" fill="#EB5725" />
@@ -104,7 +104,7 @@ function TransmissionGridOrbitalVisual() {
 
       {/* ── Main Circular Lens Frame with Power Grid Landscape ── */}
       <div className="relative w-[85%] h-[85%] rounded-full overflow-hidden border border-[#D8D2C6]/80 shadow-[0_16px_48px_rgba(0,0,0,0.07)] bg-[#F0EBE0]/50 z-10">
-        
+
         {/* ── Rising Solid Brand Orange Sun with Breathing Glow ── */}
         <motion.div
           animate={{
@@ -304,7 +304,7 @@ function TransmissionGridOrbitalVisual() {
       {/* ── Bottom Right Technical Coordinate Badge ── */}
       <div className="absolute -bottom-2 right-4 sm:right-6 flex items-start gap-2 select-none z-20">
         <span className="font-mono text-[#EB5725] text-xs leading-none font-bold">+</span>
-  
+
       </div>
 
     </div>
@@ -315,9 +315,9 @@ export default function RiseHero() {
   return (
     <section className="relative w-full pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 border-b border-[#E4E4E0]/80 overflow-hidden select-none">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-14">
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          
+
           {/* ── LEFT COLUMN: Editorial Typography & Statement ── */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -344,7 +344,7 @@ export default function RiseHero() {
 
             {/* Description Paragraph */}
             <p className="font-robotoMono text-[13px] sm:text-[14px] leading-[1.85] text-[#52525B] max-w-lg mb-8 sm:mb-10">
-              RISE is a focused incubator fostering sustainable energy breakthroughs that drive meaningful empowerment across India&apos;s rural landscapes.
+              RISE is an AIC-JKLU initiative supporting startups that develop innovative, sustainable, and scalable energy solutions for rural India. The program provides incubation, mentorship, industry connections, and growth support to help transform ideas into impactful ventures.
             </p>
 
             {/* Apply Now Action CTA */}

@@ -301,7 +301,8 @@ export default function RiseImpactBanner() {
               Be a part of the journey.
             </p>
 
-            <div>
+            {/* Apply Now Action CTA (Commented Out) */}
+            {/* <div>
               <a
                 href="https://www.f6s.com/rise-2026/apply"
                 target="_blank"
@@ -317,7 +318,7 @@ export default function RiseImpactBanner() {
                 <span>APPLY NOW</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1.5" />
               </a>
-            </div>
+            </div> */}
           </motion.div>
 
           {/* ── Right Column: Rural Village Panorama Illustration ── */}
@@ -349,6 +350,14 @@ export default function RiseImpactBanner() {
             BOTTOM AREA: 3 Impact Metrics with Vertical Dividers
         ========================================================== */}
         <div className="border-t border-[#E4E4E0] pt-10 sm:pt-12">
+          {/* Section Eyebrow Label */}
+          <div className="mb-6 sm:mb-8 flex items-center gap-3">
+            <span className="font-robotoMono text-[11px] sm:text-[11.5px] font-bold uppercase tracking-[0.22em] text-[#EB5725]">
+              Impact Created
+            </span>
+            <div className="h-px w-12 bg-[#EB5725]/30" />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
             
             {/* Metric 1 */}
