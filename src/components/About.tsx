@@ -7,10 +7,10 @@ import { ArrowRight } from 'lucide-react';
 
 // ── Stats data ─────────────────────────────────────────────────────────────
 const STATS = [
-  { index: '01', label: 'Startups\nSupported',       value: 100, suffix: '+' },
+  { index: '01', label: 'Startups\nSupported',       value: 200, suffix: '+' },
   { index: '02', label: 'Expert\nMentors',            value: 45,  suffix: '+' },
-  { index: '03', label: 'Ecosystem\nPartners',        value: 35,  suffix: '+' },
-  { index: '04', label: 'Events &\nEngagements',      value: 100, suffix: '+' },
+  { index: '03', label: 'Ecosystem\nPartners',        value: 50,  suffix: '+' },
+  { index: '04', label: 'Events &\nEngagements',      value: 200, suffix: '+' },
 ] as const;
 
 // ── Animated Counter Component ─────────────────────────────────────────────
