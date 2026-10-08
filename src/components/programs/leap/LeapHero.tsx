@@ -456,7 +456,7 @@ export default function LeapHero() {
 
             {/* Description Paragraph */}
             <p className="font-robotoMono text-[12.5px] sm:text-[13px] leading-[1.8] text-[#52525B] max-w-sm mb-8 sm:mb-10">
-             A 6-month incubation journey designed to empower Agetech and Eldercare startups with investment opportunities, scalability pathways, and market validation support.
+             A 9-month incubation journey designed to empower Agetech and Eldercare startups with investment opportunities, scalability pathways, and market validation support.
             </p>
 
             {/* CTA Buttons Row removed */}
