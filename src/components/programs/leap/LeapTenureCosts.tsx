@@ -116,7 +116,7 @@ export default function LeapTenureCosts() {
         ========================================================== */}
         <div className="border-t border-[#2A2A2A] pt-8 space-y-2.5 max-w-4xl font-robotoMono text-[11px] sm:text-[11.5px] leading-[1.7] text-white/60">
           <p>
-            <strong className="text-white/80 font-medium">Service charges:</strong> A nominal monthly service charge will be levied for the first 6 months. Post that a revenue-sharing model or a flat program extension fee may apply.
+            <strong className="text-white/80 font-medium">Service charges:</strong> A nominal monthly service charge will be levied for the first 9 months. Post that a revenue-sharing model or a flat program extension fee may apply.
           </p>
           <p>
             <strong className="text-white/80 font-medium">Extensions:</strong> Additional period of 3 months based on performance and needs assessment.
