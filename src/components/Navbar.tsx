@@ -97,14 +97,14 @@ export default function Navbar() {
       <Image src="/logo.svg" alt="AIC JKLU" width={80} height={40} sizes="80px" priority className="h-9 w-auto max-w-[80px] object-contain transition-transform duration-300 ease-out group-hover:scale-[1.04]" />
       <div className="h-8 w-px bg-[#E4E4E0]" />
       {/* JKLU */}
-      <Image src="/jklu.svg" alt="JK Lakshmipat University" width={40} height={40} sizes="40px" priority className="h-9 w-auto object-contain transition-transform duration-300 ease-out group-hover:scale-[1.04]" />
+      <Image src="/jklu.svg" alt="JK Lakshmipat University" width={48} height={44} sizes="48px" priority className="h-11 w-auto object-contain transition-transform duration-300 ease-out group-hover:scale-[1.04]" />
     </Link>
     <nav aria-label="Secondary navigation" className="hidden items-center justify-start gap-5 pl-4 md:flex lg:gap-8 lg:pl-6">{plainLink(RIGHT_NAV_LINKS[0])}{dropdown('About', ABOUT_DROPDOWN_ITEMS)}{dropdown('Stakeholders', STAKEHOLDERS_DROPDOWN_ITEMS, 'w-48')}</nav>
   </div><Link href="/apply" className="group absolute right-6 top-1/2 hidden -translate-y-1/2 items-center justify-center rounded-full bg-[#EB5725] px-6 py-3.5 font-robotoMono text-[12px] font-bold uppercase tracking-[0.12em] text-white whitespace-nowrap transition-all duration-300 ease-out hover:-translate-y-[calc(50%+1px)] hover:bg-[#C84214] md:flex lg:right-10 lg:px-8 lg:py-4"><span>Apply</span><span className="text-base leading-none transition-transform duration-300 ease-out group-hover:translate-x-1">→</span></Link>
     <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-6 md:hidden"><Link href="/" aria-label="AIC JKLU Home" className="flex items-center gap-2 cursor-pointer">
       <Image src="/partners/government/niti-aayog.svg" alt="NITI Aayog" width={28} height={28} sizes="28px" priority className="h-7 w-auto object-contain" />
       <div className="h-6 w-px bg-[#E4E4E0]" />
-      <Image src="/jklu.svg" alt="JK Lakshmipat University" width={28} height={28} sizes="28px" priority className="h-7 w-auto object-contain" />
+      <Image src="/jklu.svg" alt="JK Lakshmipat University" width={34} height={34} sizes="34px" priority className="h-8 w-auto object-contain" />
       <div className="h-6 w-px bg-[#E4E4E0]" />
       <Image src="/aimlogo.svg" alt="Atal Innovation Mission" width={28} height={28} sizes="28px" priority className="h-7 w-auto object-contain" />
       <div className="h-6 w-px bg-[#E4E4E0]" />
