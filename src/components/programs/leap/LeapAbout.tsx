@@ -468,7 +468,7 @@ export default function LeapAbout() {
           {/* Centered Editorial Paragraphs */}
           <div className="space-y-4 max-w-4xl mx-auto font-robotoMono text-[14px] sm:text-[18px] leading-[1.8] text-[#52525B]">
             <p>
-              The Longevity Economy Accelerator Program (LEAP) is a 6-month incubation initiative designed to support Agetech and Eldercare startups.
+              The Longevity Economy Accelerator Program (LEAP) is a 9-month incubation initiative designed to support Agetech and Eldercare startups.
             </p>
             <p>
               LEAP helps startups develop innovative solutions for the elderly by providing mentorship, investment opportunities, customer and market access, and support for validating proof of concepts. The program aims to empower startups to build scalable solutions that improve the independence, wellbeing, and quality of life of senior citizens.
